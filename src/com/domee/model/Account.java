@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.weibo.sdk.android.Oauth2AccessToken;
 
+
 public class Account implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
