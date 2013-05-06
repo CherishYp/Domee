@@ -11,9 +11,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.weibo.sdk.android.Oauth2AccessToken;
 import com.weibo.sdk.android.WeiboException;
+import com.weibo.sdk.android.api.StatusesAPI;
 import com.weibo.sdk.android.api.TrendsAPI;
 import com.weibo.sdk.android.api.UsersAPI;
 import com.weibo.sdk.android.api.WeiboAPI;
+import com.weibo.sdk.android.api.WeiboAPI.FEATURE;
 import com.weibo.sdk.android.net.RequestListener;
 
 import android.app.ListActivity;
@@ -107,41 +109,9 @@ public class AccListActivity extends ListActivity {
 		// TODO Auto-generated method stub
 //		Toast.makeText(AccListActivity.this, "You click: " + position, Toast.LENGTH_SHORT).show(); 
 		Intent intent = new Intent();
-		Account account = accounts.get(position);
-		Oauth2AccessToken accessToken = new Oauth2AccessToken(account.getmAccessToken(), account.getmExpiresTime());
-		UsersAPI usersAPI = new UsersAPI(accessToken);
-		
-		UserRequestListener url = new UserRequestListener();
-		usersAPI.show(account.getUser().getScreen_name(), url);
-		
+		intent.setClass(this, FriendsTimelineActivity.class);
+		startActivity(intent);
 		super.onListItemClick(l, v, position, id);
-	}
-    
-	class UserRequestListener implements RequestListener {
-
-		@Override
-		public void onComplete(String arg0) {
-			// TODO Auto-generated method stub
-			System.out.println(arg0);
-			
-			GsonBuilder builder = new GsonBuilder();
-			Gson gson = builder.create();
-			User user = gson.fromJson(arg0, User.class);
-			
-		}
-
-		@Override
-		public void onError(WeiboException arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onIOException(IOException arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
     
 }

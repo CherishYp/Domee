@@ -2,7 +2,6 @@ package com.domee.model;
 
 import java.io.Serializable;
 
-
 //"status":{"created_at":"Fri Apr 26 09:37:49 +0800 2013","id":3571268693395472,
 //"mid":"3571268693395472","idstr":"3571268693395472","text":" 真他妈难产啊","source":"<a href=\"http://weibo.com/\" rel=\"nofollow\">新浪微博</a>",
 //"favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],

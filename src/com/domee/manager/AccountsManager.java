@@ -13,6 +13,7 @@ import android.content.Context;
 
 import com.domee.model.Account;
 import com.domee.model.User;
+import com.weibo.sdk.android.Oauth2AccessToken;
 
 public class AccountsManager {
 
@@ -121,4 +122,10 @@ public class AccountsManager {
 		return accountList;
 	}
 
+	public static Oauth2AccessToken curAccessToken() {
+
+		Account curAccount = AccountsManager.curAccount;
+		Oauth2AccessToken accessToken = new Oauth2AccessToken(curAccount.getmAccessToken(), curAccount.getmExpiresTime());
+		return accessToken;
+	}
 }

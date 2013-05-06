@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip" >
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_margin="5dip"/>
+
+    <TextView
+        android:id="@+id/screenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/avatar"
+        android:textSize="18sp"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:text="TextView" />
+	
+	<TextView
+        android:id="@+id/createdAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/screenName"
+        android:layout_marginRight="5dip"
+        android:textColor="#808080"
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/screenName"
+        android:layout_toRightOf="@id/avatar"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginRight="5dip"
+        android:textColor="#696969"
+        android:textSize="15sp"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/cImgIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/content"
+        android:layout_toRightOf="@id/avatar"/>
+    
+    <TextView
+        android:id="@+id/source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cImgIV"
+        android:layout_toRightOf="@id/avatar"
+        android:gravity="bottom"
+        android:textColor="#808080"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/source"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:textColor="#808080"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/repost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/comment"
+        android:layout_toLeftOf="@id/comment"
+       	android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:textColor="#808080"
+        android:text="TextView" />
+
+   
+
+</RelativeLayout>
