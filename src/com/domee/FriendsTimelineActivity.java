@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -86,6 +87,12 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 		public TextView source;
 		public TextView repost;
 		public TextView comment;
+		
+		public View reStatus;
+		public TextView reContent;
+		public ImageView reCImgIV;
+		public TextView reRepost;
+		public TextView reComment;
 	}
 
 	
@@ -130,12 +137,19 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 
 				holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
 				holder.screenName = (TextView) convertView.findViewById(R.id.screenName);
-				holder.createdAt = (TextView) convertView.findViewById(R.id.createdAt);
+		    	//holder.createdAt = (TextView) convertView.findViewById(R.id.createdAt);
 				holder.content = (TextView) convertView.findViewById(R.id.content);
-				holder.cImgIV = (ImageView) convertView.findViewById(R.id.cImgIV);
+				//holder.cImgIV = (ImageView) convertView.findViewById(R.id.cImgIV);
 				holder.source = (TextView) convertView.findViewById(R.id.source);
 				holder.repost = (TextView) convertView.findViewById(R.id.repost);
 				holder.comment = (TextView) convertView.findViewById(R.id.comment);
+				
+				holder.reStatus = convertView.findViewById(R.id.reStatus);
+				holder.reContent = (TextView) convertView.findViewById(R.id.reContent);
+				holder.reCImgIV = (ImageView) convertView.findViewById(R.id.reCImgIV);
+				holder.reRepost = (TextView) convertView.findViewById(R.id.reRepost);
+				holder.reComment = (TextView) convertView.findViewById(R.id.reComment);
+				
 				convertView.setTag(holder);
 
 			} else {
@@ -150,16 +164,45 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 //			holder.avatar.setFocusableInTouchMode(false);
 			imageLoader.displayImage(sta.getUser().getProfile_image_url(), holder.avatar, options, animateFirstListener);
 			
+			//
+//			if(sta.getThumbnail_pic() != null && !sta.getThumbnail_pic().equals("")) {
+//				
+//				imageLoader.displayImage(sta.getThumbnail_pic(), holder.cImgIV, options, animateFirstListener);
+//				holder.cImgIV.setVisibility(View.VISIBLE);
+//			} else {
+//				holder.cImgIV.setVisibility(View.GONE);
+//			}
+			
 			holder.screenName.setText(sta.getUser().getScreen_name());
-			holder.createdAt.setText("2013.5.6");
+			//holder.createdAt.setText("2013.5.6");
+			holder.content.setText("");
 			holder.content.setText(sta.getText());
-			imageLoader.displayImage(sta.getThumbnail_pic(), holder.cImgIV, options, animateFirstListener);
+			
 			
 			holder.source.setText(Html.fromHtml(sta.getSource()));
 			stripUnderlines(holder.source, sta.getSource());
 			
 			holder.repost.setText(sta.getReposts_count() + "");
 			holder.comment.setText(sta.getComments_count() + "");
+			
+			if (sta.getRetweeted_status() != null) {
+				
+				holder.reContent.setText(sta.getRetweeted_status().getUser().getScreen_name() + ":"
+										+ sta.getRetweeted_status().getText());
+				if(sta.getRetweeted_status().getThumbnail_pic() != null && !sta.getRetweeted_status().getThumbnail_pic().equals("")) {
+					
+					imageLoader.displayImage(sta.getRetweeted_status().getThumbnail_pic(), holder.reCImgIV, options, animateFirstListener);
+					holder.reCImgIV.setVisibility(View.VISIBLE);
+				} else {
+					holder.reCImgIV.setVisibility(View.GONE);
+				}
+				holder.reRepost.setText("转发" + sta.getRetweeted_status().getReposts_count() + "");
+				holder.reComment.setText("评论" + sta.getRetweeted_status().getComments_count() + "");
+				holder.reStatus.setVisibility(View.VISIBLE);
+			} else {
+				holder.reStatus.setVisibility(View.VISIBLE);
+			}
+			
 			return convertView;
 		}
 	}
