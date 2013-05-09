@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="10dp"
+    android:background="#DCDCDC" >
+	
+    <TextView
+        android:id="@+id/ssTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="15dip"
+        android:text="微博正文" />
+
+    <ImageView
+        android:id="@+id/ssAvatar"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ssTitle"
+        android:layout_marginLeft="20dip"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/ssScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ssAvatar"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="14dp"
+        android:layout_toRightOf="@id/ssAvatar"
+        android:text="一个人"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/ssNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/ssScreenName"
+        android:layout_alignBottom="@id/ssScreenName"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dip"
+        android:text="个人页" />
+
+    <TextView
+        android:id="@+id/ssContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ssAvatar"
+        android:layout_alignRight="@id/ssNext"
+        android:layout_below="@id/ssAvatar"
+	    android:lineSpacingMultiplier="1.1"
+	    android:layout_marginTop="10dp"
+	    android:textColor="#000000"
+	    android:textSize="15sp"
+        android:text="contentcontent。。。。。。。。" />
+
+    <ImageView
+        android:id="@+id/ssImgView"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ssContent"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_launcher" />
+    
+    <RelativeLayout
+        android:id="@+id/ssReStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ssContent"
+        android:layout_below="@id/ssImgView"
+        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:id="@+id/ssReContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:lineSpacingMultiplier="1.1"
+	    	android:textColor="#000000"
+	    	android:textSize="15sp"
+            android:text="ssReContentssReContentssReContentssReContentssReContent" />
+
+        <ImageView
+	        android:id="@+id/ssReImgView"
+	        android:layout_width="80dip"
+	        android:layout_height="80dip"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@id/ssReContent"
+	        android:src="@drawable/ic_launcher" />
+        
+        <TextView
+            android:id="@+id/ssReSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/ssReImgView"
+            android:textColor="#808080"
+        	android:textSize="12sp"
+            android:text="ssReSource" />
+
+        <TextView
+            android:id="@+id/ssReComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/ssReSource"
+            android:textColor="#808080"
+        	android:textSize="12sp" 
+            android:text="ssReComment" />
+
+        <TextView
+            android:id="@+id/ssReRepost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/ssReComment"
+            android:layout_alignBaseline="@id/ssReComment"
+            android:layout_marginRight="16dp"
+            android:textColor="#808080"
+        	android:textSize="12sp"  
+            android:text="ssReRepost" />
+        
+    </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/ssSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ssReStatus"
+		android:layout_alignLeft="@id/ssContent"
+		android:layout_marginTop="10dp"
+		android:textColor="#808080"
+       	android:textSize="12sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/ssComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/ssSource"
+        android:layout_alignRight="@id/ssContent"
+        android:textColor="#808080"
+        android:textSize="12sp" 
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/ssRepost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/ssComment"
+        android:layout_toLeftOf="@id/ssComment"
+        android:layout_marginRight="16dp"
+        android:textColor="#808080"
+        android:textSize="12sp" 
+        android:text="TextView" />
+
+</RelativeLayout>

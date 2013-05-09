@@ -1,22 +1,22 @@
 package com.domee.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class StatusResult implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList<Status> statuses;
+	private LinkedList<Status> statuses;
 	private String previous_cursor;
 	private String next_cursor;
 	private String total_number;
 
-	public ArrayList<Status> getStatuses() {
+	public LinkedList<Status> getStatuses() {
 		return statuses;
 	}
 
-	public void setStatuses(ArrayList<Status> statuses) {
+	public void setStatuses(LinkedList<Status> statuses) {
 		this.statuses = statuses;
 	}
 

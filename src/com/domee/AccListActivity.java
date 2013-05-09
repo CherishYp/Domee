@@ -1,22 +1,9 @@
 package com.domee;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.domee.manager.AccountsManager;
 import com.domee.model.Account;
-import com.domee.model.User;
-import com.domee.net.UserRequestListener;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.weibo.sdk.android.Oauth2AccessToken;
-import com.weibo.sdk.android.WeiboException;
-import com.weibo.sdk.android.api.StatusesAPI;
-import com.weibo.sdk.android.api.TrendsAPI;
-import com.weibo.sdk.android.api.UsersAPI;
-import com.weibo.sdk.android.api.WeiboAPI;
-import com.weibo.sdk.android.api.WeiboAPI.FEATURE;
-import com.weibo.sdk.android.net.RequestListener;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -29,12 +16,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AccListActivity extends ListActivity {
 
 	private List<Account> accounts;
-	private User user;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

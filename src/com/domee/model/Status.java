@@ -209,5 +209,9 @@ public class Status implements Serializable {
 		this.visible = visible;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "id=======>" + id + "==========" +  "text=======>" + text + "/n";
+	}
 }

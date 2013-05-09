@@ -1,41 +1,27 @@
 package com.domee;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
-import com.domee.manager.AccountsManager;
 import com.domee.model.Status;
 import com.domee.model.StatusResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.weibo.sdk.android.WeiboException;
-import com.weibo.sdk.android.api.StatusesAPI;
 import com.weibo.sdk.android.api.WeiboAPI.FEATURE;
 import com.weibo.sdk.android.net.RequestListener;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,59 +32,62 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class FriendsTimelineActivity extends Activity implements OnScrollListener {
+public class FriendsTimelineActivity extends BaseListActivity implements OnScrollListener {
 
-	ImageLoader imageLoader = ImageLoader.getInstance();
-	public DisplayImageOptions options;
-	
-	public ArrayList<Status> statusList = null;
-	public TimelineAdapter adapter = null; 
-	public ListView listView = null;
+	private LinkedList<Status> statusList = null;
+	private TimelineAdapter adapter = null; 
+	private PullToRefreshListView mPullToRefreshListView;
+	private long since_id = 0;
+	private long max_id = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ac_timeline);
-		listView = (ListView)findViewById(R.id.listView1);
-		
-//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this);
-		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
-		options = new DisplayImageOptions.Builder()
-								.cacheInMemory()
-								.cacheOnDisc()
-								.displayer(new RoundedBitmapDisplayer(0))
-								.build();
-
+		mPullToRefreshListView = (PullToRefreshListView)findViewById(R.id.pull_refresh_list);
 		
 		adapter = new TimelineAdapter(this); 
-		listView.setAdapter(adapter);
+		mPullToRefreshListView.setAdapter(adapter);
 		
 		this.loadNew();
+		
+		// Set a listener to be invoked when the list should be refreshed.
+		mPullToRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+			@Override
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+				String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),
+						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+				
+				// Update the LastUpdatedLabel
+				refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+			    loadNew();
+			}
+		});
+		//绑定OnScrollListener监听器
+		getListView().setOnScrollListener(this);
 	}
 	
 	public final class ViewHolder {
 
-		public ImageView avatar;
-		public TextView screenName;
-		public TextView createdAt;
-		public TextView content;
-		public ImageView cImgIV;
-		public TextView source;
-		public TextView repost;
-		public TextView comment;
+		public ImageView ftAvatar;
+		public TextView ftScreenName;
+		public TextView ftCreatedAt;
+		public TextView ftText;
+		public ImageView ftImgView;
+		public TextView ftSource;
+		public TextView ftRepost;
+		public TextView ftComment;
 		
-		public View reStatus;
-		public TextView reContent;
-		public ImageView reCImgIV;
-		public TextView reRepost;
-		public TextView reComment;
+		public View ftReStatus;
+		public TextView ftReText;
+		public ImageView ftReImgView;
+		public TextView ftReRepost;
+		public TextView ftReComment;
 	}
-
 	
 	public class TimelineAdapter extends BaseAdapter {
 
-		private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 		private LayoutInflater mInflater;
 
 		public TimelineAdapter(Context context) {
@@ -135,20 +124,20 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 				holder = new ViewHolder();
 				convertView = mInflater.inflate(R.layout.item_timeline, null);
 
-				holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
-				holder.screenName = (TextView) convertView.findViewById(R.id.screenName);
-		    	//holder.createdAt = (TextView) convertView.findViewById(R.id.createdAt);
-				holder.content = (TextView) convertView.findViewById(R.id.content);
-				//holder.cImgIV = (ImageView) convertView.findViewById(R.id.cImgIV);
-				holder.source = (TextView) convertView.findViewById(R.id.source);
-				holder.repost = (TextView) convertView.findViewById(R.id.repost);
-				holder.comment = (TextView) convertView.findViewById(R.id.comment);
+				holder.ftAvatar = (ImageView) convertView.findViewById(R.id.ftAvatar);
+				holder.ftScreenName = (TextView) convertView.findViewById(R.id.ftScreenName);
+		    	holder.ftCreatedAt = (TextView) convertView.findViewById(R.id.ftCreatedAt);
+				holder.ftText = (TextView) convertView.findViewById(R.id.ftText);
+				holder.ftImgView = (ImageView) convertView.findViewById(R.id.ftImgView);
+			    holder.ftSource = (TextView) convertView.findViewById(R.id.ftSource);
+				holder.ftRepost = (TextView) convertView.findViewById(R.id.ftRepost);
+				holder.ftComment = (TextView) convertView.findViewById(R.id.ftComment);
 				
-				holder.reStatus = convertView.findViewById(R.id.reStatus);
-				holder.reContent = (TextView) convertView.findViewById(R.id.reContent);
-				holder.reCImgIV = (ImageView) convertView.findViewById(R.id.reCImgIV);
-				holder.reRepost = (TextView) convertView.findViewById(R.id.reRepost);
-				holder.reComment = (TextView) convertView.findViewById(R.id.reComment);
+				holder.ftReStatus = convertView.findViewById(R.id.ftReStatus);
+				holder.ftReText = (TextView) convertView.findViewById(R.id.ftReText);
+				holder.ftReImgView = (ImageView) convertView.findViewById(R.id.ftReImgView);
+				holder.ftReRepost = (TextView) convertView.findViewById(R.id.ftReRepost);
+				holder.ftReComment = (TextView) convertView.findViewById(R.id.ftReComment);
 				
 				convertView.setTag(holder);
 
@@ -158,62 +147,56 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 			}
 
 			Status sta = statusList.get(position);
-	        
-//			holder.avatar.setImageResource(R.drawable.ic_launcher);
-//			holder.avatar.setFocusable(false);
-//			holder.avatar.setFocusableInTouchMode(false);
-			imageLoader.displayImage(sta.getUser().getProfile_image_url(), holder.avatar, options, animateFirstListener);
-			
-			//
-//			if(sta.getThumbnail_pic() != null && !sta.getThumbnail_pic().equals("")) {
-//				
-//				imageLoader.displayImage(sta.getThumbnail_pic(), holder.cImgIV, options, animateFirstListener);
-//				holder.cImgIV.setVisibility(View.VISIBLE);
-//			} else {
-//				holder.cImgIV.setVisibility(View.GONE);
-//			}
-			
-			holder.screenName.setText(sta.getUser().getScreen_name());
-			//holder.createdAt.setText("2013.5.6");
-			holder.content.setText("");
-			holder.content.setText(sta.getText());
-			
-			
-			holder.source.setText(Html.fromHtml(sta.getSource()));
-			stripUnderlines(holder.source, sta.getSource());
-			
-			holder.repost.setText(sta.getReposts_count() + "");
-			holder.comment.setText(sta.getComments_count() + "");
-			
-			if (sta.getRetweeted_status() != null) {
-				
-				holder.reContent.setText(sta.getRetweeted_status().getUser().getScreen_name() + ":"
-										+ sta.getRetweeted_status().getText());
-				if(sta.getRetweeted_status().getThumbnail_pic() != null && !sta.getRetweeted_status().getThumbnail_pic().equals("")) {
-					
-					imageLoader.displayImage(sta.getRetweeted_status().getThumbnail_pic(), holder.reCImgIV, options, animateFirstListener);
-					holder.reCImgIV.setVisibility(View.VISIBLE);
-				} else {
-					holder.reCImgIV.setVisibility(View.GONE);
-				}
-				holder.reRepost.setText("转发" + sta.getRetweeted_status().getReposts_count() + "");
-				holder.reComment.setText("评论" + sta.getRetweeted_status().getComments_count() + "");
-				holder.reStatus.setVisibility(View.VISIBLE);
+			imageLoader.displayImage(sta.getUser().getProfile_image_url(), holder.ftAvatar, options, animateFirstListener);
+			//判断是否带图片微博
+			if(sta.getThumbnail_pic() != null && !sta.getThumbnail_pic().equals("")) {
+				imageLoader.displayImage(sta.getThumbnail_pic(), holder.ftImgView, options, animateFirstListener);
+				holder.ftImgView.setVisibility(View.VISIBLE);
 			} else {
-				holder.reStatus.setVisibility(View.VISIBLE);
+				holder.ftImgView.setVisibility(View.GONE);
 			}
 			
+			holder.ftScreenName.setText(sta.getUser().getScreen_name());
+			holder.ftCreatedAt.setText("2013.5.6");
+			holder.ftText.setText("");
+			holder.ftText.setText(sta.getText());
+			holder.ftSource.setText(Html.fromHtml(sta.getSource()));
+			stripUnderlines(holder.ftSource, sta.getSource());
+			
+			holder.ftRepost.setText(sta.getReposts_count() + "");
+			holder.ftComment.setText(sta.getComments_count() + "");
+			
+			//判断是否转发
+			if (sta.getRetweeted_status() != null) {
+				//判断微博是否存在
+				if(sta.getRetweeted_status().getUser() != null){
+					holder.ftReText.setText(sta.getRetweeted_status().getUser().getScreen_name() + ":"
+							+ sta.getRetweeted_status().getText());
+				}else{
+					holder.ftReText.setText(sta.getRetweeted_status().getText());
+				}
+				//判断转发的微博是否有图片
+				if(sta.getRetweeted_status().getThumbnail_pic() != null && !sta.getRetweeted_status().getThumbnail_pic().equals("")) {
+					imageLoader.displayImage(sta.getRetweeted_status().getThumbnail_pic(), holder.ftReImgView, options, animateFirstListener);
+					holder.ftReImgView.setVisibility(View.VISIBLE);
+				} else {
+					holder.ftReImgView.setVisibility(View.GONE);
+				}
+				holder.ftReRepost.setText("转发" + sta.getRetweeted_status().getReposts_count() + "");
+				holder.ftReComment.setText("评论" + sta.getRetweeted_status().getComments_count() + "");
+				holder.ftReStatus.setVisibility(View.VISIBLE);
+			} else {
+				holder.ftReStatus.setVisibility(View.GONE);
+			}
 			return convertView;
 		}
 	}
 	
-	
 	private Handler handler = new Handler() {
-
 		@Override
 		public void handleMessage(Message msg) {
-			
 			super.handleMessage(msg);
+			mPullToRefreshListView.onRefreshComplete();
 			adapter.notifyDataSetChanged();
 		}
 	};
@@ -222,19 +205,37 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 	 * 加载新的动态
 	 */
 	public void loadNew() {
-		StatusesAPI statusesAPI = new StatusesAPI(AccountsManager.curAccessToken());
-		statusesAPI.friendsTimeline(0, 0, 50, 1, false, FEATURE.ALL, false,
-				new FriendsTimelineRequestListener());
+
+		if (statusList != null) {
+			since_id = statusList.get(0).getId();
+		}
+		statusesAPI.friendsTimeline(since_id, 0, 20, 1, false, FEATURE.ALL, false,
+				new FriendsTimelineRequestListener(true));
 	}
 
+	/*
+	 * 加载更多
+	 */
 	public void loadMore() {
-
+		
+		FriendsTimelineRequestListener loadMoreListener = new FriendsTimelineRequestListener(false);
+//		if (statusList != null) {
+//			max_id = statusList.get(statusList.size() - 1).getId();
+//		}
+		statusesAPI.friendsTimeline(0, max_id, 20, 1, false, FEATURE.ALL, false, loadMoreListener);
 	}
 
 	/*
 	 * RequestListener,请求返回的json数据在里面的onComplete方法获得
 	 */
 	class FriendsTimelineRequestListener implements RequestListener {
+		
+		public boolean isLoadNew = true;
+		
+		public FriendsTimelineRequestListener(boolean isLoadNew) {
+			super();
+			this.isLoadNew = isLoadNew;
+		}
 
 		@Override
 		public void onComplete(String arg0) {
@@ -243,9 +244,17 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 			GsonBuilder builder = new GsonBuilder();
 			Gson gson = builder.create();
 			StatusResult sr = gson.fromJson(arg0, new TypeToken<StatusResult>(){}.getType());
-			System.out.println(sr.getStatuses().size());
-			statusList = sr.getStatuses();
-			
+			System.out.println("load到的 ======= " + sr.getStatuses().size());
+			max_id = Long.parseLong(sr.getNext_cursor());
+			if(statusList == null){
+				statusList = sr.getStatuses();
+			}
+			else if (!isLoadNew) {
+				statusList.addAll(sr.getStatuses());
+			}else{
+				statusList.addAll(0, sr.getStatuses());
+			}
+			System.out.println("load之后总共 ======= " + sr.getStatuses().size());
 			Message msg = handler.obtainMessage();
 			handler.sendMessage(msg);
 		}
@@ -253,71 +262,44 @@ public class FriendsTimelineActivity extends Activity implements OnScrollListene
 		@Override
 		public void onError(WeiboException arg0) {
 			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void onIOException(IOException arg0) {
 			// TODO Auto-generated method stub
-
 		}
 	}
 	
 	/*
-	 * 加载图片部分代码
+	 * 实现滑动监听器
+	 * @see android.widget.AbsListView.OnScrollListener#onScroll(android.widget.AbsListView, int, int, int)
 	 */
-	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
-
-		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
-
-		@Override
-		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-			if (loadedImage != null) {
-				ImageView imageView = (ImageView) view;
-				boolean firstDisplay = !displayedImages.contains(imageUri);
-				if (firstDisplay) {
-					FadeInBitmapDisplayer.animate(imageView, 500);
-					displayedImages.add(imageUri);
-				}
-			}
-		}
-	}
-
-	//去除a标签的下划线
-	private void stripUnderlines(TextView textView, String source) {
-//      Spannable s = (Spannable)textView.getText();
-		Spannable s = new SpannableString(Html.fromHtml(source));
-      	URLSpan[] spans = s.getSpans(0, s.length(), URLSpan.class); 
-      	for (URLSpan span: spans) { 
-          	int start = s.getSpanStart(span); 
-          	int end = s.getSpanEnd(span); 
-          	s.removeSpan(span); 
-          	span = new URLSpanNoUnderline(span.getURL()); 
-          	s.setSpan(span, start, end, 0); 
-      	} 
-      	textView.setText(s); 
-	} 
-
-	private class URLSpanNoUnderline extends URLSpan { 
-		public URLSpanNoUnderline(String url) { 
-			super(url); 
-		} 
-		@Override public void updateDrawState(TextPaint ds) { 
-			super.updateDrawState(ds); 
-			ds.setUnderlineText(false); 
-		} 
-	}
-	
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 		// TODO Auto-generated method stub
-		
+		switch (scrollState){
+		 	case OnScrollListener.SCROLL_STATE_IDLE:
+	            if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+	            	loadMore();
+	            }               
+		}        
 	}
-}
+	
+	//点击list
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Intent intent = new Intent();
+		intent.setClass(this, StatusShowActivity.class);
+		intent.putExtra("status", statusList.get(position - 1));
+		startActivity(intent);
+	}
+}    
+	

@@ -2,132 +2,161 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingTop="5dip"
-    android:paddingBottom="5dip">
-    
-	<ImageView
-        android:id="@+id/avatar"
-        android:layout_width="50dip"
-        android:layout_height="50dip"
-        android:layout_margin="5dip"
-        android:src="@drawable/ic_launcher"/>
+    android:paddingBottom="5dp" >
+
+    <ImageView
+        android:id="@+id/ftAvatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/screenName"
+        android:id="@+id/ftCreatedAt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/avatar"
+        android:layout_alignParentRight="true"
+		android:layout_alignTop="@id/ftAvatar"
+		android:layout_marginRight="20dp"
+        android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="ftCreatedAt" />
+
+    <TextView
+        android:id="@+id/ftScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ftAvatar"
+        android:layout_toRightOf="@+id/ftAvatar"
         android:textSize="18sp"
-        android:layout_marginTop="5dip"
-        android:layout_marginBottom="5dip"
-        android:text="用户名" />
-   
-  
+        android:textColor="#000000"
+        android:text="TextView" />
     
-    <!-- 原始微博 -->
+	<!-- 原微博 -->
     <RelativeLayout
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
+        android:id="@+id/ftStatus"
+        android:layout_width="fill_parent"	
         android:layout_height="wrap_content"
-        android:layout_below="@id/screenName"
-        android:layout_toRightOf="@id/avatar">
-        
+        android:layout_alignLeft="@id/ftScreenName"
+        android:layout_alignRight="@id/ftCreatedAt"
+       	android:layout_below="@id/ftScreenName"
+        android:layout_toRightOf="@id/ftAvatar"
+        android:paddingBottom="5dp">
+
         <TextView
-	        android:id="@+id/content"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:lineSpacingMultiplier="1.2"
-	        android:layout_marginRight="5dip"
-	        android:textColor="#696969"
+            android:id="@+id/ftText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:lineSpacingMultiplier="1.1"
+	        android:textColor="#000000"
 	        android:textSize="15sp"
-	        android:text="这是一个微博这是一个微博这是一个微博这是一个微博这是一个微博这是一个微博这是一个微博这是一个微博这是一个微博" />
+            android:text="ftText" />
+
+        <ImageView
+            android:id="@+id/ftImgView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/ftText"
+            android:src="@drawable/ic_launcher" />
+
     </RelativeLayout>
-    
-  <TextView
-        android:id="@+id/source"
-        android:layout_width="wrap_content"
+
+    <!-- 转发微博的layout -->
+    <RelativeLayout
+        android:id="@+id/ftReStatus"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/avatar"
-        android:layout_below="@id/status"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom"
-        android:textColor="#808080"
-        android:text="Weico" />
-		
+        android:layout_alignLeft="@id/ftScreenName"
+        android:layout_alignRight="@id/ftCreatedAt"
+        android:layout_toRightOf="@id/ftAvatar"
+        android:layout_below="@id/ftStatus"
+        android:padding="8dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/ftReText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:lineSpacingMultiplier="1.1"
+	        android:textColor="#000000"
+	        android:textSize="15sp" 
+            android:text="ftReText" />
+
+        <ImageView
+            android:id="@+id/ftReImgView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+			android:layout_below="@id/ftReText"            
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/ftReComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ftReText"
+            android:layout_alignBottom="@id/ftReImgView"
+            android:layout_alignBaseline="@id/ftReImgView"
+            android:layout_alignParentRight="true"
+            android:textColor="#808080"
+	        android:textSize="12sp"
+	        android:layout_marginLeft="5dp"
+            android:text="ftReComment" />
+
+        <TextView
+            android:id="@+id/ftReRepost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/ftReComment"
+            android:layout_alignBottom="@id/ftReComment"
+            android:layout_toLeftOf="@id/ftReComment"
+            android:textColor="#808080"
+	        android:textSize="12sp"
+            android:text="ftReRepost" />
+
+    </RelativeLayout>
+
     <TextView
-        android:id="@+id/comment"
+        android:id="@+id/ftSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/source"
-         android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
+        android:layout_alignLeft="@id/ftReStatus"
+        android:layout_below="@id/ftReStatus"
+        android:layout_centerVertical="true"
         android:textColor="#808080"
-        android:text="评论" />
+	    android:textSize="12sp"
+        android:text="ftSource" />
 
     <TextView
-        android:id="@+id/repost"
+        android:id="@+id/ftComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/comment"
-        android:layout_toLeftOf="@id/comment"
-       	android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
+        android:layout_alignBaseline="@id/ftSource"
+        android:layout_alignBottom="@id/ftSource"
+        android:layout_alignRight="@id/ftCreatedAt"
+        android:layout_marginLeft="5dp"
         android:textColor="#808080"
-        android:text="转发" />
-	
-	<TextView
-        android:id="@+id/createdAt"
+	    android:textSize="12sp"
+        android:text="ftComment" />
+
+    <TextView
+        android:id="@+id/ftRepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/screenName"
-        android:layout_marginRight="5dip"
+        android:layout_alignBaseline="@id/ftComment"
+        android:layout_alignBottom="@id/ftComment"
+        android:layout_toLeftOf="@id/ftComment"
         android:textColor="#808080"
-        android:text="2012-10" />
-	
-    <!-- 转发的layout -->
-
-	<LinearLayout
-	    android:id="@+id/reStatus"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentRight="true"
-	    android:layout_centerVertical="true"
-	    android:layout_toRightOf="@+id/avatar"
-	    android:background="#FFFFFF" >
-
-	    <TextView
-	        android:id="@+id/reContent"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:lineSpacingMultiplier="1"
-	        android:text="转发adsfasdfasdfasdfasdfasdfasdfasdfasfd"
-	        android:textColor="#696969" />
-
-	    <ImageView
-	        android:id="@+id/reCImgIV"
-	        android:layout_width="80dip"
-	        android:layout_height="80dip"
-	        android:layout_below="@id/reContent" />
-
-	    <TextView
-	        android:id="@+id/reComment"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:layout_below="@id/reCImgIV"
-	        android:layout_marginLeft="10dip" />
-
-	    <TextView
-	        android:id="@+id/reRepost"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignBaseline="@id/reComment"
-	        android:layout_below="@id/reCImgIV"
-	        android:layout_marginRight="10dip"
-	        android:layout_toLeftOf="@id/reComment" />
-	</LinearLayout>
+	    android:textSize="12sp"
+        android:text="ftRepost" />
 
 </RelativeLayout>
