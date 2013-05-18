@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp" >
+
+    <ImageButton
+        android:id="@+id/utAvatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dip"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+	    android:background="#00000000"
+	    android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/utScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/utAvatar"
+        android:layout_marginLeft="5dp"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/utCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/utAvatar"
+        android:layout_alignLeft="@id/utScreenName"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/utFriendsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/utScreenName"
+        android:layout_alignBottom="@+id/utScreenName"
+        android:layout_toRightOf="@+id/utScreenName"
+        android:layout_marginLeft="10dp"
+        android:text="关注" />
+
+    <TextView
+        android:id="@+id/utFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/utFriendsText"
+        android:layout_alignLeft="@+id/utFriendsText"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/utFollowersText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/utFriendsText"
+        android:layout_alignBottom="@+id/utFriendsText"
+        android:layout_toRightOf="@+id/utFriendsText"
+        android:layout_marginLeft="10dp"
+        android:text="粉丝" />
+	<TextView
+        android:id="@+id/utFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/utFollowersText"
+		android:layout_alignLeft="@id/utFollowersText"
+        android:text="TextView" />
+    
+	<ImageButton 
+	    android:id="@+id/utDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/button_icon_webfw"
+        android:background="#00000000"
+        android:contentDescription="@string/app_name"/>
+</RelativeLayout>

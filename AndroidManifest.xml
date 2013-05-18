@@ -7,12 +7,15 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
             android:name="com.domee.MainActivity"
             android:label="@string/app_name" >
@@ -22,12 +25,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DMLoginActivity" android:label="@string/app_name"></activity>
         <activity android:name=".AccListActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".FriendsTimelineActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".StatusShowActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".DMFriendsTimelineActivity" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".DMAtActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".DMCommentActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".DMStatusShowActivity" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".DMUserTimelineActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".DMComposeActivity" android:windowSoftInputMode="adjustResize" android:label="@string/app_name"></activity>
+       	<activity android:name=".DMProfileActivity" android:label="@string/app_name"></activity>
+        <receiver android:name=".broadcast.SendStatusReceiver" android:exported="false">
+            <intent-filter >
+                <action android:name="SEND_STATUS_ACTION"/>
+            </intent-filter>
+        </receiver>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
 </manifest>

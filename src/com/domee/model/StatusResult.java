@@ -18,6 +18,7 @@ public class StatusResult implements Serializable {
 
 	public void setStatuses(LinkedList<Status> statuses) {
 		this.statuses = statuses;
+        
 	}
 
 	public String getPrevious_cursor() {

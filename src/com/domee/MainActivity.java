@@ -1,162 +1,229 @@
 package com.domee;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import com.domee.manager.AccountsManager;
-import com.domee.model.Account;
-import com.weibo.sdk.android.Oauth2AccessToken;
-import com.weibo.sdk.android.Weibo;
-import com.weibo.sdk.android.WeiboAuthListener;
-import com.weibo.sdk.android.WeiboDialogError;
-import com.weibo.sdk.android.WeiboException;
-import com.weibo.sdk.android.sso.SsoHandler;
-
+import com.domee.adapter.DMPagerAdapter;
+import com.domee.manager.DMAccountsManager;
+import com.domee.manager.DMUIManager;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.LocalActivityManager;
 import android.content.Intent;
-import android.util.Log;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
 
 /**
  * 
  * @author duyuan
  * 
  */
+@SuppressLint("NewApi")
 public class MainActivity extends Activity {
 
-	private static final String CONSUMER_KEY = "966056985"; // 替换为开发者的appkey，例如"1646212860";
-	private static final String REDIRECT_URL = "http://www.sina.com";
-	public static final String TAG = "sinasdk";
-	public static Oauth2AccessToken accessToken;
-	public SsoHandler ssoHandler;
+	private ViewPager mViewPager;//页卡内容
+	private List<View> mListViews; // Tab页面列表
+//	private ImageView tabCursor;// 动画图片
+	private View tabCursor;
+	private TextView tabFriendTimeline;	// 页卡头标
+	private TextView tabAt;
+	private TextView tabComment;
+	private TextView tabProfile;
+	private TextView selectedTabView;
+	private int offset = 0;// 动画图片偏移量
+	private int currIndex = 0;// 当前页卡编号
+	private int bmpWidth;// 动画图片宽度
 
-	private Weibo weibo;
-	private Button authBtn = null;
-	private Button ssoBtn = null;
+	private LocalActivityManager manager = null;
+    private Intent ftlIntent;
+    private Intent atIntent;
+    private Intent commentIntent;
+    private Intent profileIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		DMAccountsManager.initContext(MainActivity.this);
 		setContentView(R.layout.ac_main);
-		AccountsManager.initContext(MainActivity.this);
-        if (AccountsManager.getCurAccount() != null) {
-        	Intent intent = new Intent(this, AccListActivity.class);
-//        	List<Account> accounts = AccountsManager.getAccounts();
-//        	intent.putExtra("accounts", (Serializable) accounts);
-        	startActivity(intent);
-		}
 		
-		weibo = Weibo.getInstance(CONSUMER_KEY, REDIRECT_URL);
-		authBtn = (Button) findViewById(R.id.authBtn);
-//		authBtn.setOnClickListener(new AuthBtnListener());
-
-		ssoBtn = (Button) findViewById(R.id.ssoBtn);
-		try {
-			Class sso = Class.forName("com.weibo.sdk.android.sso.SsoHandler");
-			ssoBtn.setVisibility(View.VISIBLE);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			Log.i(TAG, "com.weibo.sdk.android.sso.SsoHandler not found....");
-			e.printStackTrace();
+		manager = new LocalActivityManager(this , true);
+        manager.dispatchCreate(savedInstanceState);
+        if (DMAccountsManager.getCurAccount() != null) {
+        	initTextView();
+        	initImageView();
+        	initViewPaper();
+        }else {
+			Intent intent = new Intent();
+			intent.setClass(this, DMLoginActivity.class);
+			startActivity(intent);
 		}
-		ssoBtn.setOnClickListener(new SsoBtnListener());
-
+        DMUIManager.getInstance().setMainActivity(this);
 	}
 
-//	/*
-//	 * 使用auth认证
-//	 */
-//	class AuthBtnListener implements OnClickListener {
-//
-//		@Override
-//		public void onClick(View v) {
-//			// TODO Auto-generated method stub
-//		}
-//
-//	}
+	/**
+     * 初始化标题
+     */
+	private void initTextView() {
+		tabFriendTimeline = (TextView) findViewById(R.id.tab_friendtimeline_txt);
+		tabAt = (TextView) findViewById(R.id.tab_at_txt);
+		tabComment = (TextView) findViewById(R.id.tab_comment_txt);
+		tabProfile = (TextView) findViewById(R.id.tab_profile_txt);
+		tabFriendTimeline.setOnClickListener(new TabOnClickListener(0));
+		tabAt.setOnClickListener(new TabOnClickListener(1));
+		tabComment.setOnClickListener(new TabOnClickListener(2));
+		tabProfile.setOnClickListener(new TabOnClickListener(3));
+	}
+	
+	private void initViewPaper() {
+		// 将要分页显示的View装入数组中
+		mViewPager = (ViewPager) findViewById(R.id.viewPager);
+		mListViews = new ArrayList<View>();
+        initIntent();
+        mListViews.add(getView("ftl", ftlIntent));
+        mListViews.add(getView("at", atIntent));
+        mListViews.add(getView("comment", commentIntent));
+        mListViews.add(getView("profile", profileIntent));
+        mViewPager.setAdapter(new DMPagerAdapter(mListViews));
+        mViewPager.setCurrentItem(0);
+		mViewPager.setOnPageChangeListener(new DMOnPageChangeListener());
+	}
+	
+	/**
+     * 通过activity获取视图
+     * @param id
+     * @param intent
+     * @return
+     */
+    private View getView(String id, Intent intent) {
+        return manager.startActivity(id, intent).getDecorView();
+    }
+	
+	private void initIntent() {
+		ftlIntent = new Intent(this, DMFriendsTimelineActivity.class);
+		atIntent = new Intent(this, DMAtActivity.class);
+		commentIntent = new Intent(this, DMCommentActivity.class);
+		profileIntent = new Intent(this, DMProfileActivity.class);
+	}
+	/**
+	* 初始化动画
+	*/
+	private void initImageView() {
+//		tabCursor = (ImageView) findViewById(R.id.tab_cursor);
+		bmpWidth = 100;//BitmapFactory.decodeResource(getResources(), R.drawable.channel_sectionbar).getWidth();// 获取图片宽度
+ 		DisplayMetrics dm = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		int screenWidth = dm.widthPixels;// 获取分辨率宽度		
+		offset = (screenWidth/4 - bmpWidth)/2;// 计算偏移量
+//		Matrix matrix = new Matrix();
+//		matrix.postTranslate(offset, 0);
+//		tabCursor.setImageMatrix(matrix);// 设置动画初始位置
+		tabCursor = (View)findViewById(R.id.tab_cursor);
+	}
 
-	/*
-	 * sso认证 监听器
-	 */
-	class SsoBtnListener implements OnClickListener {
-
+	/**
+	* 头标点击监听
+	*/
+	public class TabOnClickListener implements View.OnClickListener {
+		private int index = 0;
+		public TabOnClickListener(int i) {
+			index = i;
+		}
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			mViewPager.setCurrentItem(index);
+			selectedTabView = (TextView) v;
+		 
+			//layoutParams.setMarginStart(selectedTabView.getWidth()*index);		
+			//tabCursor.setLayoutParams(layoutParams);
+			//tabCursor.layout(300, 0, v.getWidth()*index, 0);
+ 
+		} 
+	}
+	
+	
+	/**
+	 * 页卡切换监听
+	 */
+	public class DMOnPageChangeListener implements OnPageChangeListener {
+		int one = offset * 2 + bmpWidth;// 页卡1 -> 页卡2 偏移量
+		int two = one * 2;// 页卡1 -> 页卡3 偏移量
+		int three = one * 3;
+		@Override 
+		public void onPageSelected(int arg0){
+			Animation animation = null;
+			switch(arg0) {
+			case 0:
+				selectedTabView = tabFriendTimeline;
+				if(currIndex == 1){
+					animation = new TranslateAnimation(one, 0, 0, 0);
+				}else if (currIndex == 2) {
+					animation = new TranslateAnimation(two, 0, 0, 0);
+				}else if(currIndex == 3){
+					animation = new TranslateAnimation(three, 0, 0, 0);
+				}
+				break;
+			case 1:
+				selectedTabView = tabAt;
+				if(currIndex == 0) {
+					animation = new TranslateAnimation(offset, one, 0, 0);
+				}else if(currIndex == 2) {
+					animation = new TranslateAnimation(two, one, 0, 0);
+				}
+				break;
+			case 2:
+				selectedTabView = tabComment;
+				if(currIndex == 0) {
+					animation = new TranslateAnimation(offset, two, 0, 0);
+				}else if (currIndex == 1) {
+					animation = new TranslateAnimation(one, two, 0, 0);
+				}else if(currIndex == 3) {
+					animation = new TranslateAnimation(three, two, 0, 0);
+				}
+				break;
+			case 3:
+				selectedTabView = tabProfile;
+				if(currIndex == 0) {
+					animation = new TranslateAnimation(offset, three, 0, 0);
+				}else if (currIndex == 1) {
+					animation = new TranslateAnimation(one, three, 0, 0);
+				}else if(currIndex == 2) {
+					animation = new TranslateAnimation(two, three, 0, 0);
+				}
+				break;
+			}
+		   
+			currIndex = arg0;
+			animation.setFillAfter(true);// True:图片停在动画结束位置
+			animation.setDuration(300);
+			//tabCursor.setMinimumWidth(selectedTabView.getWidth());
+			tabCursor.startAnimation(animation);
+			//tabCursor.layout(10, 0, 0, 0);
+		}
+		@Override
+		public void onPageScrolled(int arg0,float arg1,int arg2) {
 			
-			ssoHandler = new SsoHandler(MainActivity.this, weibo);
-			ssoHandler.authorize(new AuthDialogListener());
 		}
-	}
-
-	public class AuthDialogListener implements WeiboAuthListener {
-
 		@Override
-		public void onComplete(Bundle values) {
-			// TODO Auto-generated method stub
+		public void onPageScrollStateChanged(int arg0) {
 			
-			String token = values.getString("access_token");
-            String expires_in = values.getString("expires_in");
-            MainActivity.accessToken = new Oauth2AccessToken(token, expires_in);
-            if (MainActivity.accessToken.isSessionValid()) {
-                String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                        .format(new java.util.Date(MainActivity.accessToken
-                                .getExpiresTime()));
-                Toast.makeText(MainActivity.this, "认证成功", Toast.LENGTH_SHORT)
-                        .show();
-                Account account = Account.accountWithOAuthBundle(values);
-                AccountsManager.createAccount(account);
-            }
 		}
-
-		@Override
-		public void onCancel() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onError(WeiboDialogError arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onWeiboException(WeiboException arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
 	}
-
-	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        /**
-         * 下面两个注释掉的代码，仅当sdk支持sso时有效，
-         */
-        if (ssoHandler != null) {
-        	ssoHandler.authorizeCallBack(requestCode, resultCode, data);
-        }
-    }
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+	
 
 }

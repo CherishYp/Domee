@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp" >
+
+    <TextView
+        android:id="@+id/utCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="TextView" />
+	<!-- 原始微博 -->
+    <RelativeLayout
+        android:id="@+id/utStatus"
+        android:layout_below="@id/utCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true">
+        <TextView
+	        android:id="@+id/utText"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/utCreatedAt"
+	        android:lineSpacingMultiplier="1.1"
+	        android:textColor="#000000"
+	        android:textSize="15sp"
+	        android:text="TextView" />
+	
+	    <ImageView
+	        android:id="@+id/utImgView"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/utText"
+	        android:layout_marginTop="5dp"
+	        android:src="@drawable/ic_launcher" />
+    </RelativeLayout>
+    
+    <!-- 转发的微博 -->
+
+    <RelativeLayout
+        android:id="@+id/utReStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/utStatus"
+        android:padding="5dp"
+        android:background="#F5F5F5" >
+
+        <TextView
+            android:id="@+id/utReText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:lineSpacingMultiplier="1.1"
+	        android:textColor="#000000"
+	        android:textSize="15sp" 
+            android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/utReImgView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/utReText" 
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/utReComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/utReText"
+            android:layout_alignBaseline="@id/utReImgView"
+            android:layout_alignBottom="@id/utReImgView"
+            android:textColor="#808080"
+	        android:textSize="12sp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/utReRepost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/utReComment"
+            android:layout_alignBaseline="@id/utReComment"
+            android:layout_marginRight="14dp"
+            android:textColor="#808080"
+	        android:textSize="12sp"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/utSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/utReStatus"
+        android:layout_alignLeft="@id/utReStatus"
+        android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/utComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/utReStatus"
+        android:layout_alignBaseline="@id/utSource"
+        android:layout_alignBottom="@id/utSource"
+        android:layout_alignParentRight="true"
+        android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/utRepost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/utComment"
+        android:layout_alignBottom="@id/utComment"
+        android:layout_marginRight="14dp"
+        android:layout_toLeftOf="@id/utComment"
+        android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="TextView" />
+    
+</RelativeLayout>

@@ -2,7 +2,7 @@ package com.domee;
 
 import java.util.List;
 
-import com.domee.manager.AccountsManager;
+import com.domee.manager.DMAccountsManager;
 import com.domee.model.Account;
 
 import android.app.ListActivity;
@@ -25,7 +25,7 @@ public class AccListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		accounts =  AccountsManager.getAccountList();
+		accounts =  DMAccountsManager.getAccountList();
 		MyAdapter adapter = new MyAdapter(this);
 	    setListAdapter(adapter);
 	}
@@ -94,9 +94,8 @@ public class AccListActivity extends ListActivity {
 		// TODO Auto-generated method stub
 //		Toast.makeText(AccListActivity.this, "You click: " + position, Toast.LENGTH_SHORT).show(); 
 		Intent intent = new Intent();
-		intent.setClass(this, FriendsTimelineActivity.class);
+		intent.setClass(this, DMFriendsTimelineActivity.class);
 		startActivity(intent);
 		super.onListItemClick(l, v, position, id);
 	}
-    
 }

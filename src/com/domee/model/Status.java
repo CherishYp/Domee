@@ -1,6 +1,22 @@
 package com.domee.model;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.domee.DMUserTimelineActivity;
+import com.domee.manager.DMAccountsManager;
+import com.domee.manager.DMUIManager;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.*;
+import android.view.View;
+import android.widget.TextView;
 
 //"status":{"created_at":"Fri Apr 26 09:37:49 +0800 2013","id":3571268693395472,
 //"mid":"3571268693395472","idstr":"3571268693395472","text":" 真他妈难产啊","source":"<a href=\"http://weibo.com/\" rel=\"nofollow\">新浪微博</a>",
@@ -32,6 +48,14 @@ public class Status implements Serializable {
 	private int attitudes_count;			//	int	表态数
 	private int mlevel;						//	int	暂未支持
 	private Visible visible;				//	object	微博的可见性及指定可见分组信息。该object中type取值，0：普通微博，1：私密微博，3：指定分组微博，4：密友微博；list_id为分组的组号
+    private String htmlText;
+	public String getHtmlText() {
+		return htmlText;
+	}
+
+	public void setHtmlText(String htmlText) {
+		this.htmlText = htmlText;
+	}
 
 	public String getCreated_at() {
 		return created_at;
@@ -71,6 +95,7 @@ public class Status implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+		this.htmlText = this.changeToHtmlText(text);
 	}
 
 	public String getSource() {
@@ -209,9 +234,99 @@ public class Status implements Serializable {
 		this.visible = visible;
 	}
 	
+	public String changeToHtmlText(String text){
+		String plainText = text;
+		Pattern p = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
+		Matcher m = p.matcher(plainText);
+		while (m.find()) {
+			plainText =  plainText.replaceFirst(m.group(), "<a href=\"domme://profile/"+ m.group() + "\"style='text-decoration: none;>" + m.group() + "</a>");
+		}
+		Pattern plink = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
+		Matcher mlink = plink.matcher(plainText);
+		while (mlink.find()) {
+		    System.out.println(mlink.group());
+			plainText =  plainText.replaceFirst(mlink.group(), "<a href=\""+mlink.group()+"\">" + mlink.group() + "</a>");
+		}
+		
+		Pattern pTag = Pattern.compile("#([^#|.]+)#");
+		Matcher mTag = pTag.matcher(plainText);
+		while (mTag.find()) {
+			plainText =  plainText.replaceFirst(mTag.group(), "<a href=\"domme://Tag/"+mTag.group()+"\" style='text-decoration: none;>" + mTag.group() + "</a>");
+		}
+		return plainText;	
+	}
+	
+	public void setHtmlStatusText(TextView textView){
+		
+		if(this.htmlText == null){
+		String plainText = this.text;
+//		Pattern pTag = Pattern.compile("#.+?#");
+//   		
+//		Matcher mTag = pTag.matcher(plainText);
+//		while (mTag.find()) {
+//			System.out.println(mTag.group());
+//			plainText =  plainText.replaceFirst(mTag.group(), "<a href=\"domme://profile/" + "test" + "\"style='text-decoration: none;>" + "test" + "</a> ");
+//		}
+		Pattern p = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
+		Matcher m = p.matcher(plainText);
+		while (m.find()) {
+			plainText =  plainText.replaceFirst(m.group(), "<a href=\"domme://profile/"+ m.group() + "\"style='text-decoration: none;>" + m.group() + "</a>");
+		}
+		Pattern plink = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
+		Matcher mlink = plink.matcher(plainText);
+		while (mlink.find()) {
+		    System.out.println(mlink.group());
+			plainText =  plainText.replaceFirst(mlink.group(), "<a href=\""+mlink.group()+"\">" + mlink.group() + "</a>");
+		}
+		
+	
+		 this.htmlText = plainText;
+		 System.out.println(plainText);
+		}
+	    CharSequence text = Html.fromHtml(this.htmlText);  
+	    int end = text.length();
+	    Spannable sp = (Spannable) text;
+	    URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
+	    SpannableStringBuilder style = new SpannableStringBuilder(text);
+	    style.clearSpans();// should clear old spans
+	    for (URLSpan url : urls) {
+	     MyURLSpan myURLSpan = new MyURLSpan(url.getURL());
+	     style.setSpan(myURLSpan, sp.getSpanStart(url), sp
+	       .getSpanEnd(url), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	    }
+	    textView.setText(style);
+	    
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "id=======>" + id + "==========" +  "text=======>" + text + "/n";
 	}
+	
+	private static class MyURLSpan extends ClickableSpan {
+		   private String mUrl;
+		   MyURLSpan(String url) {
+		    mUrl = url;
+		   }
+		   
+			@Override
+			public void updateDrawState(TextPaint ds) {
+			    ds.setColor(ds.linkColor);
+			    ds.setUnderlineText(false); //去掉下划线
+			}
+
+		 
+		   @Override
+		   public void onClick(View widget) {
+		    System.out.println(mUrl);
+			if(mUrl.indexOf("domme://profile/")!=-1){
+				 String username = mUrl.replaceFirst("domme://profile/", "");
+                 Intent theIntent = new Intent(DMUIManager.getInstance().getMainActivity().getBaseContext(), DMUserTimelineActivity.class);
+                 theIntent.putExtra("user", DMAccountsManager.getCurUser());
+                 DMUIManager.getInstance().getMainActivity().startActivity(theIntent);
+			   }
+		     }
+		   
+		   } 
 }

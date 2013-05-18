@@ -2,18 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:descendantFocusability="blocksDescendants"
     android:paddingLeft="15dp"
     android:paddingRight="20dp"
     android:paddingBottom="10dp">
 
-    <ImageView
+    <ImageButton 
         android:id="@+id/ssComAvatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
-        android:src="@drawable/ic_launcher" />
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+	    android:background="#00000000"
+	    android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher"/>
 
     <TextView
         android:id="@+id/ssComCreateAt"
@@ -55,7 +61,7 @@
         android:textColor="#808080"
 	    android:textSize="12sp"
         android:text="ssComSource" />
-
+    
     <TextView
         android:id="@+id/ssComComment"
         android:layout_width="wrap_content"
@@ -68,7 +74,7 @@
 	    android:textSize="12sp"
         android:text="TextView" />
 
-    <TextView
+   <TextView
         android:id="@+id/ssComRepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

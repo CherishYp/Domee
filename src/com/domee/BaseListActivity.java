@@ -3,8 +3,11 @@ package com.domee;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import com.domee.manager.AccountsManager;
+import com.domee.manager.DMAccountsManager;
+import com.domee.utils.DMConstants;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -12,6 +15,7 @@ import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.weibo.sdk.android.api.CommentsAPI;
 import com.weibo.sdk.android.api.StatusesAPI;
 
 import android.app.ListActivity;
@@ -22,17 +26,20 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
+import android.text.util.Linkify;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BaseListActivity extends ListActivity {
 
+	public StatusesAPI statusesAPI = new StatusesAPI(DMAccountsManager.curAccessToken());
+	public CommentsAPI commentsAPI = new CommentsAPI(DMAccountsManager.curAccessToken());
 	// 加载图片
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	protected DisplayImageOptions options;
-	protected ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-	protected StatusesAPI statusesAPI = new StatusesAPI(AccountsManager.curAccessToken());
+	public ImageLoader imageLoader = ImageLoader.getInstance();
+	public DisplayImageOptions options;
+	public ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +74,7 @@ public class BaseListActivity extends ListActivity {
 	}
 	
 	// 去除a标签的下划线
-	protected void stripUnderlines(TextView textView, String source) {
+	public void stripUnderlines(TextView textView, String source) {
 		Spannable s = new SpannableString(Html.fromHtml(source));
 		URLSpan[] spans = s.getSpans(0, s.length(), URLSpan.class);
 		for (URLSpan span : spans) {
@@ -89,4 +96,35 @@ public class BaseListActivity extends ListActivity {
 			ds.setUnderlineText(false); 
 		} 
 	}
+	
+	public static void extractMention2Link(TextView v) {
+		v.setAutoLinkMask(0);
+		Pattern mentionsPattern = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
+		String mentionsScheme = String.format("%s/?%s=", DMConstants.MENTIONS_SCHEMA, DMConstants.PARAM_UID);
+		Linkify.addLinks(v, mentionsPattern, mentionsScheme, new Linkify.MatchFilter() {
+			
+			@Override
+			public boolean acceptMatch(CharSequence s, int start, int end) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		}, new Linkify.TransformFilter() {
+			@Override
+			public String transformUrl(Matcher match, String url) {
+				Log.d("BaseActivity", match.group(1));
+				return match.group(1); 
+			}
+		});
+
+		Pattern trendsPattern = Pattern.compile("#(\\w+?)#");
+		String trendsScheme = String.format("%s/?%s=", DMConstants.TRENDS_SCHEMA, DMConstants.PARAM_UID);
+		Linkify.addLinks(v, trendsPattern, trendsScheme, null, new Linkify.TransformFilter() {
+			@Override
+			public String transformUrl(Matcher match, String url) {
+				Log.d("", match.group(1));
+				return match.group(1); 
+			}
+		});
+
+	} 
 }

@@ -150,6 +150,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int ptrSubHeaderTextAppearance=0x7f01000b;
     }
+    public static final class color {
+        public static final int blue=0x7f080000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -166,97 +169,181 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int indicator_right_padding=0x7f060000;
     }
     public static final class drawable {
-        public static final int default_ptr_flip=0x7f020000;
-        public static final int default_ptr_rotate=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int indicator_arrow=0x7f020003;
-        public static final int indicator_bg_bottom=0x7f020004;
-        public static final int indicator_bg_top=0x7f020005;
+        public static final int button_back=0x7f020000;
+        public static final int button_icon_action=0x7f020001;
+        public static final int button_icon_close=0x7f020002;
+        public static final int button_icon_ok=0x7f020003;
+        public static final int button_icon_webback=0x7f020004;
+        public static final int button_icon_webfw=0x7f020005;
+        public static final int button_m=0x7f020006;
+        public static final int channel_sectionbar=0x7f020007;
+        public static final int compose_toolbar_1=0x7f020008;
+        public static final int compose_toolbar_3=0x7f020009;
+        public static final int compose_toolbar_4=0x7f02000a;
+        public static final int compose_toolbar_5=0x7f02000b;
+        public static final int compose_toolbar_6=0x7f02000c;
+        public static final int compose_toolbar_sp=0x7f02000d;
+        public static final int default_ptr_flip=0x7f02000e;
+        public static final int default_ptr_rotate=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int indicator_arrow=0x7f020011;
+        public static final int indicator_bg_bottom=0x7f020012;
+        public static final int indicator_bg_top=0x7f020013;
+        public static final int more_icon_queue=0x7f020014;
+        public static final int newbar_icon_1=0x7f020015;
+        public static final int timeline_dm_item_9=0x7f020016;
+        public static final int timeline_rt_border_9=0x7f020017;
     }
     public static final class id {
-        public static final int action_settings=0x7f05003e;
-        public static final int apiCancel=0x7f050010;
-        public static final int authBtn=0x7f05000d;
+        public static final int action_settings=0x7f050073;
         public static final int both=0x7f050003;
+        public static final int cAt=0x7f050016;
+        public static final int cAvatar=0x7f050043;
+        public static final int cBLinearLayout=0x7f050013;
+        public static final int cCamera=0x7f050014;
+        public static final int cClose=0x7f050011;
+        public static final int cCreatedAt=0x7f050045;
+        public static final int cExpression=0x7f050017;
+        public static final int cLocation=0x7f050018;
+        public static final int cOk=0x7f050012;
+        public static final int cReText=0x7f050047;
+        public static final int cScreenName=0x7f050044;
+        public static final int cStatusText=0x7f05001a;
+        public static final int cTRelativeLayout=0x7f050010;
+        public static final int cText=0x7f050046;
+        public static final int cTextLimit=0x7f050019;
+        public static final int cTopic=0x7f050015;
+        public static final int comment=0x7f05000f;
         public static final int disabled=0x7f050000;
-        public static final int fl_inner=0x7f050039;
+        public static final int fl_inner=0x7f05006c;
         public static final int flip=0x7f050008;
-        public static final int ftAvatar=0x7f05002b;
-        public static final int ftComment=0x7f050037;
-        public static final int ftCreatedAt=0x7f05002c;
-        public static final int ftImgView=0x7f050030;
-        public static final int ftReComment=0x7f050034;
-        public static final int ftReImgView=0x7f050033;
-        public static final int ftReRepost=0x7f050035;
-        public static final int ftReStatus=0x7f050031;
-        public static final int ftReText=0x7f050032;
-        public static final int ftRepost=0x7f050038;
-        public static final int ftScreenName=0x7f05002d;
-        public static final int ftSource=0x7f050036;
-        public static final int ftStatus=0x7f05002e;
-        public static final int ftText=0x7f05002f;
+        public static final int friendTimeline=0x7f05000d;
+        public static final int ftAvatar=0x7f050048;
+        public static final int ftComment=0x7f050054;
+        public static final int ftCreatedAt=0x7f050049;
+        public static final int ftImgView=0x7f05004d;
+        public static final int ftReComment=0x7f050051;
+        public static final int ftReImgView=0x7f050050;
+        public static final int ftReRepost=0x7f050052;
+        public static final int ftReStatus=0x7f05004e;
+        public static final int ftReText=0x7f05004f;
+        public static final int ftRepost=0x7f050055;
+        public static final int ftScreenName=0x7f05004a;
+        public static final int ftSource=0x7f050053;
+        public static final int ftStatus=0x7f05004b;
+        public static final int ftText=0x7f05004c;
         public static final int gridview=0x7f050009;
-        public static final int imgBtn=0x7f050022;
-        public static final int itemUserName=0x7f050023;
+        public static final int icon=0x7f05005e;
+        public static final int image=0x7f050028;
+        public static final int imgBtn=0x7f050041;
+        public static final int itemUserName=0x7f050042;
+        public static final int lOauth=0x7f05001e;
+        public static final int lSso=0x7f05001d;
+        public static final int ll=0x7f05005d;
+        public static final int mSetupImgView=0x7f05001c;
+        public static final int mWrietImgView=0x7f05001b;
         public static final int manualOnly=0x7f050004;
+        public static final int name=0x7f05005f;
+        public static final int pb=0x7f050029;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_refresh_list=0x7f050012;
-        public static final int pull_to_refresh_image=0x7f05003a;
-        public static final int pull_to_refresh_progress=0x7f05003b;
-        public static final int pull_to_refresh_sub_text=0x7f05003d;
-        public static final int pull_to_refresh_text=0x7f05003c;
+        public static final int pull_refresh_list=0x7f05000e;
+        public static final int pull_to_refresh_image=0x7f05006d;
+        public static final int pull_to_refresh_progress=0x7f05006e;
+        public static final int pull_to_refresh_sub_text=0x7f050070;
+        public static final int pull_to_refresh_text=0x7f05006f;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
-        public static final int show=0x7f05000f;
-        public static final int ssAvatar=0x7f050014;
-        public static final int ssComAvatar=0x7f050024;
-        public static final int ssComComment=0x7f050029;
-        public static final int ssComCreateAt=0x7f050025;
-        public static final int ssComListView=0x7f050011;
-        public static final int ssComRepost=0x7f05002a;
-        public static final int ssComScreenName=0x7f050026;
-        public static final int ssComSource=0x7f050028;
-        public static final int ssComText=0x7f050027;
-        public static final int ssComment=0x7f050020;
-        public static final int ssContent=0x7f050017;
-        public static final int ssImgView=0x7f050018;
-        public static final int ssNext=0x7f050016;
-        public static final int ssReComment=0x7f05001d;
-        public static final int ssReContent=0x7f05001a;
-        public static final int ssReImgView=0x7f05001b;
-        public static final int ssReRepost=0x7f05001e;
-        public static final int ssReSource=0x7f05001c;
-        public static final int ssReStatus=0x7f050019;
-        public static final int ssRepost=0x7f050021;
-        public static final int ssScreenName=0x7f050015;
-        public static final int ssSource=0x7f05001f;
-        public static final int ssTitle=0x7f050013;
-        public static final int ssoBtn=0x7f05000e;
+        public static final int ssAvatar=0x7f05002a;
+        public static final int ssComAvatar=0x7f050056;
+        public static final int ssComComment=0x7f05005b;
+        public static final int ssComCreateAt=0x7f050057;
+        public static final int ssComListView=0x7f050025;
+        public static final int ssComRepost=0x7f05005c;
+        public static final int ssComScreenName=0x7f050058;
+        public static final int ssComSource=0x7f05005a;
+        public static final int ssComText=0x7f050059;
+        public static final int ssComment=0x7f050037;
+        public static final int ssContent=0x7f05002e;
+        public static final int ssImgView=0x7f05002f;
+        public static final int ssListDivider=0x7f05002d;
+        public static final int ssNext=0x7f05002c;
+        public static final int ssReComment=0x7f050034;
+        public static final int ssReContent=0x7f050031;
+        public static final int ssReImgView=0x7f050032;
+        public static final int ssReRepost=0x7f050035;
+        public static final int ssReSource=0x7f050033;
+        public static final int ssReStatus=0x7f050030;
+        public static final int ssRepost=0x7f050038;
+        public static final int ssScreenName=0x7f05002b;
+        public static final int ssSource=0x7f050036;
+        public static final int tab_at_txt=0x7f050020;
+        public static final int tab_comment_txt=0x7f050021;
+        public static final int tab_cursor=0x7f050023;
+        public static final int tab_friendtimeline_txt=0x7f05001f;
+        public static final int tab_profile_txt=0x7f050022;
+        public static final int tbBack=0x7f050071;
+        public static final int tbTitle=0x7f050072;
+        public static final int userTimeline=0x7f050026;
+        public static final int utAvatar=0x7f050039;
+        public static final int utCity=0x7f05003b;
+        public static final int utComment=0x7f05006a;
+        public static final int utCreatedAt=0x7f050060;
+        public static final int utDetail=0x7f050040;
+        public static final int utFollowers=0x7f05003f;
+        public static final int utFollowersText=0x7f05003e;
+        public static final int utFriends=0x7f05003d;
+        public static final int utFriendsText=0x7f05003c;
+        public static final int utImgView=0x7f050063;
+        public static final int utListView=0x7f050027;
+        public static final int utReComment=0x7f050067;
+        public static final int utReImgView=0x7f050066;
+        public static final int utReRepost=0x7f050068;
+        public static final int utReStatus=0x7f050064;
+        public static final int utReText=0x7f050065;
+        public static final int utRepost=0x7f05006b;
+        public static final int utScreenName=0x7f05003a;
+        public static final int utSource=0x7f050069;
+        public static final int utStatus=0x7f050061;
+        public static final int utText=0x7f050062;
+        public static final int viewPager=0x7f050024;
         public static final int viewpager=0x7f05000c;
         public static final int webview=0x7f05000a;
     }
     public static final class layout {
-        public static final int ac_main=0x7f030000;
-        public static final int ac_statusshow=0x7f030001;
-        public static final int ac_timeline=0x7f030002;
-        public static final int header_statusshow=0x7f030003;
-        public static final int item_acc=0x7f030004;
-        public static final int item_statusshow=0x7f030005;
-        public static final int item_timeline=0x7f030006;
-        public static final int need_this_for_maven=0x7f030007;
-        public static final int pull_to_refresh_header_horizontal=0x7f030008;
-        public static final int pull_to_refresh_header_vertical=0x7f030009;
+        public static final int ac_at=0x7f030000;
+        public static final int ac_comment=0x7f030001;
+        public static final int ac_compose=0x7f030002;
+        public static final int ac_friend_timeline=0x7f030003;
+        public static final int ac_login=0x7f030004;
+        public static final int ac_main=0x7f030005;
+        public static final int ac_profile=0x7f030006;
+        public static final int ac_statusshow=0x7f030007;
+        public static final int ac_user_timeline=0x7f030008;
+        public static final int dialog_image=0x7f030009;
+        public static final int header_statusshow=0x7f03000a;
+        public static final int header_user_timeline=0x7f03000b;
+        public static final int item_acc=0x7f03000c;
+        public static final int item_comment=0x7f03000d;
+        public static final int item_status=0x7f03000e;
+        public static final int item_statusshow=0x7f03000f;
+        public static final int item_tab=0x7f030010;
+        public static final int item_user_timeline=0x7f030011;
+        public static final int need_this_for_maven=0x7f030012;
+        public static final int pull_to_refresh_header_horizontal=0x7f030013;
+        public static final int pull_to_refresh_header_vertical=0x7f030014;
+        public static final int title_bar=0x7f030015;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int main=0x7f0a0000;
     }
     public static final class string {
         public static final int action_settings=0x7f070007;
         public static final int app_name=0x7f070006;
         public static final int hello_world=0x7f070008;
+        public static final int oauth=0x7f07000a;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -266,6 +353,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
+        public static final int sso=0x7f07000b;
+        public static final int tab_at=0x7f07000e;
+        public static final int tab_comment=0x7f07000f;
+        public static final int tab_friendtimeline=0x7f07000d;
+        public static final int tab_profile=0x7f070010;
+        public static final int tab_title=0x7f07000c;
+        public static final int text_Limit=0x7f070009;
     }
     public static final class style {
         /** 
@@ -289,11 +383,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f090001;
+        public static final int CustomTheme=0x7f090003;
+        public static final int CustomWindowTitleBackground=0x7f090002;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.

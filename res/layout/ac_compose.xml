@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   	<RelativeLayout 
+   	    android:id="@+id/cTRelativeLayout"
+   	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+
+   		<ImageButton
+   		    android:id="@+id/cClose"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:layout_alignParentLeft="true"
+   		    android:background="@drawable/button_m"
+   		    android:src="@drawable/button_icon_close"
+   		    android:contentDescription="@string/app_name" />
+
+   	    
+   	    <ImageButton
+   	        android:id="@+id/cOk"
+   	        android:layout_width="wrap_content"
+   	        android:layout_height="wrap_content"
+   	        android:layout_alignParentRight="true"
+   	        android:background="@drawable/button_m"
+   	        android:contentDescription="@string/app_name"
+   	        android:src="@drawable/button_icon_ok" />
+
+   	</RelativeLayout>
+    
+    <LinearLayout
+        android:id="@+id/cBLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true">
+	    <ImageButton
+	        android:id="@+id/cCamera"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_1"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+	    <ImageButton
+	        android:id="@+id/cTopic"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_4"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+	
+	    <ImageButton 
+	        android:id="@+id/cAt"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_3"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+	    
+		<ImageButton 
+	        android:id="@+id/cExpression"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_6"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>    
+	    
+	    <ImageButton 
+	        android:id="@+id/cLocation"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_5"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+	    
+	    <!-- <Button
+	        android:id="@+id/cSend"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@id/cLocation"
+	        android:text="发送" /> -->
+    </LinearLayout>
+    <TextView 
+        android:id="@+id/cTextLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+		android:layout_above="@id/cBLinearLayout"
+		android:layout_marginRight="5dp"
+		android:textColor="#808080"
+	    android:textSize="12sp"
+        android:text="@string/text_Limit"/>
+    
+    <EditText
+        android:id="@+id/cStatusText"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cTRelativeLayout"
+        android:layout_above="@id/cTextLimit"
+        android:textColor="#696969"
+        android:ems="10"
+        android:gravity="top"
+        android:background="@null"
+        android:inputType="textMultiLine" >
+        <requestFocus android:layout_height="match_parent" />
+    </EditText>
+
+</RelativeLayout>
