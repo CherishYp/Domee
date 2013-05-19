@@ -14,22 +14,25 @@ import com.weibo.sdk.android.net.RequestListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
+import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class DMAtFriendActivity extends BaseActivity {
+public class DMAtFriendActivity extends BaseActivity implements OnScrollChangedListener {
 
-	private ListView listView;
+	private ListView mListView;
 	
 	//title_user_timeline
 	private ImageButton tbBack;
 	private TextView tbTitle;
 	
-	private DMFriendAdapter adapter;
+	private static DMFriendAdapter adapter;
 	private int cursor;
 	
 	public static void show(Activity activity) {
@@ -45,18 +48,17 @@ public class DMAtFriendActivity extends BaseActivity {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.ac_user_timeline);     
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
-        
-        adapter = new DMFriendAdapter(this, imageLoader, options, animateFirstListener);
-        
         //title_bar控件处理
         tbBack = (ImageButton)findViewById(R.id.tbBack);
         tbTitle = (TextView)findViewById(R.id.tbTitle);
         tbBack.setOnClickListener(new UtBtnListener());
         tbTitle.setText("选择好友");
         
+        adapter = new DMFriendAdapter(this, imageLoader, options, animateFirstListener);
+        mListView = (ListView) findViewById(R.id.utListView);
+        mListView.setAdapter(adapter);
+        
         this.loadMore();
-        listView = (ListView) findViewById(R.id.utListView);
-        listView.setAdapter(adapter);
 	}
 	
 	public void loadMore() {
@@ -71,6 +73,10 @@ public class DMAtFriendActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			FriendsResult fr = GsonUtil.gson2Friends(arg0);
 			adapter.setUserList(fr.getUsers());
+			cursor = Integer.parseInt(fr.getNext_cursor());
+			
+			Message msg = handler.obtainMessage();
+			handler.sendMessage(msg);
 		}
 
 		@Override
@@ -87,6 +93,19 @@ public class DMAtFriendActivity extends BaseActivity {
 		
 	}
 	
+	private static Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+			case 0:
+				adapter.notifyDataSetChanged();
+				break;
+			default:
+				break;
+			}
+		}
+	};	
 	public class UtBtnListener implements OnClickListener {
 
 		@Override
@@ -100,5 +119,10 @@ public class DMAtFriendActivity extends BaseActivity {
 				break;
 			}
 		}
+	}
+	@Override
+	public void onScrollChanged() {
+		// TODO Auto-generated method stub
+		
 	}
 }

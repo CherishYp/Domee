@@ -47,7 +47,8 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 				break;
 			}
 		}
-	};	@Override
+	};	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
