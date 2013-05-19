@@ -18,7 +18,9 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.weibo.sdk.android.api.CommentsAPI;
+import com.weibo.sdk.android.api.FriendshipsAPI;
 import com.weibo.sdk.android.api.StatusesAPI;
+import com.weibo.sdk.android.api.TrendsAPI;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -33,6 +35,9 @@ public class BaseActivity extends Activity {
 
 	protected CommentsAPI commentsAPI = new CommentsAPI(DMAccountsManager.curAccessToken());
 	protected StatusesAPI statusesAPI = new StatusesAPI(DMAccountsManager.curAccessToken());
+	protected TrendsAPI trendsAPI = new TrendsAPI(DMAccountsManager.curAccessToken());
+	protected FriendshipsAPI friendshipsAPI = new FriendshipsAPI(DMAccountsManager.curAccessToken());
+	
 	protected GsonBuilder builder;
 	protected Gson gson;
 	

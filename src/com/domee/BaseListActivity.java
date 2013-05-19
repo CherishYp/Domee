@@ -97,34 +97,4 @@ public class BaseListActivity extends ListActivity {
 		} 
 	}
 	
-	public static void extractMention2Link(TextView v) {
-		v.setAutoLinkMask(0);
-		Pattern mentionsPattern = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
-		String mentionsScheme = String.format("%s/?%s=", DMConstants.MENTIONS_SCHEMA, DMConstants.PARAM_UID);
-		Linkify.addLinks(v, mentionsPattern, mentionsScheme, new Linkify.MatchFilter() {
-			
-			@Override
-			public boolean acceptMatch(CharSequence s, int start, int end) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-		}, new Linkify.TransformFilter() {
-			@Override
-			public String transformUrl(Matcher match, String url) {
-				Log.d("BaseActivity", match.group(1));
-				return match.group(1); 
-			}
-		});
-
-		Pattern trendsPattern = Pattern.compile("#(\\w+?)#");
-		String trendsScheme = String.format("%s/?%s=", DMConstants.TRENDS_SCHEMA, DMConstants.PARAM_UID);
-		Linkify.addLinks(v, trendsPattern, trendsScheme, null, new Linkify.TransformFilter() {
-			@Override
-			public String transformUrl(Matcher match, String url) {
-				Log.d("", match.group(1));
-				return match.group(1); 
-			}
-		});
-
-	} 
 }

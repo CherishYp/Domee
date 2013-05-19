@@ -13,6 +13,7 @@ import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.api.WeiboAPI.AUTHOR_FILTER;
 import com.weibo.sdk.android.net.RequestListener;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,6 +87,13 @@ public class DMStatusShowActivity extends BaseActivity {
 	private boolean isComment = true; //true:显示评论
 
 	private BtnOnclickListener btnListener = new BtnOnclickListener();
+	
+	public static void show(Activity activity, Status status) {
+		Intent intent = new Intent();
+		intent.setClass(activity, DMStatusShowActivity.class);
+		intent.putExtra("status", status);
+		activity.startActivityForResult(intent, 0);
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
@@ -29,7 +31,8 @@ public class DMComposeActivity extends BaseActivity {
 	private ImageButton cOk;
 	private ImageButton cClose;
 	private ImageButton cCamera;
-	private ImageButton cTopic;
+	private ImageButton cTrend;
+	private ImageButton cAtFriend;
 	private TextView cTextLimit;
 	private String text;
 	private Status status;
@@ -47,8 +50,9 @@ public class DMComposeActivity extends BaseActivity {
 		
 		cStatusText = (EditText)findViewById(R.id.cStatusText);
         cCamera = (ImageButton) findViewById(R.id.cCamera);
-        cTopic = (ImageButton) findViewById(R.id.cTopic);
+        cTrend = (ImageButton) findViewById(R.id.cTrend);
         cTextLimit = (TextView) findViewById(R.id.cTextLimit);
+        cAtFriend = (ImageButton) findViewById(R.id.c_at_friend);
         cOk = (ImageButton) findViewById(R.id.cOk);
         cClose = (ImageButton) findViewById(R.id.cClose);
         
@@ -56,6 +60,8 @@ public class DMComposeActivity extends BaseActivity {
         cStatusText.addTextChangedListener(cWatcher);
         cOk.setOnClickListener(new BtnListener());
         cClose.setOnClickListener(new BtnListener());
+        cAtFriend.setOnClickListener(new BtnListener());
+        cTrend.setOnClickListener(new BtnListener());
 	}
 	
 	TextWatcher cWatcher = new TextWatcher() {
@@ -121,14 +127,20 @@ public class DMComposeActivity extends BaseActivity {
 //				intent.putExtra("noFaceDetection", true); // 是否去除面部检测， 如果你需要特定的比例去裁剪图片，那么这个一定要去掉，因为它会破坏掉特定的比例。
 				intent.putExtra("return-data", true);  //是否要返回值。 一般都要。
 				startActivityForResult(intent, 1);
+				break;
+			case R.id.c_at_friend:
+				DMAtFriendActivity.show(DMComposeActivity.this);
+				break;
+			case R.id.cTrend:
+				cStatusText.setText("##");
+				CharSequence text = cStatusText.getText();
+				Selection.setSelection((Spannable)text, text.length() - 1);
+				break;
 			default:
 				break;
 			}
 		}
 	}
-	
-	
-
 	
 	public void sendStatus() {
 		SendStatusRequestListener listener = new SendStatusRequestListener();

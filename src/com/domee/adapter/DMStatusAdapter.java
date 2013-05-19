@@ -16,6 +16,7 @@ import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import android.R.anim;
 import android.R.color;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -41,14 +42,14 @@ public class DMStatusAdapter extends BaseAdapter {
 	private static final String TAG ="MentionsActivity";
 	private static final Uri PROFILE_URI = Uri.parse(DMConstants.MENTIONS_SCHEMA);
 	
-	private Context activity;
+	private Activity activity;
 	private LayoutInflater mInflater;
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
 	private LinkedList<Status> statusList = null;
 	
-	public DMStatusAdapter(Context activity, 
+	public DMStatusAdapter(Activity activity, 
 			ImageLoader imageLoader, DisplayImageOptions options, ImageLoadingListener listener) {
 		this.activity = activity;
 		this.mInflater = LayoutInflater.from(activity);
@@ -142,7 +143,7 @@ public class DMStatusAdapter extends BaseAdapter {
 	      
 		   // holder.ftText.setText(style);
 		holder.ftSource.setText(Html.fromHtml(sta.getSource()));
-		((BaseListActivity) activity).stripUnderlines(holder.ftSource, sta.getSource());
+//		((BaseListActivity) activity).stripUnderlines(holder.ftSource, sta.getSource());
 		holder.ftRepost.setText("转发" + sta.getReposts_count() + "");
 		holder.ftComment.setText("评论" + sta.getComments_count() + "");
 		
@@ -174,7 +175,6 @@ public class DMStatusAdapter extends BaseAdapter {
 	}
 	
 	public class BtnListener implements OnClickListener {
-
 		private int position;
 		public BtnListener(int position) {
 			// TODO Auto-generated constructor stub
@@ -186,10 +186,7 @@ public class DMStatusAdapter extends BaseAdapter {
 			DMAlertImageDialog dialog = null;
 			switch (v.getId()) {
 			case R.id.ftAvatar:
-				Intent intent = new Intent();
-				intent.setClass(activity, DMUserTimelineActivity.class);
-				intent.putExtra("user", statusList.get(position).getUser());
-				activity.startActivity(intent);
+				DMUserTimelineActivity.show(activity, statusList.get(position).getUser());
 				break;
 			case R.id.ftImgView:
 				dialog = new DMAlertImageDialog(activity, statusList.get(position).getOriginal_pic());

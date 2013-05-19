@@ -48,7 +48,7 @@
 	        android:background="#00000000"
 	        android:contentDescription="@string/app_name"/>
 	    <ImageButton
-	        android:id="@+id/cTopic"
+	        android:id="@+id/cTrend"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
@@ -58,7 +58,7 @@
 	        android:contentDescription="@string/app_name"/>
 	
 	    <ImageButton 
-	        android:id="@+id/cAt"
+	        android:id="@+id/c_at_friend"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"

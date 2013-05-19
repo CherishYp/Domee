@@ -3,7 +3,7 @@ package com.domee;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import com.domee.R.layout;
+import com.domee.adapter.DMNAStatusAdapter;
 import com.domee.manager.DMAccountsManager;
 import com.domee.model.Status;
 import com.domee.model.StatusResult;
@@ -12,30 +12,29 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.weibo.sdk.android.WeiboException;
-import com.weibo.sdk.android.api.WeiboAPI.AUTHOR_FILTER;
 import com.weibo.sdk.android.api.WeiboAPI.FEATURE;
 import com.weibo.sdk.android.net.RequestListener;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class DMUserTimelineActivity extends BaseActivity {
+@SuppressLint("ResourceAsColor")
+public class DMUserTimelineActivity extends BaseActivity{
 
 	private User user;
 	private View headerView;
@@ -47,33 +46,25 @@ public class DMUserTimelineActivity extends BaseActivity {
 	private TextView utDetail;
 	private UtBtnListener utBtnListener = new UtBtnListener();
 	
-	private LinkedList<Status> staList;
 	private ListView utListView;
-	private ViewHolder holder;
-	public final class ViewHolder {
-		private View utStatus;
-		private TextView utCreatedAt;
-		private TextView utText;
-		private ImageView utImgView;
-		private View utReStatus;
-		private TextView utReText;
-		private ImageView utReImgView;
-		private TextView utReComment;
-		private TextView utReRepost;
-		private TextView utSource;
-		private TextView utComment;
-		private TextView utRepost;
-	}
-	private StatusAdapter adapter;
+	
+	private DMNAStatusAdapter adapter;
 	private long since_id;
 	private long max_id;
-	private long total_number;
+	public long total_number;
 	//给listView加的一个view
 	private LinearLayout utLinearLayout;
-	private Button utButton;
+	public Button utButton;
 	//title_user_timeline
 	private ImageButton tbBack;
 	private TextView tbTitle;
+	
+	public static void show(Activity activity, User user) {
+		Intent intent = new Intent();
+		intent.setClass(activity, DMUserTimelineActivity.class);
+		intent.putExtra("user", user);
+		activity.startActivity(intent);
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +76,8 @@ public class DMUserTimelineActivity extends BaseActivity {
 		setContentView(R.layout.ac_user_timeline);     
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 		
+        adapter = new DMNAStatusAdapter(DMUserTimelineActivity.this, imageLoader, options, animateFirstListener);
+        
 		utLinearLayout = new LinearLayout(this);
 		utButton = new Button(this);
 		utButton.setText("加载更多");
@@ -123,116 +116,27 @@ public class DMUserTimelineActivity extends BaseActivity {
 		
 		utListView = (ListView) findViewById(R.id.utListView);
 		utListView.addHeaderView(headerView);
-		adapter = new StatusAdapter(this);
 		utListView.setAdapter(adapter);
+		utListView.setBackgroundColor(android.R.color.white);
+		utListView.setOnItemClickListener(new OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View view,
+                    int position, long id) {
+            	DMStatusShowActivity.show(DMUserTimelineActivity.this, adapter.getStaList().get(position - 1));
+            }
+        });
+		
 		//加载更多微博
 		this.loadMore();
 	}
 	
-	public class StatusAdapter extends BaseAdapter {
-	
-		private LayoutInflater mInflater;
-		public StatusAdapter(Context context) {
-			// TODO Auto-generated constructor stub
-			mInflater = LayoutInflater.from(context);
-		}
-		
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			if (staList == null) {
-				return 0;
-			}
-			return staList.size() + 1;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			if (convertView == null || convertView == utLinearLayout) {
-				holder = new ViewHolder();
-				convertView = mInflater.inflate(R.layout.item_user_timeline, null);
-				holder.utStatus = (View) convertView.findViewById(R.id.utStatus);
-				holder.utCreatedAt = (TextView) convertView.findViewById(R.id.utCreatedAt);
-				holder.utText = (TextView) convertView.findViewById(R.id.utText);
-				holder.utImgView = (ImageView) convertView.findViewById(R.id.utImgView);
-				holder.utReStatus = (View) convertView.findViewById(R.id.utReStatus);
-				holder.utReText = (TextView) convertView.findViewById(R.id.utReText);
-				holder.utReImgView = (ImageView) convertView.findViewById(R.id.utReImgView);
-				holder.utReComment = (TextView) convertView.findViewById(R.id.utReComment);
-				holder.utReRepost = (TextView) convertView.findViewById(R.id.utReRepost);
-				holder.utSource = (TextView) convertView.findViewById(R.id.utSource);
-				holder.utComment = (TextView) convertView.findViewById(R.id.utComment);
-				holder.utRepost = (TextView) convertView.findViewById(R.id.utRepost);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			
-			if (staList.size() == position) {
-				if (total_number <= 20) {
-					utButton.setVisibility(View.GONE);
-				}
-				return utLinearLayout;
-			}
-			
-			Status status = staList.get(position);
-		 	holder.utCreatedAt.setText("12:20");
-			holder.utText.setText(status.getText());
-			//判断微博是否有图片
-			if (status.getThumbnail_pic() != null && !status.getThumbnail_pic().equals("")) {
-				imageLoader.displayImage(status.getThumbnail_pic(), holder.utImgView, options, animateFirstListener);
-				holder.utImgView.setVisibility(View.VISIBLE);
-			} else {
-				holder.utImgView.setVisibility(View.GONE);
-			}
-			//判断微博是否是转发的
-			if (status.getRetweeted_status() != null) {
-				if (status.getRetweeted_status().getUser() != null) {
-					holder.utReText.setText(status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
-				}else {
-					holder.utReText.setText(status.getRetweeted_status().getText());
-				}
-				//判断转发的微博是否带图片
-				if (status.getRetweeted_status().getThumbnail_pic() != null && !status.getRetweeted_status().getThumbnail_pic().equals("")) {
-					imageLoader.displayImage(status.getRetweeted_status().getThumbnail_pic(), holder.utReImgView, options, animateFirstListener);
-					holder.utReImgView.setVisibility(View.VISIBLE);
-				}else {
-					holder.utReImgView.setVisibility(View.GONE);
-				}
-				holder.utReComment.setText("评论" + status.getRetweeted_status().getComments_count() + "");
-				holder.utReRepost.setText("转发" + status.getRetweeted_status().getReposts_count() + "");
-			
-				holder.utReStatus.setVisibility(View.VISIBLE);
-			} else {
-				holder.utReStatus.setVisibility(View.GONE);
-			}
-			holder.utSource.setText(Html.fromHtml(status.getSource()));
-			holder.utComment.setText("评论" + status.getComments_count() + "");
-			holder.utRepost.setText("转发" + status.getReposts_count() + "");
-			
-			return convertView;
-		}
-	}
 	/*
 	 * 加载更多微博
 	 */
 	public void loadMore() {
 		StatusRequestListener listener = new StatusRequestListener();
-		if (staList != null && staList.size() != 0) {
-			max_id = staList.get(staList.size() - 1).getId();
+		if (adapter.getStaList() != null && adapter.getStaList().size() != 0) {
+			max_id = adapter.getStaList().get(adapter.getStaList().size() - 1).getId();
 			statusesAPI.userTimeline(user.getId(), 0, max_id + 1, 20, 1, false, FEATURE.ALL, false, listener);
 		} 
 		else {
@@ -256,12 +160,14 @@ public class DMUserTimelineActivity extends BaseActivity {
 			GsonBuilder builder = new GsonBuilder();
 			Gson gson = builder.create();
 			StatusResult sr = gson.fromJson(arg0, new TypeToken<StatusResult>() {}.getType());
-			if (staList != null) {
-				staList.addAll(sr.getStatuses());
+			LinkedList<Status> statusList = sr.getStatuses();
+			LinkedList<Status> resultList = adapter.getStaList();
+			if (resultList != null) {
+				resultList.addAll(statusList);
 			} else {
-				
-				staList = sr.getStatuses();
+				resultList = statusList;
 			}
+			adapter.setStaList(resultList);
 //			max_id = Long.parseLong(sr.getNext_cursor());
 			total_number = Long.parseLong(sr.getTotal_number());
 			Message msg = handler.obtainMessage();
@@ -296,6 +202,5 @@ public class DMUserTimelineActivity extends BaseActivity {
 				break;
 			}
 		}
-		
 	}
 }

@@ -1,6 +1,7 @@
 package com.domee.utils;
 
 import com.domee.model.CommentResult;
+import com.domee.model.FriendsResult;
 import com.domee.model.StatusResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,5 +19,10 @@ public class GsonUtil {
 	public static CommentResult gson2Comment(String jsonStr) {
 		CommentResult cr = gson.fromJson(jsonStr, new TypeToken<CommentResult>() {}.getType());
 		return cr;
+	}
+	
+	public static FriendsResult gson2Friends(String jsonStr) {
+		FriendsResult fr = gson.fromJson(jsonStr, new TypeToken<FriendsResult>() {}.getType());
+		return fr;
 	}
 }

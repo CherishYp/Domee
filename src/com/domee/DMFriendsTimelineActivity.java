@@ -212,10 +212,7 @@ public class DMFriendsTimelineActivity extends BaseListActivity implements OnScr
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		Intent intent = new Intent();
-		intent.setClass(this, DMStatusShowActivity.class);
-		intent.putExtra("status", adapter.getStatusList().get(position - 1));
-		startActivityForResult(intent, 0);
+		DMStatusShowActivity.show(this, adapter.getStatusList().get(position - 1));
 	}
 	
 	
