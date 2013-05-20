@@ -25,99 +25,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e8fc717-626b-4ee5-b765-485f940d1a79" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/android-support-v4.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/DMUserSelectedListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Domee.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$SendStatusRequestListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentRequestListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentRequestListener$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$StatusRequestListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/GsonUtil$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/GsonUtil$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/GsonUtil$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/handmark/pulltorefresh/extras/listfragment/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/handmark/pulltorefresh/extras/viewpager/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/handmark/pulltorefresh/library/R.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/model/Account.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/model/Account.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity$AnimateFirstDisplayListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity$AnimateFirstDisplayListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BaseActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity$AnimateFirstDisplayListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity$AnimateFirstDisplayListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity$URLSpanNoUnderline.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity$URLSpanNoUnderline.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BaseListActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/BuildConfig.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/BuildConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/manager/DMAccountsManager.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/manager/DMAccountsManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity$FriendsTimelineRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity$FriendsTimelineRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMAtActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity$FriendsRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity$FriendsRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity$UtBtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity$UtBtnListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMAtFriendActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity$ComToMERequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity$ComToMERequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMCommentActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$AvatarListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$AvatarListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$ComHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$ComHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$BtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$BtnListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$SendStatusRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity$SendStatusRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMComposeActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMFriendAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMFriendAdapter$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMFriendAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMFriendAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity$FriendsTimelineRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity$FriendsTimelineRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMFriendsTimelineActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity$AuthDialogListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity$AuthDialogListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity$SsoBtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity$SsoBtnListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMLoginActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMPagerAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity$FriendsTimelineRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity$FriendsTimelineRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMProfileActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$BtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$BtnListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$BtnOnclickListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$BtnOnclickListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$CommentRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMStatusShowActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/net/DMUserRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/net/DMUserRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$StatusRequestListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$StatusRequestListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$UtBtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity$UtBtnListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/DMUserTimelineActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Domee.apk" afterPath="$PROJECT_DIR$/bin/Domee.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/GsonUtil.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/utils/GsonUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity$DMOnPageChangeListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity$DMOnPageChangeListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity$TabOnClickListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity$TabOnClickListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes.dex" afterPath="$PROJECT_DIR$/bin/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/domee/BuildConfig.java" afterPath="$PROJECT_DIR$/gen/com/domee/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/DMAtFriendActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/DMAtFriendActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/DMComposeActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/DMComposeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/DMLoginActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/DMLoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/adapter/DMStatusAdapter.java" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMStatusAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/domee/R.java" afterPath="$PROJECT_DIR$/gen/com/domee/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_compose.xml" afterPath="$PROJECT_DIR$/res/layout/ac_compose.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_status.xml" afterPath="$PROJECT_DIR$/res/layout/item_status.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/jarlist.cache" afterPath="$PROJECT_DIR$/bin/jarlist.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_main.xml" afterPath="$PROJECT_DIR$/res/layout/ac_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Domee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -135,9 +48,11 @@
     <file path="/item_status.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369028891246" ignored="false" />
     <file path="/DMAtFriendActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368975792096" ignored="false" />
     <file path="/DMUserSelectedListener.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368974477773" ignored="false" />
-    <file path="/DMComposeActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369027757910" ignored="false" />
-    <file path="/ac_compose.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369026509273" ignored="false" />
+    <file path="/DMComposeActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369034277154" ignored="false" />
+    <file path="/ac_compose.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369034157517" ignored="false" />
     <file path="/DMStatusAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369028631187" ignored="false" />
+    <file path="/MainActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369031197111" ignored="false" />
+    <file path="/ac_main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369035321490" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,13 +130,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ac_friend_timeline.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ac_friend_timeline.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/ac_friend_timeline.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="896" selection-end="1543" vertical-scroll-proportion="0.88095236">
+            <state line="36" column="56" selection-start="896" selection-end="1541" vertical-scroll-proportion="-5.519231">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="9" selection-start="1931" selection-end="2292" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ac_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/ac_main.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="35" selection-start="2381" selection-end="2381" vertical-scroll-proportion="-4.326923">
+              <folding>
+                <element signature="e#783#811#0" expanded="true" />
+                <element signature="e#1137#1153#0" expanded="true" />
+                <element signature="e#1493#1514#0" expanded="true" />
+                <element signature="e#1854#1875#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMFriendsTimelineActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="1298" selection-end="1365" vertical-scroll-proportion="0.3716216">
+              <folding>
+                <element signature="e#1701#1883#0" expanded="true" />
+                <element signature="e#1878#1879#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMComposeActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/DMComposeActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="179" column="34" selection-start="6440" selection-end="6440" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ac_compose.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/ac_compose.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="46" selection-start="1535" selection-end="1535" vertical-scroll-proportion="-1.4423077">
               <folding />
             </state>
           </provider>
@@ -250,10 +224,14 @@
         <option value="$PROJECT_DIR$/src/com/domee/DMLoginActivity.java" />
         <option value="$PROJECT_DIR$/src/com/domee/DMUserSelectedListener.java" />
         <option value="$PROJECT_DIR$/src/com/domee/DMAtFriendActivity.java" />
-        <option value="$PROJECT_DIR$/res/layout/ac_compose.xml" />
-        <option value="$PROJECT_DIR$/src/com/domee/DMComposeActivity.java" />
         <option value="$PROJECT_DIR$/src/com/domee/adapter/DMStatusAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/item_status.xml" />
+        <option value="$PROJECT_DIR$/res/layout/ac_compose.xml" />
+        <option value="$PROJECT_DIR$/src/com/domee/DMComposeActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/ac_friend_timeline.xml" />
+        <option value="$PROJECT_DIR$/src/com/domee/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/ac_main.xml" />
+        <option value="$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java" />
       </list>
     </option>
   </component>
@@ -355,28 +333,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,19 +555,19 @@
       <updated>1368968919375</updated>
       <workItem from="1368968922933" duration="3400000" />
       <workItem from="1368972633658" duration="4988000" />
-      <workItem from="1369015895423" duration="8589000" />
+      <workItem from="1369015895423" duration="12833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16977000" />
+    <option name="totallyTimeSpent" value="21221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.47293448" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.47293448" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.67236465" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.67236465" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.67236465" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -621,13 +577,13 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.6011396" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3005698" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5270655" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5270655" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.67236465" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23581848" sideWeight="0.47293448" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32763532" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.67236465" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32763532" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -725,27 +681,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/lang/reflect/Method.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/content/res/TypedArray.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2411" selection-end="2411" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/Handler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/Looper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="16" selection-start="712" selection-end="712" vertical-scroll-proportion="0.50507617">
@@ -788,35 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/ac_compose.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="46" selection-start="1713" selection-end="1713" vertical-scroll-proportion="0.71428573">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/DMComposeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="13" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.20618556">
-          <folding>
-            <element signature="e#3843#4131#0" expanded="true" />
-            <element signature="e#4104#4105#0" expanded="true" />
-            <element signature="e#4182#4470#0" expanded="true" />
-            <element signature="e#4443#4444#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="13" selection-start="1049" selection-end="1049" vertical-scroll-proportion="-4.391892">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/domee/DMAtActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="13" selection-start="1215" selection-end="1215" vertical-scroll-proportion="-3.209622">
@@ -843,13 +749,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/DMUserSelectedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="137" selection-end="137" vertical-scroll-proportion="0.34539473">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/ac_compose.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="46" selection-start="1535" selection-end="1535" vertical-scroll-proportion="-1.4423077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/DMComposeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="179" column="34" selection-start="6440" selection-end="6440" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/ac_friend_timeline.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="896" selection-end="1543" vertical-scroll-proportion="0.88095236">
+        <state line="36" column="56" selection-start="896" selection-end="1541" vertical-scroll-proportion="-5.519231">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="9" selection-start="1931" selection-end="2292" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/ac_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="35" selection-start="2381" selection-end="2381" vertical-scroll-proportion="-4.326923">
+          <folding>
+            <element signature="e#783#811#0" expanded="true" />
+            <element signature="e#1137#1153#0" expanded="true" />
+            <element signature="e#1493#1514#0" expanded="true" />
+            <element signature="e#1854#1875#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/DMFriendsTimelineActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1298" selection-end="1365" vertical-scroll-proportion="0.3716216">
+          <folding>
+            <element signature="e#1701#1883#0" expanded="true" />
+            <element signature="e#1878#1879#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

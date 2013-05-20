@@ -187,11 +187,11 @@ public class DMFriendsTimelineActivity extends BaseListActivity implements OnScr
 		// TODO Auto-generated method stub
 //		System.out.println(firstVisibleItem);
 		if (temp > firstVisibleItem) {
-			mWrietImgView.setVisibility(View.GONE);
-			mSetupImgView.setVisibility(View.GONE);
+//			mWrietImgView.setVisibility(View.GONE);
+//			mSetupImgView.setVisibility(View.GONE);
 		} else {
-			mWrietImgView.setVisibility(View.VISIBLE);
-			mSetupImgView.setVisibility(View.VISIBLE);
+//			mWrietImgView.setVisibility(View.VISIBLE);
+//			mSetupImgView.setVisibility(View.VISIBLE);
 		}
 		temp = firstVisibleItem;
 	}

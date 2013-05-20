@@ -56,12 +56,25 @@ public class MainActivity extends Activity {
     private Intent commentIntent;
     private Intent profileIntent;
 
+    private ImageView mWrietImgView;
+    private ImageView mSetupImgView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		DMAccountsManager.initContext(MainActivity.this);
 		setContentView(R.layout.ac_main);
-		
+
+//        mWrietImgView = (ImageView) findViewById(R.id.mWrietImgView);
+//        mWrietImgView.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				DMComposeActivity.show(MainActivity.this);
+//			}
+//		});
+//        mSetupImgView = (ImageView) findViewById(R.id.mSetupImgView);
+
 		manager = new LocalActivityManager(this , true);
         manager.dispatchCreate(savedInstanceState);
         if (DMAccountsManager.getCurAccount() != null) {

@@ -178,10 +178,11 @@ public class DMComposeActivity extends BaseActivity {
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
                 ImageView mImageView = (ImageView) findViewById(R.id.c_image_view);
+                mImageView.setVisibility(View.INVISIBLE);
                 System.out.println("DMComposeActivity=============>" + bitmap);
                 /* 将Bitmap设定到ImageView */
                 mImageView.setImageBitmap(bitmap);
-                mImageView.setVisibility(View.INVISIBLE);
+
             } catch (FileNotFoundException e) {
                 Log.e("Exception", e.getMessage(),e);
             }
