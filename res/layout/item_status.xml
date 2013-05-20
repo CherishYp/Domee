@@ -102,15 +102,17 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-			android:layout_below="@id/ftReText"            
+			android:layout_below="@id/ftReText"
             android:src="@drawable/ic_launcher" />
 
         <TextView
             android:id="@+id/ftReComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/ftReText"
             android:layout_alignBottom="@id/ftReImgView"
             android:layout_alignParentRight="true"
+            android:gravity="bottom"
             android:textColor="#808080"
 	        android:textSize="12sp"
 	        android:layout_marginLeft="5dp"

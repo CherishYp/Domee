@@ -151,7 +151,8 @@ public class DMStatusAdapter extends BaseAdapter {
 		if (sta.getRetweeted_status() != null) {
 			//判断微博是否存在
 			if(sta.getRetweeted_status().getUser() != null){
-				sta.getRetweeted_status().setHtmlStatusText(holder.ftReText);
+//				sta.getRetweeted_status().setHtmlStatusText(holder.ftReText);
+                holder.ftReText.setText(" @" + sta.getRetweeted_status().getUser().getScreen_name() + " :" + sta.getRetweeted_status().getText());
 				holder.ftReText.setMovementMethod(LinkMovementMethod.getInstance());
 			}else{
 				sta.getRetweeted_status().setHtmlStatusText(holder.ftReText);

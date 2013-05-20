@@ -84,7 +84,8 @@ public class DMLoginActivity extends Activity {
                         .show();
                 Account account = Account.accountWithOAuthBundle(values);
                 DMAccountsManager.createAccount(account);
-                Intent intent = new Intent(DMLoginActivity.this, DMFriendsTimelineActivity.class);
+//                Intent intent = new Intent(DMLoginActivity.this, DMFriendsTimelineActivity.class);
+                Intent intent = new Intent(DMLoginActivity.this, MainActivity.class);
                 DMLoginActivity.this.startActivity(intent);
             }
 		}

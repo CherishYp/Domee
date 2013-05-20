@@ -1,10 +1,21 @@
 package com.domee;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
+import android.widget.*;
 import com.domee.model.Status;
+import com.domee.model.User;
 import com.google.gson.reflect.TypeToken;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.net.RequestListener;
@@ -20,10 +31,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import static android.text.Selection.setSelection;
 
 public class DMComposeActivity extends BaseActivity {
 
@@ -112,10 +121,22 @@ public class DMComposeActivity extends BaseActivity {
 				}
 				break;
 			case R.id.cClose:
-				DMComposeActivity.this.finish();
+                new AlertDialog.Builder(DMComposeActivity.this).setTitle("是否保存?")
+                        .setNegativeButton("不保存", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DMComposeActivity.this.finish();
+                            }
+                        })
+                        .setPositiveButton("保存", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DMComposeActivity.this.finish();
+                            }
+                        }).show();
 				break;
 			case R.id.cCamera:
-				Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+				Intent intent = new Intent();
 				intent.setType("image/*");    //这个参数是确定要选择的内容为图片
 //				intent.putExtra("crop", "circle");   //这个参数 不太懂，唯一知道的是：设置了参数，就会调用裁剪，如果不设置，就会跳过裁剪的过程。
 //				intent.putExtra("aspectX", 33);  //这个是裁剪时候的 裁剪框的 X 方向的比例。
@@ -125,24 +146,50 @@ public class DMComposeActivity extends BaseActivity {
 //				intent.putExtra("outputY", 100);  //返回的时候 Y 的像素大小。
 				//以上两个值，设置之后会按照两个值生成一个Bitmap, 两个值就是这个bitmap的横向和纵向的像素值，如果裁剪的图像和这个像素值不符合，那么空白部分以黑色填充。
 //				intent.putExtra("noFaceDetection", true); // 是否去除面部检测， 如果你需要特定的比例去裁剪图片，那么这个一定要去掉，因为它会破坏掉特定的比例。
-				intent.putExtra("return-data", true);  //是否要返回值。 一般都要。
+//				intent.putExtra("return-data", true);  //是否要返回值。 一般都要。
+                intent.setAction(Intent.ACTION_GET_CONTENT);
 				startActivityForResult(intent, 1);
 				break;
 			case R.id.c_at_friend:
-				DMAtFriendActivity.show(DMComposeActivity.this);
+				DMAtFriendActivity.show(DMComposeActivity.this, new DMUserSelectedListenerImpl());
 				break;
 			case R.id.cTrend:
-				cStatusText.setText("##");
-				CharSequence text = cStatusText.getText();
-				Selection.setSelection((Spannable)text, text.length() - 1);
+                int index = cStatusText.getSelectionStart();
+                //将字符串转换为StringBuffer
+                StringBuffer sb = new StringBuffer(cStatusText.getText().toString().trim());
+                //将字符插入光标所在的位置
+                sb = sb.insert(index, "##");
+                cStatusText.setText(sb.toString());
+                //设置光标的位置保持不变
+                Selection.setSelection(cStatusText.getText(), index+1);
 				break;
 			default:
 				break;
 			}
 		}
 	}
-	
-	public void sendStatus() {
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            Log.e("uri", uri.toString());
+            ContentResolver cr = this.getContentResolver();
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                ImageView mImageView = (ImageView) findViewById(R.id.c_image_view);
+                System.out.println("DMComposeActivity=============>" + bitmap);
+                /* 将Bitmap设定到ImageView */
+                mImageView.setImageBitmap(bitmap);
+                mImageView.setVisibility(View.INVISIBLE);
+            } catch (FileNotFoundException e) {
+                Log.e("Exception", e.getMessage(),e);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void sendStatus() {
 		SendStatusRequestListener listener = new SendStatusRequestListener();
 		statusesAPI.update(text, null, null, listener);
 	}
@@ -176,4 +223,27 @@ public class DMComposeActivity extends BaseActivity {
 		}
 		
 	}
+
+    public class DMUserSelectedListenerImpl implements DMUserSelectedListener {
+
+        @Override
+        public void userSelected(Activity activity, User user) {
+
+            int index = cStatusText.getSelectionStart();
+            //将字符串转换为StringBuffer
+            StringBuffer sb = new StringBuffer(cStatusText.getText().toString().trim());
+            //将字符插入光标所在的位置
+            String str = " @" + user.getScreen_name() + " ";
+            sb = sb.insert(index, str);
+            cStatusText.setText(sb.toString());
+            //设置光标的位置保持不变
+            Selection.setSelection(cStatusText.getText(), index + str.length());
+            activity.finish();
+        }
+
+        @Override
+        public void userCancelSelected(Activity activity) {
+
+        }
+    }
 }
