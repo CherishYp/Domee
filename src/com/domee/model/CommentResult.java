@@ -7,16 +7,16 @@ public class CommentResult implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private LinkedList<Comment> comments;
+	private LinkedList<DMComment> comments;
 	private String previous_cursor;
 	private String next_cursor;
 	private String total_number;
 
-	public LinkedList<Comment> getComments() {
+	public LinkedList<DMComment> getComments() {
 		return comments;
 	}
 
-	public void setComments(LinkedList<Comment> comments) {
+	public void setComments(LinkedList<DMComment> comments) {
 		this.comments = comments;
 	}
 

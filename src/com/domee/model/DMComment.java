@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Comment implements Serializable {
+public class DMComment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
     private static final String TAG = "DMComment";
@@ -22,7 +22,7 @@ public class Comment implements Serializable {
 	private String mid;				//	string	评论的MID
 	private String idstr;			//	string	字符串型的评论ID
 	private DMStatus status;			//	object	评论的微博信息字段 详细
-	private Comment reply_comment;	//	object	评论来源评论，当本评论属于对另一评论的回复时返回此字段
+	private DMComment reply_comment;	//	object	评论来源评论，当本评论属于对另一评论的回复时返回此字段
 
 	public String getCreated_at() {
 		return created_at;
@@ -49,7 +49,24 @@ public class Comment implements Serializable {
 	}
 
 	public String getSource() {
-		return source;
+        int start = this.source.indexOf(">");
+        int end = this.source.lastIndexOf("<");
+        char startChar = '>';
+        char endChar = '<';
+        String result = "";
+        for (int i = 0; i < this.source.length(); i++) {
+            if (startChar == this.source.charAt(i)) {
+                result = this.source.substring(i + 1);
+                break;
+            }
+        }
+        for (int i = 0; i < result.length(); i++) {
+            if (endChar == result.charAt(i)) {
+                result = result.substring(0, i);
+            }
+        }
+        return result;
+//		return source;
 	}
 
 	public void setSource(String source) {
@@ -88,11 +105,11 @@ public class Comment implements Serializable {
 		this.status = status;
 	}
 
-	public Comment getReply_comment() {
+	public DMComment getReply_comment() {
 		return reply_comment;
 	}
 
-	public void setReply_comment(Comment reply_comment) {
+	public void setReply_comment(DMComment reply_comment) {
 		this.reply_comment = reply_comment;
 	}
 

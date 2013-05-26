@@ -2,11 +2,8 @@ package com.domee.adapter;
 
 import java.util.LinkedList;
 
-import com.domee.DMAtFriendActivity;
-import com.domee.DMCommentActivity;
+import com.domee.activity.DMAtFriendActivity;
 import com.domee.R;
-import com.domee.adapter.DMStatusAdapter.ViewHolder;
-import com.domee.model.Comment;
 import com.domee.model.User;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -16,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 

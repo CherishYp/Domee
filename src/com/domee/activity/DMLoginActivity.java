@@ -22,8 +22,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DMLoginActivity extends Activity {
-
-	private static final String CONSUMER_KEY = "966056985"; // 替换为开发者的appkey，例如"1646212860";
+//    private static final String CONSUMER_KEY = "1082819259"; // 替换为开发者的appkey，例如"1646212860";
+//    private static final String REDIRECT_URL = "http://oauth.weico.cc";
+	private static final String CONSUMER_KEY = "1152034500"; // 替换为开发者的appkey，例如"1646212860";
 	private static final String REDIRECT_URL = "http://www.sina.com";
 	public static final String TAG = "sinasdk";
 	public static Oauth2AccessToken accessToken;

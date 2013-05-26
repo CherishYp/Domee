@@ -12,10 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.domee.BaseActivity;
-import com.domee.DMUserTimelineActivity;
+import com.domee.activity.DMBigImgShowActivity;
+import com.domee.activity.DMUserTimelineActivity;
 import com.domee.R;
-import com.domee.model.Status;
+import com.domee.dialog.DMAlertImageDialog;
+import com.domee.model.DMStatus;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
@@ -27,7 +28,7 @@ public class DMNAStatusAdapter extends BaseAdapter {
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
-	private LinkedList<Status> staList;
+	private LinkedList<DMStatus> staList;
 	
 	//给listView加的一个view
 	private LinearLayout utLinearLayout;
@@ -62,7 +63,7 @@ public class DMNAStatusAdapter extends BaseAdapter {
 		if (staList == null) {
 			return 0;
 		}
-		return staList.size() + 1;
+		return staList.size();
 	}
 
 	@Override
@@ -101,34 +102,39 @@ public class DMNAStatusAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		if (staList.size() == position) {
-			if (this.activity.total_number <= 20) {
-				this.activity.utButton.setVisibility(View.GONE);
-			}
-			return utLinearLayout;
-		}
+//		if (staList.size() == position) {
+//			if (this.activity.total_number <= 20) {
+//				this.activity.utButton.setVisibility(View.GONE);
+//			}
+//			return utLinearLayout;
+//		}
 		
-		Status status = staList.get(position);
+		DMStatus status = staList.get(position);
 	 	holder.utCreatedAt.setText("12:20");
 		holder.utText.setText(status.getText());
+        status.extract2Link(holder.utText);
 		//判断微博是否有图片
 		if (status.getThumbnail_pic() != null && !status.getThumbnail_pic().equals("")) {
 			imageLoader.displayImage(status.getThumbnail_pic(), holder.utImgView, options, animateFirstListener);
 			holder.utImgView.setVisibility(View.VISIBLE);
+            holder.utImgView.setOnClickListener(new BtnListener(position));
 		} else {
 			holder.utImgView.setVisibility(View.GONE);
 		}
 		//判断微博是否是转发的
 		if (status.getRetweeted_status() != null) {
 			if (status.getRetweeted_status().getUser() != null) {
-				holder.utReText.setText(status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
+				holder.utReText.setText("@" + status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
+                status.extract2Link(holder.utReText);
 			}else {
 				holder.utReText.setText(status.getRetweeted_status().getText());
+                status.extract2Link(holder.utReText);
 			}
 			//判断转发的微博是否带图片
 			if (status.getRetweeted_status().getThumbnail_pic() != null && !status.getRetweeted_status().getThumbnail_pic().equals("")) {
 				imageLoader.displayImage(status.getRetweeted_status().getThumbnail_pic(), holder.utReImgView, options, animateFirstListener);
 				holder.utReImgView.setVisibility(View.VISIBLE);
+                holder.utReImgView.setOnClickListener(new BtnListener(position));
 			}else {
 				holder.utReImgView.setVisibility(View.GONE);
 			}
@@ -146,12 +152,38 @@ public class DMNAStatusAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	public LinkedList<Status> getStaList() {
+	public LinkedList<DMStatus> getStaList() {
 		return staList;
 	}
 
-	public void setStaList(LinkedList<Status> staList) {
+	public void setStaList(LinkedList<DMStatus> staList) {
 		this.staList = staList;
 	}
-	
+
+    public class BtnListener implements View.OnClickListener {
+        private int position;
+        public BtnListener(int position) {
+            // TODO Auto-generated constructor stub
+            this.position = position;
+        }
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            DMAlertImageDialog dialog = null;
+            switch (v.getId()) {
+                case R.id.ftAvatar:
+                    DMUserTimelineActivity.show(activity, staList.get(position).getUser());
+                    break;
+                case R.id.utImgView:
+                    DMBigImgShowActivity.show(activity, staList.get(position).getOriginal_pic(), staList.get(position).getThumbnail_pic());
+                    break;
+                case R.id.utReImgView:
+                    DMBigImgShowActivity.show(activity, staList.get(position).getRetweeted_status().getOriginal_pic(), staList.get(position).getRetweeted_status().getThumbnail_pic());
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
 }

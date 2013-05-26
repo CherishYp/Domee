@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 import com.domee.R;
 import com.domee.adapter.DMCommentAdapter;
-import com.domee.model.Comment;
+import com.domee.model.DMComment;
 import com.domee.model.CommentResult;
-import com.domee.utils.GsonUtil;
+import com.domee.utils.DMGsonUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -30,7 +30,7 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 	
 	private static DMCommentAdapter adapter = null;
 	private static PullToRefreshListView mPullToRefreshListView;
-	private LinkedList<Comment> comList = null;
+	private LinkedList<DMComment> comList = null;
 	private long since_id;
 	private long max_id;
 	
@@ -90,7 +90,7 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 			// TODO Auto-generated method stub
 			Log.w("DMCommentActivity", arg0);
 			System.out.println(arg0);
-			CommentResult cr = GsonUtil.gson2Comment(arg0);
+			CommentResult cr = DMGsonUtil.gson2Comment(arg0);
 			max_id = Long.parseLong(cr.getNext_cursor());
 			since_id = Long.parseLong(cr.getPrevious_cursor());
 			comList = cr.getComments();

@@ -2,31 +2,21 @@ package com.domee.adapter;
 
 import java.util.LinkedList;
 
-import com.domee.BaseListActivity;
-import com.domee.DMFriendsTimelineActivity;
-import com.domee.R;
-import com.domee.DMUserTimelineActivity;
+import com.domee.*;
+import com.domee.activity.DMBigImgShowActivity;
+import com.domee.activity.DMUserTimelineActivity;
 import com.domee.dialog.DMAlertImageDialog;
-import com.domee.model.Status;
+import com.domee.model.DMStatus;
 import com.domee.utils.DMConstants;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
-import android.R.anim;
-import android.R.color;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.provider.SyncStateContract.Constants;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +37,7 @@ public class DMStatusAdapter extends BaseAdapter {
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
-	private LinkedList<Status> statusList = null;
+	private LinkedList<DMStatus> statusList = null;
 	
 	public DMStatusAdapter(Activity activity, 
 			ImageLoader imageLoader, DisplayImageOptions options, ImageLoadingListener listener) {
@@ -124,7 +114,7 @@ public class DMStatusAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		Status sta = statusList.get(position);
+		DMStatus sta = statusList.get(position);
 		imageLoader.displayImage(sta.getUser().getProfile_image_url(), holder.ftAvatar, options, animateFirstListener);
 		holder.ftAvatar.setOnClickListener(new BtnListener(position));
 		//判断是否带图片微博
@@ -138,11 +128,12 @@ public class DMStatusAdapter extends BaseAdapter {
 		
 		holder.ftScreenName.setText(sta.getUser().getScreen_name());
 		holder.ftCreatedAt.setText("2013.5.6");
-		sta.setHtmlStatusText(holder.ftText);
-		holder.ftText.setMovementMethod(LinkMovementMethod.getInstance());
-	      
+        holder.ftText.setText(sta.getText());
+        sta.extract2Link(holder.ftText);
+//        sta.change2Link(holder.ftText);
+
 		   // holder.ftText.setText(style);
-		holder.ftSource.setText(Html.fromHtml(sta.getSource()));
+		holder.ftSource.setText(sta.getSource());
 //		((BaseListActivity) activity).stripUnderlines(holder.ftSource, sta.getSource());
 		holder.ftRepost.setText("转发" + sta.getReposts_count() + "");
 		holder.ftComment.setText("评论" + sta.getComments_count() + "");
@@ -151,12 +142,11 @@ public class DMStatusAdapter extends BaseAdapter {
 		if (sta.getRetweeted_status() != null) {
 			//判断微博是否存在
 			if(sta.getRetweeted_status().getUser() != null){
-//				sta.getRetweeted_status().setHtmlStatusText(holder.ftReText);
                 holder.ftReText.setText(" @" + sta.getRetweeted_status().getUser().getScreen_name() + " :" + sta.getRetweeted_status().getText());
-				holder.ftReText.setMovementMethod(LinkMovementMethod.getInstance());
+                sta.extract2Link(holder.ftReText);
 			}else{
-				sta.getRetweeted_status().setHtmlStatusText(holder.ftReText);
-				holder.ftReText.setMovementMethod(LinkMovementMethod.getInstance());
+                holder.ftReText.setText(sta.getRetweeted_status().getText());
+                sta.extract2Link(holder.ftText);
 			}
 			//判断转发的微博是否有图片
 			if(sta.getRetweeted_status().getThumbnail_pic() != null && !sta.getRetweeted_status().getThumbnail_pic().equals("")) {
@@ -190,12 +180,10 @@ public class DMStatusAdapter extends BaseAdapter {
 				DMUserTimelineActivity.show(activity, statusList.get(position).getUser());
 				break;
 			case R.id.ftImgView:
-				dialog = new DMAlertImageDialog(activity, statusList.get(position).getOriginal_pic());
-				dialog.show();
+                DMBigImgShowActivity.show(activity, statusList.get(position).getOriginal_pic(), statusList.get(position).getThumbnail_pic());
 				break;
 			case R.id.ftReImgView:
-				dialog = new DMAlertImageDialog(activity, statusList.get(position).getRetweeted_status().getOriginal_pic());
-				dialog.show();
+                DMBigImgShowActivity.show(activity, statusList.get(position).getRetweeted_status().getOriginal_pic(), statusList.get(position).getRetweeted_status().getThumbnail_pic());
 				break;
 			default:
 				break;
@@ -204,15 +192,11 @@ public class DMStatusAdapter extends BaseAdapter {
 		}
 	}
 	
-	public interface IBtnListener {
-		
-	}
-
-	public LinkedList<Status> getStatusList() {
+	public LinkedList<DMStatus> getStatusList() {
 		return statusList;
 	}
 
-	public void setStatusList(LinkedList<Status> statusList) {
+	public void setStatusList(LinkedList<DMStatus> statusList) {
 		this.statusList = statusList;
 	}
 	

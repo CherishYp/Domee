@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
-            android:name="com.domee.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DMLoginActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".AccListActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMFriendsTimelineActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMAtActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMCommentActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMStatusShowActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMUserTimelineActivity" android:label="@string/app_name"></activity>
-        <activity android:name=".DMComposeActivity" android:windowSoftInputMode="adjustResize" android:label="@string/app_name"></activity>
-       	<activity android:name=".DMProfileActivity" android:label="@string/app_name"></activity>
-       	<activity android:name=".DMAtFriendActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMLoginActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.AccListActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMFriendsTimelineActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMAtActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMCommentActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMStatusShowActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMUserTimelineActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMComposeActivity" android:windowSoftInputMode="adjustResize" android:label="@string/app_name"></activity>
+       	<activity android:name=".activity.DMProfileActivity" android:label="@string/app_name"></activity>
+       	<activity android:name=".activity.DMAtFriendActivity" android:label="@string/app_name"></activity>
        	<receiver android:name=".broadcast.SendStatusReceiver" android:exported="false">
             <intent-filter >
                 <action android:name="SEND_STATUS_ACTION"/>

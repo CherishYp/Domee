@@ -11,10 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.domee.DMCommentActivity;
-import com.domee.DMUserTimelineActivity;
+import com.domee.activity.DMCommentActivity;
+import com.domee.activity.DMUserTimelineActivity;
 import com.domee.R;
-import com.domee.model.Comment;
+import com.domee.model.DMComment;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
@@ -26,7 +26,7 @@ public class DMCommentAdapter extends BaseAdapter {
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
-	private LinkedList<Comment> comList = null;
+	private LinkedList<DMComment> comList = null;
 	
 	public DMCommentAdapter(DMCommentActivity activity, 
 			ImageLoader imageLoader, DisplayImageOptions options, ImageLoadingListener listener) {
@@ -82,12 +82,13 @@ public class DMCommentAdapter extends BaseAdapter {
 		} else {
 			holder = (ComHolder) convertView.getTag();
 		}
-		Comment com = comList.get(position);
+		DMComment com = comList.get(position);
 		imageLoader.displayImage(com.getUser().getProfile_image_url(), holder.cAvatar, options, animateFirstListener);
 		holder.cAvatar.setOnClickListener(new AvatarListener(position));
 		holder.cScreenName.setText(com.getUser().getScreen_name());
 		holder.cCreatedAt.setText("09:20");
 		holder.cText.setText(com.getText());
+        com.extract2Link(holder.cText);
 		holder.cReText.setText("");
 		return convertView;
 	}
@@ -109,11 +110,11 @@ public class DMCommentAdapter extends BaseAdapter {
 		}
 	}
 
-	public LinkedList<Comment> getComList() {
+	public LinkedList<DMComment> getComList() {
 		return comList;
 	}
 
-	public void setComList(LinkedList<Comment> comList) {
+	public void setComList(LinkedList<DMComment> comList) {
 		this.comList = comList;
 	}
 	

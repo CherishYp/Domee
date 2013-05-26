@@ -1,27 +1,30 @@
 package com.domee.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.graphics.Color;
+import android.text.*;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
+import android.util.Log;
+import com.domee.R;
 import com.domee.activity.DMUserTimelineActivity;
 import com.domee.manager.DMAccountsManager;
 import com.domee.manager.DMUIManager;
 
 import android.content.Intent;
-import android.text.Html;
-import android.text.TextPaint;
 import android.text.style.*;
 import android.view.View;
 import android.widget.TextView;
+import com.domee.utils.DMConstants;
 
-//"status":{"created_at":"Fri Apr 26 09:37:49 +0800 2013","id":3571268693395472,
-//"mid":"3571268693395472","idstr":"3571268693395472","text":" 真他妈难产啊","source":"<a href=\"http://weibo.com/\" rel=\"nofollow\">新浪微博</a>",
-//"favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],
-//"geo":null,"reposts_count":0,"comments_count":0,"attitudes_count":0,"mlevel":0,"visible":{"type":0,"list_id":0}},
 public class DMStatus implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+    private static final String TAG = "DMStatus";
 
 	private String created_at;				//	string  微博创建时间
 	private long id;						//	int64	微博ID
@@ -55,6 +58,10 @@ public class DMStatus implements Serializable {
 	}
 
 	public String getCreated_at() {
+        System.out.println();
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+
+//        format.
 		return created_at;
 	}
 
@@ -92,11 +99,26 @@ public class DMStatus implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
-		this.htmlText = this.changeToHtmlText(text);
 	}
 
 	public String getSource() {
-		return source;
+        int start = this.source.indexOf(">");
+        int end = this.source.lastIndexOf("<");
+        char startChar = '>';
+        char endChar = '<';
+        String result = "";
+        for (int i = 0; i < this.source.length(); i++) {
+            if (startChar == this.source.charAt(i)) {
+                result = this.source.substring(i + 1);
+                break;
+            }
+        }
+        for (int i = 0; i < result.length(); i++) {
+            if (endChar == result.charAt(i)) {
+                result = result.substring(0, i);
+            }
+        }
+		return result;
 	}
 
 	public void setSource(String source) {
@@ -230,75 +252,89 @@ public class DMStatus implements Serializable {
 	public void setVisible(Visible visible) {
 		this.visible = visible;
 	}
-	
-	public String changeToHtmlText(String text){
-		String plainText = text;
-		Pattern p = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
-		Matcher m = p.matcher(plainText);
-		while (m.find()) {
-			plainText =  plainText.replaceFirst(m.group(), "<a href=\"domme://profile/"+ m.group() + "\"style='text-decoration: none;>" + m.group() + "</a>");
-		}
-		Pattern plink = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
-		Matcher mlink = plink.matcher(plainText);
-		while (mlink.find()) {
-		    System.out.println(mlink.group());
-			plainText =  plainText.replaceFirst(mlink.group(), "<a href=\""+mlink.group()+"\">" + mlink.group() + "</a>");
-		}
-		
-		Pattern pTag = Pattern.compile("#([^#|.]+)#");
-		Matcher mTag = pTag.matcher(plainText);
-		while (mTag.find()) {
-			plainText =  plainText.replaceFirst(mTag.group(), "<a href=\"domme://Tag/"+mTag.group()+"\" style='text-decoration: none;>" + mTag.group() + "</a>");
-		}
-		return plainText;	
-	}
-	
-	public void setHtmlStatusText(TextView textView){
-		
-//		if(this.htmlText == null){
-//		String plainText = this.text;
-////		Pattern pTag = Pattern.compile("#.+?#");
-////
-////		Matcher mTag = pTag.matcher(plainText);
-////		while (mTag.find()) {
-////			System.out.println(mTag.group());
-////			plainText =  plainText.replaceFirst(mTag.group(), "<a href=\"domme://profile/" + "test" + "\"style='text-decoration: none;>" + "test" + "</a> ");
-////		}
-//		Pattern p = Pattern.compile("@(\\w+?)(?=\\W|$)(.)");
-//		Matcher m = p.matcher(plainText);
-//		while (m.find()) {
-//			plainText =  plainText.replaceFirst(m.group(), "<a href=\"domme://profile/"+ m.group() + "\"style='text-decoration: none;>" + m.group() + "</a>");
-//		}
-//		Pattern plink = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
-//		Matcher mlink = plink.matcher(plainText);
-//		while (mlink.find()) {
-//		    System.out.println(mlink.group());
-//			plainText =  plainText.replaceFirst(mlink.group(), "<a href=\""+mlink.group()+"\">" + mlink.group() + "</a>");
-//		}
-//
-//
-//		 this.htmlText = plainText;
-//		 System.out.println(plainText);
-//		}
-        if (this.htmlText == null){
-            this.htmlText = this.text;
 
+
+    public void extract2Link(TextView v) {
+        v.setAutoLinkMask(0);
+
+        Pattern mentionsPattern = Pattern.compile("@[\\u4e00-\\u9fa5\\w\\-]+");
+        String mentionsScheme = String.format("%s/?%s=", DMConstants.MENTIONS_SCHEMA, DMConstants.PARAM_SCREEN_NAME);
+        Linkify.addLinks(v, mentionsPattern, mentionsScheme, new Linkify.MatchFilter() {
+                    @Override
+                    public boolean acceptMatch(CharSequence s, int start, int end) {
+                        System.out.println(s);
+                        SpannableString spanStr = new SpannableString(s);
+                        spanStr.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        return s.charAt(end - 1) != '.';
+                    }
+                }, new Linkify.TransformFilter() {
+                    @Override
+                    public String transformUrl(Matcher match, String url) {
+                        Log.d(TAG, match.group());
+                        System.out.println(match.group());
+                        return match.group().replaceAll("@", "");
+                    }
+                }
+        );
+
+        Pattern trendsPattern = Pattern.compile("#(\\w+?)#");
+        String trendsScheme = String.format("%s/?%s=", DMConstants.TRENDS_SCHEMA, DMConstants.PARAM_TREND);
+        Linkify.addLinks(v, trendsPattern, trendsScheme, new Linkify.MatchFilter() {
+                    @Override
+                    public boolean acceptMatch(CharSequence s, int start, int end) {
+                        System.out.println(s);
+                        return s.charAt(end - 1) != '.';
+                    }
+                }, new Linkify.TransformFilter() {
+                    @Override
+                    public String transformUrl(Matcher match, String url) {
+                        Log.d(TAG, match.group());
+                        return match.group().replaceAll("#","");
+                    }
+                }
+        );
+
+        Pattern linkedPattern = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
+        String linkedScheme = String.format("%s", DMConstants.LINKED_SCHEMA);
+        Linkify.addLinks(v, linkedPattern, null, null, new Linkify.TransformFilter() {
+            @Override
+            public String transformUrl(Matcher match, String url) {
+                Log.d(TAG, match.group());
+                return match.group();
+            }
+        });
+    }
+
+    public void change2Link(TextView mTextView) {
+        mTextView.setAutoLinkMask(0);
+        String plaintText = this.text;
+        Pattern mentionsPattern = Pattern.compile("@[\\u4e00-\\u9fa5\\w\\-]+");
+        Matcher matcher = mentionsPattern.matcher(plaintText);
+
+        while (matcher.find()) {
+            String metionsText = matcher.group();
+            plaintText = plaintText.replaceAll(metionsText, "<a href='domee://profile/?screenname=" + metionsText.replaceAll("@", "") + "' style='color:red'>" + metionsText + "</a>");
         }
-	    CharSequence text = Html.fromHtml(this.htmlText);  
-//	    int end = text.length();
-//	    Spannable sp = (Spannable) text;
-//	    URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
-//	    SpannableStringBuilder style = new SpannableStringBuilder(text);
-//	    style.clearSpans();// should clear old spans
-//	    for (URLSpan url : urls) {
-//	     MyURLSpan myURLSpan = new MyURLSpan(url.getURL());
-//	     style.setSpan(myURLSpan, sp.getSpanStart(url), sp
-//	       .getSpanEnd(url), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-//	    }
-	    textView.setText(text);
-	    
-	}
-	
+
+        Pattern trendsPattern = Pattern.compile("#(\\w+?)#");
+        Matcher trendMatcher = trendsPattern.matcher(plaintText);
+        while (trendMatcher.find()) {
+            String trendText = trendMatcher.group();
+            plaintText = plaintText.replaceAll(trendText, "<a href='domee://trend/?trendname=" + trendText.replaceAll("#", "") + "'>" + trendText + "</a>");
+        }
+
+        Pattern linkedPattern = Pattern.compile("[hH][tT][tT][pP][sS]?:\\/\\/[a-zA-Z0-9\\-\\.\\?%&\\=\\/]*");
+        Matcher linkedMatcher = linkedPattern.matcher(plaintText);
+        while (linkedMatcher.find()) {
+            String linkedText = linkedMatcher.group();
+            plaintText = plaintText.replaceAll(linkedText, "<a href='" + linkedText + "' style='color:black'>" + linkedText + "</a>");
+        }
+
+        mTextView.setText(Html.fromHtml(plaintText));
+        mTextView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

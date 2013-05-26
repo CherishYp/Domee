@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 import com.domee.R;
 import com.domee.adapter.DMStatusAdapter;
-import com.domee.model.Status;
-import com.domee.model.StatusResult;
-import com.domee.utils.GsonUtil;
+import com.domee.model.DMStatus;
+import com.domee.model.DMStatusResult;
+import com.domee.utils.DMGsonUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -137,11 +137,11 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
 		public void onComplete(String arg0) {
 			// TODO Auto-generated method stub
 			System.out.println(arg0);
-			StatusResult sr = GsonUtil.gson2Status(arg0);
+			DMStatusResult sr = DMGsonUtil.gson2Status(arg0);
 			System.out.println("load到的 ======= " + sr.getStatuses().size());
 			max_id = Long.parseLong(sr.getNext_cursor());
-			LinkedList<Status> statusList = sr.getStatuses();
-			LinkedList<Status> resultList = adapter.getStatusList();
+			LinkedList<DMStatus> statusList = sr.getStatuses();
+			LinkedList<DMStatus> resultList = adapter.getStatusList();
 			if(resultList == null){
 				resultList = statusList;
 			}

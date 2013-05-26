@@ -1,7 +1,7 @@
 package com.domee.manager;
 
-import com.domee.DMFriendsTimelineActivity;
-import com.domee.MainActivity;
+import com.domee.activity.DMFriendsTimelineActivity;
+import com.domee.activity.MainActivity;
 
 public class DMUIManager {
 

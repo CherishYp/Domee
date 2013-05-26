@@ -44,7 +44,7 @@ public class User implements Serializable {
 	private boolean verified;			//	boolean	是否是微博认证用户，即加V用户，true：是，false：否
 	private int verified_type;			//	int	暂未支持
 	private String remark;				//	string	用户备注信息，只有在查询用户关系时才返回此字段
-	private Status status;				//	object	用户的最近一条微博信息字段 详细
+	private DMStatus status;				//	object	用户的最近一条微博信息字段 详细
 	private boolean allow_all_comment;	//	boolean	是否允许所有人对我的微博进行评论，true：是，false：否
 	private String avatar_large;		//	string	用户大头像地址
 	private String verified_reason;		//	string	认证原因
@@ -253,11 +253,11 @@ public class User implements Serializable {
 		this.remark = remark;
 	}
 
-	public Status getStatus() {
+	public DMStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(DMStatus status) {
 		this.status = status;
 	}
 

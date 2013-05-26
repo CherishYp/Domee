@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import com.domee.R;
-import com.domee.model.Comment;
+import com.domee.model.DMComment;
 import com.domee.model.CommentResult;
-import com.domee.model.Status;
+import com.domee.model.DMStatus;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +36,7 @@ import android.widget.TextView;
 
 public class DMStatusShowActivity extends BaseActivity {
 
-	private Status status = null;
+	private DMStatus status = null;
 //	private ImageView ssAvatar;
 	private ImageButton ssAvatar;
 	private TextView ssScreenName; 
@@ -59,7 +59,7 @@ public class DMStatusShowActivity extends BaseActivity {
 	private TextView ssReComment;
 	
 	private ListView ssComListView;
-	private LinkedList<Comment> comList;
+	private LinkedList<DMComment> comList;
 	private ViewHolder holder;
 	private CommentAdapter adapter;
 	public final class ViewHolder {
@@ -88,7 +88,7 @@ public class DMStatusShowActivity extends BaseActivity {
 
 	private BtnOnclickListener btnListener = new BtnOnclickListener();
 	
-	public static void show(Activity activity, Status status) {
+	public static void show(Activity activity, DMStatus status) {
 		Intent intent = new Intent();
 		intent.setClass(activity, DMStatusShowActivity.class);
 		intent.putExtra("status", status);
@@ -105,7 +105,7 @@ public class DMStatusShowActivity extends BaseActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
         
 		Intent intent = getIntent();
-		status = (Status) intent.getSerializableExtra("status");
+		status = (DMStatus) intent.getSerializableExtra("status");
 		//给listView新加一个view显示更多
 		popLayout = new LinearLayout(DMStatusShowActivity.this);
 		button = new Button(DMStatusShowActivity.this);
@@ -154,7 +154,8 @@ public class DMStatusShowActivity extends BaseActivity {
 		
 		ssScreenName.setText(status.getUser().getScreen_name());
 		ssContent.setText(status.getText());
-		ssSource.setText(Html.fromHtml(status.getSource()));
+        status.extract2Link(ssContent);
+		ssSource.setText(status.getSource());
 		ssRepost.setText("转发" + status.getReposts_count() + "");
 		ssComment.setText("评论" + status.getComments_count() + "");
 		if (isComment) {
@@ -168,7 +169,8 @@ public class DMStatusShowActivity extends BaseActivity {
 		if (status.getRetweeted_status() != null) {
 			if (status.getRetweeted_status().getUser() != null) {
 				
-				ssReContent.setText(status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
+				ssReContent.setText("@" + status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
+                status.extract2Link(ssReContent);
 				ssReSource.setText("10：25");
 				ssReRepost.setText("转发" + status.getRetweeted_status().getReposts_count() + "");
 				ssReComment.setText("评论" + status.getRetweeted_status().getComments_count() + "");
@@ -251,7 +253,7 @@ public class DMStatusShowActivity extends BaseActivity {
 			if (isComment) {
 				ssComment.setTextColor(android.graphics.Color.BLACK);
 				ssRepost.setTextColor(android.graphics.Color.GRAY);
-				Comment comment = comList.get(position);
+				DMComment comment = comList.get(position);
 				imageLoader.displayImage(comment.getUser().getProfile_image_url(), holder.ssComAvatar, options, animateFirstListener);
 				holder.ssComAvatar.setOnClickListener(new BtnOnclickListener(position));
 				holder.ssComScreenName.setText(comment.getUser().getScreen_name());
@@ -263,7 +265,7 @@ public class DMStatusShowActivity extends BaseActivity {
 			} else {
 				ssRepost.setTextColor(android.graphics.Color.BLACK);
 				ssComment.setTextColor(android.graphics.Color.GRAY);
-				Comment comment = comList.get(position);
+				DMComment comment = comList.get(position);
 				imageLoader.displayImage(comment.getUser().getProfile_image_url(), holder.ssComAvatar, options, animateFirstListener);
 				holder.ssComAvatar.setOnClickListener(btnListener);
 				holder.ssComScreenName.setText(comment.getUser().getScreen_name());

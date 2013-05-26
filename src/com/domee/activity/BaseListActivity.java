@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.domee.R;
 import com.domee.manager.DMAccountsManager;
 import com.domee.utils.DMConstants;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -16,6 +17,7 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.weibo.sdk.android.api.CommentsAPI;
+import com.weibo.sdk.android.api.PlaceAPI;
 import com.weibo.sdk.android.api.StatusesAPI;
 
 import android.app.ListActivity;
@@ -36,6 +38,7 @@ public class BaseListActivity extends ListActivity {
 
 	public StatusesAPI statusesAPI = new StatusesAPI(DMAccountsManager.curAccessToken());
 	public CommentsAPI commentsAPI = new CommentsAPI(DMAccountsManager.curAccessToken());
+    public PlaceAPI placeAPI = new PlaceAPI(DMAccountsManager.curAccessToken());
 	// 加载图片
 	public ImageLoader imageLoader = ImageLoader.getInstance();
 	public DisplayImageOptions options;
@@ -96,5 +99,18 @@ public class BaseListActivity extends ListActivity {
 			ds.setUnderlineText(false); 
 		} 
 	}
-	
+    public class BtnListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            switch (v.getId()) {
+                case R.id.tbBack:
+                    finish();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

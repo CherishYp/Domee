@@ -1,5 +1,7 @@
 package com.domee.activity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -7,14 +9,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.*;
 import com.domee.R;
-import com.domee.model.Status;
+import com.domee.model.DMPois;
+import com.domee.model.DMStatus;
 import com.domee.model.User;
 import com.google.gson.reflect.TypeToken;
 import com.weibo.sdk.android.WeiboException;
@@ -40,12 +46,15 @@ public class DMComposeActivity extends BaseActivity {
 	private ImageButton cCamera;
 	private ImageButton cTrend;
 	private ImageButton cAtFriend;
+    private ImageButton cLocation;
 	private TextView cTextLimit;
     private ImageView mImageView;
 	private String text;
-	private Status status;
+	private DMStatus status;
 	private int size = 0;
     private Bitmap bitmap;
+
+    private String uploadPath;
 	
 	public static void show(Context context) {
 		Intent intent = new Intent(context, DMComposeActivity.class);
@@ -62,6 +71,7 @@ public class DMComposeActivity extends BaseActivity {
         cTrend = (ImageButton) findViewById(R.id.cTrend);
         cTextLimit = (TextView) findViewById(R.id.cTextLimit);
         cAtFriend = (ImageButton) findViewById(R.id.c_at_friend);
+        cLocation = (ImageButton) findViewById(R.id.cLocation);
         cOk = (ImageButton) findViewById(R.id.cOk);
         cClose = (ImageButton) findViewById(R.id.cClose);
         mImageView = (ImageView) findViewById(R.id.c_image_view);
@@ -70,6 +80,7 @@ public class DMComposeActivity extends BaseActivity {
         cStatusText.addTextChangedListener(cWatcher);
         cOk.setOnClickListener(new BtnListener());
         cClose.setOnClickListener(new BtnListener());
+        cLocation.setOnClickListener(new BtnListener());
         cAtFriend.setOnClickListener(new BtnListener());
         cTrend.setOnClickListener(new BtnListener());
         mImageView.setOnClickListener(new BtnListener());
@@ -165,6 +176,9 @@ public class DMComposeActivity extends BaseActivity {
                     //设置光标的位置保持不变
                     Selection.setSelection(cStatusText.getText(), index+1);
                     break;
+                case R.id.cLocation:
+                    DMNearByActivity.show(DMComposeActivity.this, new DMPoiSelectedListener());
+                    break;
                 case R.id.c_image_view:
                     new AlertDialog.Builder(DMComposeActivity.this)
                             .setItems(R.array.select_dialog_items, new DialogInterface.OnClickListener() {
@@ -186,6 +200,11 @@ public class DMComposeActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             Uri uri = data.getData();
+
+            File myFile = new File(uri.toString());
+
+           System.out.println("absolutePath" + myFile.getAbsolutePath()); ;
+
             Log.e("uri", uri.toString());
             ContentResolver cr = this.getContentResolver();
             try {
@@ -197,6 +216,15 @@ public class DMComposeActivity extends BaseActivity {
                 /* 将Bitmap设定到ImageView */
                 mImageView.setImageBitmap(bitmap);
 
+                String[] proj = {MediaStore.Images.Media.DATA};
+                //好像是android多媒体数据库的封装接口，具体的看Android文档
+                Cursor cursor = managedQuery(uri, proj, null, null, null);
+                //按我个人理解 这个是获得用户选择的图片的索引值
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                //将光标移至开头 ，这个很重要，不小心很容易引起越界
+                cursor.moveToFirst();
+                //最后根据索引值获取图片路径
+                uploadPath = cursor.getString(column_index);
             } catch (FileNotFoundException e) {
                 Log.e("Exception", e.getMessage(),e);
             }
@@ -225,30 +253,30 @@ public class DMComposeActivity extends BaseActivity {
     public void sendStatus() {
 		SendStatusRequestListener listener = new SendStatusRequestListener();
         if (mImageView.getVisibility() == View.VISIBLE) {
-//            String file = bitmapToString(bitmap);
-//            statusesAPI.upload(text, file, null, null, listener);
-            statusesAPI.update(text, null, null, listener);
+            String file = bitmapToString(bitmap);
+//            String filePath = "/storage/emulated/0/WeicoPlus/2013-05-21_22.09.41.jpeg";
+            statusesAPI.upload(text, uploadPath, null, null, listener);
         } else {
             statusesAPI.update(text, null, null, listener);
         }
 	}
 
-//    public String bitmapToString(Bitmap bitmap){
-//
-//        //将Bitmap转换成字符串
-//        String str = null;
-//        ByteArrayOutputStream bStream=new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG,100,bStream);
-//        byte[] bytes = bStream.toByteArray();
-//        str = Base64.encodeToString(bytes, Base64.DEFAULT);
-//        return str;
-//    }
+    public String bitmapToString(Bitmap bitmap){
+
+        //将Bitmap转换成字符串
+        String str = null;
+        ByteArrayOutputStream bStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,bStream);
+        byte[] bytes = bStream.toByteArray();
+        str = Base64.encodeToString(bytes, Base64.DEFAULT);
+        return str;
+    }
 	public class SendStatusRequestListener implements RequestListener {
 
 		@Override
 		public void onComplete(String arg0) {
 			// TODO Auto-generated method stub
-			status = gson.fromJson(arg0, new TypeToken<Status>() {}.getType());
+			status = gson.fromJson(arg0, new TypeToken<DMStatus>() {}.getType());
 			Intent intent = new Intent();
 //			intent.setAction(SEND_STATUS_ACTION);
 			sendBroadcast(intent);
@@ -263,12 +291,14 @@ public class DMComposeActivity extends BaseActivity {
 		public void onError(WeiboException arg0) {
 			// TODO Auto-generated method stub
             arg0.printStackTrace();
+           // Toast.makeText(DMComposeActivity.this, "上传图片失败", Toast.LENGTH_SHORT);
 		}
 
 		@Override
 		public void onIOException(IOException arg0) {
 			// TODO Auto-generated method stubactivityactivity
 			arg0.printStackTrace();
+          //  Toast.makeText(DMComposeActivity.this, "上传图片失败", Toast.LENGTH_SHORT);
 		}
 		
 	}
@@ -295,4 +325,25 @@ public class DMComposeActivity extends BaseActivity {
 
         }
     }
+
+   public class DMPoiSelectedListener implements DMSelectedListener {
+
+       @Override
+       public void selected(Activity activity, Object obj) {
+           DMPois pois = (DMPois)obj;
+           int index = cStatusText.getSelectionStart();
+           StringBuffer sb = new StringBuffer(cStatusText.getText().toString());
+           String str = "我在:#" + pois.getTitle() + "#";
+           sb = sb.insert(index, str);
+           cStatusText.setText(sb.toString());
+           //设置光标的位置保持不变
+           Selection.setSelection(cStatusText.getText(), index + str.length());
+           activity.finish();
+       }
+
+       @Override
+       public void cancelSelected(Activity activity) {
+
+       }
+   }
 }

@@ -9,7 +9,7 @@ import com.domee.adapter.DMFriendAdapter;
 import com.domee.manager.DMAccountsManager;
 import com.domee.model.FriendsResult;
 import com.domee.model.User;
-import com.domee.utils.GsonUtil;
+import com.domee.utils.DMGsonUtil;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.net.RequestListener;
 
@@ -80,7 +80,7 @@ public class DMAtFriendActivity extends BaseActivity implements OnScrollListener
 		@Override
 		public void onComplete(String arg0) {
 			// TODO Auto-generated method stub
-			FriendsResult fr = GsonUtil.gson2Friends(arg0);
+			FriendsResult fr = DMGsonUtil.gson2Friends(arg0);
 			
 			cursor = Integer.parseInt(fr.getNext_cursor());
 			LinkedList<User> userList = fr.getUsers();

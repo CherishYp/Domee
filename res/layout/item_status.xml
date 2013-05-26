@@ -60,6 +60,7 @@
             android:lineSpacingMultiplier="1.1"
 	        android:textColor="#000000"
 	        android:textSize="15sp"
+            android:autoLink="web"
             android:text="ftText" />
 
         <ImageView
@@ -82,9 +83,12 @@
         android:layout_alignRight="@id/ftCreatedAt"
         android:layout_toRightOf="@id/ftAvatar"
         android:layout_below="@id/ftStatus"
-        android:padding="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_marginBottom="5dp"
-        android:background="#F5F5F5">
+        android:background="@drawable/profile_button3_1">
 
         <TextView
             android:id="@+id/ftReText"
