@@ -61,6 +61,9 @@ public class DMUserTimelineActivity extends BaseActivity{
     public TextView tbTitle;
     private static final Uri PROFILE_URI = Uri.parse(DMConstants.MENTIONS_SCHEMA);
     private String mScreenName;
+    //list_footer
+    private LinearLayout mListFooter;
+    private TextView mMore;
 
 	public static void show(Activity activity, User user) {
 		Intent intent = new Intent();
@@ -99,18 +102,6 @@ public class DMUserTimelineActivity extends BaseActivity{
 
         mAdapter = new DMNAStatusAdapter(DMUserTimelineActivity.this, imageLoader, options, animateFirstListener);
 
-//		utLinearLayout = new LinearLayout(this);
-//		utButton = new Button(this);
-//		utButton.setText("加载更多");
-//		utButton.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				loadMore();
-//			}
-//		});
-//		utLinearLayout.addView(utButton);
-
         headerView = LayoutInflater.from(DMUserTimelineActivity.this).inflate(R.layout.header_user_timeline, null);
         utAvatar = (ImageButton) headerView.findViewById(R.id.utAvatar);
         utScreenName = (TextView) headerView.findViewById(R.id.utScreenName);
@@ -142,6 +133,9 @@ public class DMUserTimelineActivity extends BaseActivity{
             	DMStatusShowActivity.show(DMUserTimelineActivity.this, mAdapter.getStaList().get(position - 1));
             }
         });
+        mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        mListView.addFooterView(mListFooter);
+        mMore = (TextView) mListFooter.findViewById(R.id.f_more);
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {

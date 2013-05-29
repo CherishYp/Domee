@@ -75,25 +75,23 @@ public class DMBigImgShowActivity extends BaseActivity {
             }
         });
 
-//        mBigImgView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
         mBigImgView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent mEvent) {
-                //System.out.println( "====ACTION_TOUCH===="+mEvent.getAction());
                 switch (mEvent.getAction() & MotionEvent.ACTION_MASK) {
                     case MotionEvent.ACTION_DOWN:
                         savedMatrix.set(matrix); //把原始  Matrix对象保存起来
                         start.set(mEvent.getX(), mEvent.getY());  //设置x,y坐标
                         mode = DRAG;
-                        System.out.println(mEvent.getX() + "====ACTION_DOWN====" +  mEvent.getY());
                         break;
                     case MotionEvent.ACTION_UP:
+                        if (mEvent.getX() - start.x < 0.1 && mEvent.getY() - start.y < 0.1) {
+                            finish();
+                        }
                     case MotionEvent.ACTION_POINTER_UP:
+                        if (mEvent.getEventTime() < 0.5) {
+                            finish();
+                        }
                         mode = NONE;
                         break;
                     case MotionEvent.ACTION_POINTER_DOWN:
@@ -103,10 +101,8 @@ public class DMBigImgShowActivity extends BaseActivity {
                             midPoint(mid, mEvent);  //求出手指两点的中点
                             mode = ZOOM;
                         }
-                        //System.out.println(mEvent.getX() + "====ACTION_POINTER_DOWN====" +  mEvent.getY());
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        //System.out.println(mEvent.getX() + "====ACTION_MOVE====" +  mEvent.getY());
                         if (mode == DRAG) {
                             matrix.set(savedMatrix);
                             matrix.postTranslate(mEvent.getX() - start.x, mEvent.getY() - start.y);
@@ -115,13 +111,12 @@ public class DMBigImgShowActivity extends BaseActivity {
                             if (newDist > 10f) {
                                 matrix.set(savedMatrix);
                                 float scale = newDist / oldDist;
-                             //   System.out.println("scale ===="+scale);
+
                                 matrix.postScale(scale, scale, mid.x, mid.y);
                             }
                         }
                         break;
                 }
-                 //System.out.println(mBigImgView);
                 mBigImgView.setImageMatrix(matrix);
                 mBigImgView.invalidate();
                 return true;

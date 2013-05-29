@@ -3,6 +3,9 @@ package com.domee.activity;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.domee.R;
 import com.domee.adapter.DMCommentAdapter;
 import com.domee.model.DMComment;
@@ -30,9 +33,11 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 	
 	private static DMCommentAdapter adapter = null;
 	private static PullToRefreshListView mPullToRefreshListView;
-	private LinkedList<DMComment> comList = null;
 	private long since_id;
 	private long max_id;
+    //list_footer
+    private LinearLayout mListFooter;
+    private TextView mMore;
 	
 	private static Handler handler = new Handler() {
 		@Override
@@ -71,6 +76,11 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 			    loadNew();
 			}
 		});
+
+        mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        getListView().addFooterView(mListFooter);
+        mMore = (TextView) mListFooter.findViewById(R.id.f_more);
+        getListView().setOnScrollListener(this);
 	}
 	
 	public void loadNew() {
@@ -93,8 +103,14 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 			CommentResult cr = DMGsonUtil.gson2Comment(arg0);
 			max_id = Long.parseLong(cr.getNext_cursor());
 			since_id = Long.parseLong(cr.getPrevious_cursor());
-			comList = cr.getComments();
-			adapter.setComList(comList);
+            LinkedList<DMComment> resList = adapter.getComList();
+            LinkedList<DMComment> comList = cr.getComments();
+            if (resList != null) {
+                resList.addAll(comList);
+            }else {
+                resList = comList;
+            }
+			adapter.setComList(resList);
 			Message msg = handler.obtainMessage();
 			handler.sendMessage(msg);
 		}

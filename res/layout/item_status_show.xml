@@ -38,6 +38,7 @@
         android:layout_toRightOf="@id/ssComAvatar"
         android:layout_alignTop="@id/ssComAvatar"
         android:layout_marginLeft="17dp"
+        android:textColor="#000000"
         android:text="ssComScreenName" />
 
     <TextView

@@ -3,6 +3,8 @@ package com.domee.activity;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import android.view.LayoutInflater;
+import android.widget.*;
 import com.domee.R;
 import com.domee.adapter.DMStatusAdapter;
 import com.domee.manager.DMUIManager;
@@ -24,10 +26,7 @@ import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.ImageView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.ListView;
 
 public class DMFriendsTimelineActivity extends BaseListActivity implements OnScrollListener {
 	
@@ -35,10 +34,14 @@ public class DMFriendsTimelineActivity extends BaseListActivity implements OnScr
 	private static PullToRefreshListView mPullToRefreshListView;
 	private long since_id = 0;
 	private long max_id = 0;
-	
+    //list_footer
+    private LinearLayout mListFooter;
+    private TextView mMore;
+
 	private ImageView mWrietImgView;
 	private ImageView mSetupImgView;
 	private int temp = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -70,9 +73,15 @@ public class DMFriendsTimelineActivity extends BaseListActivity implements OnScr
 			    loadNew();
 			}
 		});
-		//绑定OnScrollListener监听器
+
+        mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        getListView().addFooterView(mListFooter);
+        mMore = (TextView) mListFooter.findViewById(R.id.f_more);
+
+        //绑定OnScrollListener监听器
 		getListView().setOnScrollListener(this);
 		DMUIManager.getInstance().setFriendsTimelineActivity(this);
+
 	}
 	
 	@Override

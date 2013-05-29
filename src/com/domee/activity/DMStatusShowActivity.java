@@ -3,10 +3,12 @@ package com.domee.activity;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import android.widget.*;
 import com.domee.R;
 import com.domee.model.DMComment;
 import com.domee.model.CommentResult;
 import com.domee.model.DMStatus;
+import com.domee.utils.DMConstants;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,15 +28,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
-public class DMStatusShowActivity extends BaseActivity {
+public class DMStatusShowActivity extends BaseActivity implements AbsListView.OnScrollListener {
 
 	private DMStatus status = null;
 //	private ImageView ssAvatar;
@@ -57,12 +52,19 @@ public class DMStatusShowActivity extends BaseActivity {
 	private TextView ssReSource;
 	private TextView ssReRepost;
 	private TextView ssReComment;
-	
+    private ImageView ssImgRepost;
+    private ImageView ssImgComment;
+    private ImageView ssImgFav;
+    //list_footer
+    private LinearLayout mListFooter;
+    private TextView mMore;
+
 	private ListView ssComListView;
 	private LinkedList<DMComment> comList;
 	private ViewHolder holder;
 	private CommentAdapter adapter;
-	public final class ViewHolder {
+
+    public final class ViewHolder {
 //		private ImageView ssComAvatar;
 		private ImageButton ssComAvatar;
 		private TextView ssComScreenName;
@@ -75,11 +77,30 @@ public class DMStatusShowActivity extends BaseActivity {
 	
 	private long since_id = 0;
 	private long max_id = 0;
-	private long total_number;
+    private long since_id_comment = 0;
+    private long max_id_commment = 0;
+	private long total_number = 0;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			adapter.notifyDataSetChanged();
+            switch (msg.what) {
+                case 0:
+                    if(total_number <= 20) {
+                        mMore.setText("THE END");
+                    } else {
+                        mMore.setText("点击加载更多...");
+                    }
+                    adapter.notifyDataSetChanged();
+
+                    break;
+                case 1:
+                    Toast.makeText(DMStatusShowActivity.this, "收藏成功", Toast.LENGTH_LONG);
+                    ssImgFav.setImageResource(R.drawable.detail_button_fav_1);
+                    break;
+                default:
+                    break;
+            }
+
 		};
 	};
 	private LinearLayout popLayout = null;
@@ -101,31 +122,18 @@ public class DMStatusShowActivity extends BaseActivity {
 		setTheme(R.style.CustomTheme);
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.ac_statusshow);     
+		setContentView(R.layout.ac_status_show);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
-        
+
 		Intent intent = getIntent();
 		status = (DMStatus) intent.getSerializableExtra("status");
-		//给listView新加一个view显示更多
-		popLayout = new LinearLayout(DMStatusShowActivity.this);
-		button = new Button(DMStatusShowActivity.this);
-		button.setText("加载更多");
-		button.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadMoreComment();
-			}
-		});
-		popLayout.addView(button);
-		
+
 		//回退button
 		tbBack = (ImageButton) findViewById(R.id.tbBack);
 		tbTitle = (TextView) findViewById(R.id.tbTitle);
 		tbBack.setOnClickListener(btnListener);
 		tbTitle.setText(getResources().getString(R.string.tab_title));
-		View headerView = LayoutInflater.from(this).inflate(R.layout.header_statusshow, null);
+		View headerView = LayoutInflater.from(this).inflate(R.layout.header_status_show, null);
 		ssAvatar = (ImageButton) headerView.findViewById(R.id.ssAvatar);
 		ssScreenName = (TextView) headerView.findViewById(R.id.ssScreenName);
 		ssContent = (TextView) headerView.findViewById(R.id.ssContent);
@@ -141,6 +149,7 @@ public class DMStatusShowActivity extends BaseActivity {
 		//判断是否带图片微博
 		if (status.getThumbnail_pic() != null && !status.getThumbnail_pic().equals("")) {
 			imageLoader.displayImage(status.getThumbnail_pic(), ssImgView, options, animateFirstListener);
+            ssImgView.setOnClickListener(btnListener);
 		} else {
 			ssImgView.setVisibility(View.GONE);
 		}
@@ -191,8 +200,19 @@ public class DMStatusShowActivity extends BaseActivity {
 		ssComListView.addHeaderView(headerView);
 		adapter = new CommentAdapter(this);
 		ssComListView.setAdapter(adapter);
+
+        ssImgRepost = (ImageView) findViewById(R.id.ss_img_repost);
+        ssImgComment = (ImageView) findViewById(R.id.ss_img_comment);
+        ssImgFav = (ImageView) findViewById(R.id.ss_img_fav);
+        ssImgRepost.setOnClickListener(btnListener);
+        ssImgComment.setOnClickListener(btnListener);
+        ssImgFav.setOnClickListener(btnListener);
 		//加载评论
 		this.loadMoreComment();
+        mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        ssComListView.addFooterView(mListFooter);
+        mMore = (TextView) mListFooter.findViewById(R.id.f_more);
+        ssComListView.setOnScrollListener(this);
 	}
 	
 	//adapter
@@ -210,7 +230,7 @@ public class DMStatusShowActivity extends BaseActivity {
 			if (comList == null) {
 				return 0;
 			}
-			return comList.size() + 1;
+			return comList.size();
 		}
 
 		@Override
@@ -231,7 +251,7 @@ public class DMStatusShowActivity extends BaseActivity {
 			btnListener.position = position;
 			if (convertView == null || convertView == popLayout) {
 				holder = new ViewHolder();
-				convertView = mInflater.inflate(R.layout.item_statusshow, null);
+				convertView = mInflater.inflate(R.layout.item_status_show, null);
 				holder.ssComAvatar = (ImageButton) convertView.findViewById(R.id.ssComAvatar);
 				holder.ssComScreenName = (TextView) convertView.findViewById(R.id.ssComScreenName);
 				holder.ssComCreateAt = (TextView) convertView.findViewById(R.id.ssComCreateAt);
@@ -244,12 +264,6 @@ public class DMStatusShowActivity extends BaseActivity {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
-			if (comList.size() == position) {
-				if (total_number <= 20) {
-					button.setVisibility(View.GONE);
-				}
-				return popLayout;
-			}
 			if (isComment) {
 				ssComment.setTextColor(android.graphics.Color.BLACK);
 				ssRepost.setTextColor(android.graphics.Color.GRAY);
@@ -259,6 +273,7 @@ public class DMStatusShowActivity extends BaseActivity {
 				holder.ssComScreenName.setText(comment.getUser().getScreen_name());
 				holder.ssComCreateAt.setText("12:20");
 				holder.ssComText.setText(comment.getText());
+                comment.extract2Link(holder.ssComText);
 				holder.ssComSource.setText(Html.fromHtml(comment.getSource()));
 				holder.ssComRepost.setText("转发");
 				holder.ssComComment.setText("评论");
@@ -271,6 +286,7 @@ public class DMStatusShowActivity extends BaseActivity {
 				holder.ssComScreenName.setText(comment.getUser().getScreen_name());
 				holder.ssComCreateAt.setText("12:20");
 				holder.ssComText.setText(comment.getText());
+                comment.extract2Link(holder.ssComText);
 				holder.ssComSource.setText(Html.fromHtml(comment.getSource()));
 				holder.ssComRepost.setText("转发");
 				holder.ssComComment.setText("评论");
@@ -283,8 +299,8 @@ public class DMStatusShowActivity extends BaseActivity {
 	public void loadMoreComment() {
 		CommentRequestListener listener = new CommentRequestListener(true);
 		if (comList != null && comList.size() != 0) {
-			max_id = comList.get(comList.size() - 1).getId();
-			commentsAPI.show(status.getId(), max_id +1, 0 , 20, 1, AUTHOR_FILTER.ALL, listener);
+			max_id_commment = comList.get(comList.size() - 1).getId();
+			commentsAPI.show(status.getId(), max_id_commment + 1, 0 , 20, 1, AUTHOR_FILTER.ALL, listener);
 		} 
 		else {
 			commentsAPI.show(status.getId(), 0, 0, 20, 1, AUTHOR_FILTER.ALL, listener);
@@ -367,34 +383,81 @@ public class DMStatusShowActivity extends BaseActivity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
-			case R.id.ssAvatar:
-				intent = new Intent();
-				intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
-				intent.putExtra("user", status.getUser());
-				startActivity(intent);
-				break;
-			case R.id.ssRepost:
-				loadMoreRepost();
-				break;
-			case R.id.ssComAvatar:
-				intent = new Intent();
-				intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
-				intent.putExtra("user", comList.get(position).getUser());
-				startActivity(intent);
-				break;
-			case R.id.tbBack:
-				finish();
-				break;
-			case R.id.ssNext:
-				intent = new Intent();
-				intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
-				intent.putExtra("user", status.getUser());
-				startActivity(intent);
-			default:
-				break;
+                case R.id.ssAvatar:
+                    intent = new Intent();
+                    intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
+                    intent.putExtra("user", status.getUser());
+                    startActivity(intent);
+                    break;
+                case R.id.ssRepost:
+                    loadMoreRepost();
+                    break;
+                case R.id.ssComAvatar:
+                    intent = new Intent();
+                    intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
+                    intent.putExtra("user", comList.get(position).getUser());
+                    startActivity(intent);
+                    break;
+                case R.id.tbBack:
+                    finish();
+                    break;
+                case R.id.ssNext:
+                    intent = new Intent();
+                    intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
+                    intent.putExtra("user", status.getUser());
+                    startActivity(intent);
+                    break;
+                case R.id.ssImgView:
+                    DMBigImgShowActivity.show(DMStatusShowActivity.this, status.getOriginal_pic(), status.getThumbnail_pic());
+                    break;
+                case R.id.ssReImgView:
+                    DMBigImgShowActivity.show(DMStatusShowActivity.this, status.getRetweeted_status().getOriginal_pic(), status.getRetweeted_status().getThumbnail_pic());
+                    break;
+                case R.id.ss_img_repost:
+                    DMSendActivity.show(DMStatusShowActivity.this, status, DMConstants.FLAG_REPOST);
+                    break;
+                case R.id.ss_img_comment:
+                    DMSendActivity.show(DMStatusShowActivity.this, status, DMConstants.FLAG_COMMENT);
+                    break;
+                case R.id.ss_img_fav:
+                    favoritesAPI.create(status.getId(), new RequestListener() {
+                        @Override
+                        public void onComplete(String s) {
+                            Message msg = handler.obtainMessage();
+                            msg.what = 1;
+                            handler.sendMessage(msg);
+                        }
+
+                        @Override
+                        public void onIOException(IOException e) {
+
+                        }
+
+                        @Override
+                        public void onError(WeiboException e) {
+
+                        }
+                    });
+                    break;
+                default:
+                    break;
 			}
 			
 		}
 	}
-	
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        // TODO Auto-generated method stub
+        switch (scrollState){
+            case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+                    loadMoreComment();
+                }
+        }
+    }
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i2, int i3) {
+
+    }
 }

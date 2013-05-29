@@ -21,6 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.domee.utils.DMConstants;
 
 /**
  * 
@@ -147,18 +148,35 @@ public class MainActivity extends Activity {
 	*/
 	public class TabOnClickListener implements View.OnClickListener {
 		private int index = 0;
+        Intent intent = new Intent();
 		public TabOnClickListener(int i) {
 			index = i;
 		}
 		@Override
 		public void onClick(View v) {
 			mViewPager.setCurrentItem(index);
-			selectedTabView = (TextView) v;
-		 
+            if (currIndex == index) {
+                switch (currIndex) {
+                    case 0:
+                        intent.setAction(DMConstants.REFRESH_ACTION);
+                        sendBroadcast(intent);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+                mViewPager.refreshDrawableState();
+            } else {
+			    selectedTabView = (TextView) v;
+            }
+
 			//layoutParams.setMarginStart(selectedTabView.getWidth()*index);		
 			//tabCursor.setLayoutParams(layoutParams);
 			//tabCursor.layout(300, 0, v.getWidth()*index, 0);
- 
+
 		} 
 	}
 	

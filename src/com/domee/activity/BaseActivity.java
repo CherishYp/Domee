@@ -38,6 +38,7 @@ public class BaseActivity extends Activity {
 	protected FriendshipsAPI friendshipsAPI = new FriendshipsAPI(DMAccountsManager.curAccessToken());
     protected UsersAPI usersAPI = new UsersAPI(DMAccountsManager.curAccessToken());
     protected PlaceAPI placeAPI = new PlaceAPI(DMAccountsManager.curAccessToken());
+    protected FavoritesAPI favoritesAPI = new FavoritesAPI(DMAccountsManager.curAccessToken());
 
 	protected GsonBuilder builder;
 	protected Gson gson;

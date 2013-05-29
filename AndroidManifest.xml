@@ -53,13 +53,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.DMComposeActivity" android:windowSoftInputMode="adjustResize" android:label="@string/app_name"></activity>
-       	<activity android:name=".activity.DMProfileActivity" android:label="@string/app_name"></activity>
+        <activity android:name=".activity.DMSendActivity" android:windowSoftInputMode="adjustResize" android:label="Domee"></activity>
+        <activity android:name=".activity.DMProfileActivity" android:label="@string/app_name"></activity>
        	<activity android:name=".activity.DMAtFriendActivity" android:label="@string/app_name"></activity>
         <activity android:name=".activity.DMUserDetailActivity" android:label="@string/app_name"></activity>
         <activity android:name=".activity.DMNearByActivity" android:label="@string/app_name"></activity>
+
        	<receiver android:name=".broadcast.DMSendStatusReceiver">
             <intent-filter >
-                <action android:name="SEND_STATUS_ACTION"/>
+                <action android:name="send_status"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.DMRefreshReceiver" android:label="Domee">
+            <intent-filter>
+                <action android:name="refresh"/>
             </intent-filter>
         </receiver>
     </application>

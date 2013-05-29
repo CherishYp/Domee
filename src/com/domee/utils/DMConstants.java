@@ -12,6 +12,10 @@ public class DMConstants{
     public static final String PARAM_TREND ="trendname";
 
     //*******发送微博广播********//
-	private static final String SEND_STATUS_ACTION = "SEND_STATUS_ACTION";
+	public static final String SEND_STATUS_ACTION = "send_status";
+    public static final String REFRESH_ACTION = "refresh";
 
+    //*******发送微博和转发微博标记********//
+    public static final int FLAG_REPOST = 0;
+    public static final int FLAG_COMMENT = 1;
 }

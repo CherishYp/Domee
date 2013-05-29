@@ -89,7 +89,14 @@ public class DMCommentAdapter extends BaseAdapter {
 		holder.cCreatedAt.setText("09:20");
 		holder.cText.setText(com.getText());
         com.extract2Link(holder.cText);
-		holder.cReText.setText("");
+        if (com.getStatus().getUser() != null) {
+            holder.cReText.setText(" @" + com.getStatus().getUser().getScreen_name() + " :" + com.getStatus().getText());
+            com.getStatus().extract2Link(holder.cReText);
+        } else {
+            holder.cReText.setText(com.getStatus().getText());
+            com.getStatus().extract2Link(holder.cReText);
+        }
+
 		return convertView;
 	}
 	

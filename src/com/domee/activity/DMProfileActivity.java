@@ -3,6 +3,9 @@ package com.domee.activity;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.domee.R;
 import com.domee.adapter.DMStatusAdapter;
 import com.domee.model.DMStatus;
@@ -33,8 +36,11 @@ public class DMProfileActivity extends BaseListActivity implements OnScrollListe
 	private static PullToRefreshListView mPullToRefreshListView;
 	private long since_id = 0;
 	private long max_id = 0;
-	
 	private int temp = 0;
+    //list_footer
+    private LinearLayout mListFooter;
+    private TextView mMore;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -57,6 +63,9 @@ public class DMProfileActivity extends BaseListActivity implements OnScrollListe
 			    loadNew();
 			}
 		});
+        mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        getListView().addFooterView(mListFooter);
+        mMore = (TextView) mListFooter.findViewById(R.id.f_more);
 		//绑定OnScrollListener监听器
 		getListView().setOnScrollListener(this);
 	}

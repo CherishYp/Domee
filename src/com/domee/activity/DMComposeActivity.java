@@ -22,6 +22,7 @@ import com.domee.R;
 import com.domee.model.DMPois;
 import com.domee.model.DMStatus;
 import com.domee.model.User;
+import com.domee.utils.DMConstants;
 import com.google.gson.reflect.TypeToken;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.net.RequestListener;
@@ -115,7 +116,6 @@ public class DMComposeActivity extends BaseActivity {
 	};
 	
 	public class BtnListener implements OnClickListener {
-
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -134,19 +134,23 @@ public class DMComposeActivity extends BaseActivity {
                     }
                     break;
                 case R.id.cClose:
-                    new AlertDialog.Builder(DMComposeActivity.this).setTitle("是否保存?")
-                            .setNegativeButton("不保存", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    DMComposeActivity.this.finish();
-                                }
-                            })
-                            .setPositiveButton("保存", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    DMComposeActivity.this.finish();
-                                }
-                            }).show();
+                    if (size > 0) {
+                        new AlertDialog.Builder(DMComposeActivity.this).setTitle("是否保存?")
+                                .setNegativeButton("不保存", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        DMComposeActivity.this.finish();
+                                    }
+                                })
+                                .setPositiveButton("保存", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        DMComposeActivity.this.finish();
+                                    }
+                                }).show();
+                    }else {
+                        DMComposeActivity.this.finish();
+                    }
                     break;
                 case R.id.cCamera:
                     Intent intent = new Intent();
@@ -278,7 +282,7 @@ public class DMComposeActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			status = gson.fromJson(arg0, new TypeToken<DMStatus>() {}.getType());
 			Intent intent = new Intent();
-//			intent.setAction(SEND_STATUS_ACTION);
+			intent.setAction(DMConstants.SEND_STATUS_ACTION);
 			sendBroadcast(intent);
 			
 //			IntentFilter filter = new IntentFilter();

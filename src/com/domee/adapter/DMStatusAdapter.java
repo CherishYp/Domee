@@ -146,7 +146,7 @@ public class DMStatusAdapter extends BaseAdapter {
                 sta.extract2Link(holder.ftReText);
 			}else{
                 holder.ftReText.setText(sta.getRetweeted_status().getText());
-                sta.extract2Link(holder.ftText);
+                sta.extract2Link(holder.ftReText);
 			}
 			//判断转发的微博是否有图片
 			if(sta.getRetweeted_status().getThumbnail_pic() != null && !sta.getRetweeted_status().getThumbnail_pic().equals("")) {

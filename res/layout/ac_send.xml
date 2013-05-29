@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   	<RelativeLayout 
+   	    android:id="@+id/cTRelativeLayout"
+   	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+
+   		<ImageButton
+   		    android:id="@+id/r_close"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:layout_alignParentLeft="true"
+   		    android:background="@drawable/button_m"
+   		    android:src="@drawable/button_icon_close"
+   		    android:contentDescription="@string/app_name" />
+
+   	    <ImageButton
+   	        android:id="@+id/r_ok"
+   	        android:layout_width="wrap_content"
+   	        android:layout_height="wrap_content"
+   	        android:layout_alignParentRight="true"
+   	        android:background="@drawable/button_m"
+   	        android:contentDescription="@string/app_name"
+   	        android:src="@drawable/button_icon_ok" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/r_title"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_toRightOf="@+id/r_close" android:layout_toLeftOf="@+id/r_ok"
+                android:layout_alignParentTop="true" android:layout_alignBottom="@+id/r_close"
+                android:textSize="20dp"
+                android:text="转发微博"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:id="@+id/checkbox_layout_repost"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/channel_sectionbar" android:layout_alignParentBottom="true">
+        <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="同时评论"
+                android:id="@+id/r_is_comment_curchx" android:layout_alignBottom="@+id/select_layout"
+                android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="同时评论原文"
+                android:id="@+id/r_is_comment_orichx" android:layout_alignBottom="@+id/select_layout"
+                android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
+        <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="同时转发"
+                android:id="@+id/r_is_repost_chx" android:layout_alignBottom="@+id/select_layout"
+                android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/operation_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_above="@+id/checkbox_layout_repost" android:layout_alignParentLeft="true">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:visibility="invisible"/>
+	    <ImageButton
+	        android:id="@+id/r_at_friend"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_3"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+
+		<ImageButton
+	        android:id="@+id/r_expression"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:src="@drawable/compose_toolbar_6"
+	        android:adjustViewBounds="true"
+	        android:background="#00000000"
+	        android:contentDescription="@string/app_name"/>
+
+        <TextView
+                android:id="@+id/r_text_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#808080"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:paddingRight="20dp"
+                android:textSize="12sp"
+                android:text="@string/text_Limit"/>
+    </LinearLayout>
+
+    <EditText
+            android:id="@+id/r_status_text"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/cTRelativeLayout"
+            android:layout_above="@id/operation_layout"
+            android:textColor="#696969"
+            android:ems="10"
+            android:gravity="top"
+            android:background="@null"
+            android:inputType="textMultiLine" android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+    <requestFocus android:layout_height="match_parent" />
+    </EditText>
+
+
+</RelativeLayout>
