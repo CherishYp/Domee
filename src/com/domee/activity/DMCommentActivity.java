@@ -8,12 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.domee.R;
 import com.domee.adapter.DMCommentAdapter;
+import com.domee.interFace.DMRefreshInterface;
 import com.domee.model.DMComment;
 import com.domee.model.CommentResult;
 import com.domee.utils.DMGsonUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.api.WeiboAPI.AUTHOR_FILTER;
 import com.weibo.sdk.android.api.WeiboAPI.SRC_FILTER;
@@ -29,7 +31,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-public class DMCommentActivity extends BaseListActivity implements OnScrollListener {
+public class DMCommentActivity extends BaseListActivity implements DMRefreshInterface {
 	
 	private static DMCommentAdapter adapter = null;
 	private static PullToRefreshListView mPullToRefreshListView;
@@ -38,7 +40,7 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
     //list_footer
     private LinearLayout mListFooter;
     private TextView mMore;
-	
+
 	private static Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -60,9 +62,8 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 		setContentView(R.layout.ac_comment);
 		
 		mPullToRefreshListView = (PullToRefreshListView)findViewById(R.id.pull_refresh_list);
-		adapter = new DMCommentAdapter(this, imageLoader, options, animateFirstListener); 
+		adapter = new DMCommentAdapter(this, imageLoader, options, animateFirstListener);
 		mPullToRefreshListView.setAdapter(adapter);
-		 
 		this.loadNew();
 		// Set a listener to be invoked when the list should be refreshed.
 		mPullToRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
@@ -80,7 +81,25 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
         mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
         getListView().addFooterView(mListFooter);
         mMore = (TextView) mListFooter.findViewById(R.id.f_more);
-        getListView().setOnScrollListener(this);
+        getListView().setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true, new OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState){
+                    case OnScrollListener.SCROLL_STATE_IDLE:
+                        if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+                            loadMore(); //当滚到最后一行且停止滚动时，执行加载
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int i, int i2, int i3) {
+
+            }
+        }));
 	}
 	
 	public void loadNew() {
@@ -92,8 +111,13 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 	public void loadMore() {
 		commentsAPI.toME(0, max_id, 20, 1, AUTHOR_FILTER.ALL, SRC_FILTER.ALL, new ComToMERequestListener());
 	}
-	
-	private class ComToMERequestListener implements RequestListener {
+
+    @Override
+    public void refresh() {
+        loadNew();
+    }
+
+    private class ComToMERequestListener implements RequestListener {
 
 		@Override
 		public void onComplete(String arg0) {
@@ -128,29 +152,31 @@ public class DMCommentActivity extends BaseListActivity implements OnScrollListe
 		}
 		
 	}
-
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem,
-			int visibleItemCount, int totalItemCount) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		// TODO Auto-generated method stub
-		switch (scrollState){
-	 	case OnScrollListener.SCROLL_STATE_IDLE:
-            if (view.getLastVisiblePosition() == (view.getCount() - 1)){
-            	loadMore();
-            }     
-		}       
-	}
+//
+//	@Override
+//	public void onScroll(AbsListView view, int firstVisibleItem,
+//			int visibleItemCount, int totalItemCount) {
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//	@Override
+//	public void onScrollStateChanged(AbsListView view, int scrollState) {
+//		// TODO Auto-generated method stub
+//		switch (scrollState){
+//	 	case OnScrollListener.SCROLL_STATE_IDLE:
+//            if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+//            	loadMore();
+//            }
+//		}
+//	}
 	
 	//点击list
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
+
+//        mAddLayout.setVisibility(mAddLayout.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
 	}
 }

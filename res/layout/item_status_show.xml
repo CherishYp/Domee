@@ -19,7 +19,7 @@
         android:adjustViewBounds="true"
 	    android:background="#00000000"
 	    android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher"/>
+        android:src="@drawable/avatar_default"/>
 
     <TextView
         android:id="@+id/ssComCreateAt"

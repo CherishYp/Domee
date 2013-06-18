@@ -4,6 +4,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.widget.TextView;
 import com.domee.utils.DMConstants;
+import com.domee.utils.DMDateUtils;
 
 import java.io.Serializable;
 import java.util.regex.Matcher;
@@ -25,7 +26,8 @@ public class DMComment implements Serializable {
 	private DMComment reply_comment;	//	object	评论来源评论，当本评论属于对另一评论的回复时返回此字段
 
 	public String getCreated_at() {
-		return created_at;
+        String tempStr = DMDateUtils.changeToDate(this.created_at);
+        return tempStr;
 	}
 
 	public void setCreated_at(String created_at) {

@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="40dp"
+        android:id="@+id/s_add_layout"
+        android:layout_alignParentRight="true" android:background="#696969" android:visibility="gone">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-</LinearLayout>
+    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+               android:id="@+id/s_comment" android:layout_alignParentRight="true"
+               android:src="@drawable/button_icon_plus"/>
+    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+               android:id="@+id/s_repost" android:layout_alignParentTop="true"
+               android:layout_toLeftOf="@+id/s_comment"
+               android:src="@drawable/detail_button_forward" />
+    <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"
+               android:id="@+id/s_fav" android:layout_alignParentTop="true"
+               android:layout_toLeftOf="@+id/s_repost"
+               android:src="@drawable/detail_button_fav"/>
+</RelativeLayout>

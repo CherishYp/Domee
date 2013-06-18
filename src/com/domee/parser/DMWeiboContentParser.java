@@ -5,6 +5,9 @@ import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import com.domee.parser.onclick.WeiboAtClickSpan;
+import com.domee.parser.onclick.WeiboTagClickSpan;
+import com.domee.parser.onclick.WeiboUrlClickSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,34 +59,19 @@ public class DMWeiboContentParser {
             mSpannableString.setSpan(new WeiboTagClickSpan(subTagNameMatch), mTopicMatcher.start(), mTopicMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         Matcher mVoiceMatcher = VOICE_PATTERN.matcher(input);
-        while(mVoiceMatcher.find()){
-            String voiceNameMatch = mVoiceMatcher.group();
-            String subVoiceNameMatch = voiceNameMatch.substring(VOICE_TAG.length(), voiceNameMatch.length());
-            mSpannableString.setSpan(new BackgroundColorSpan(Color.RED), mVoiceMatcher.start()+VOICE_TAG.length(), mVoiceMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mSpannableString.setSpan(new WeiboVoiceClickSpan(subVoiceNameMatch), mVoiceMatcher.start()+VOICE_TAG.length(), mVoiceMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        while(mVoiceMatcher.find()){
+//            String voiceNameMatch = mVoiceMatcher.group();
+//            String subVoiceNameMatch = voiceNameMatch.substring(VOICE_TAG.length(), voiceNameMatch.length());
+//            mSpannableString.setSpan(new BackgroundColorSpan(Color.RED), mVoiceMatcher.start()+VOICE_TAG.length(), mVoiceMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            mSpannableString.setSpan(new WeiboVoiceClickSpan(subVoiceNameMatch), mVoiceMatcher.start()+VOICE_TAG.length(), mVoiceMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
             Matcher mUrlMatcher = URL_PATTERN.matcher(input);
             while(mUrlMatcher.find()){
                 String urlNameMatch = mUrlMatcher.group();
                 mSpannableString.setSpan(new WeiboUrlClickSpan(urlNameMatch), mUrlMatcher.start(), mUrlMatcher.end(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
-            return mSpannableString;
-        }
+//            return mSpannableString;
+//        }
+        return mSpannableString;
     }
-    /**
-     *WeiboClickSpan类，WeiboAtClickSpan 等类继承自此类，在onClick(View widget, String content)方法中做调用操作
-     */
-    public abstract class WeiboClickSpan extends ClickableSpan {
-        // 点击的内容
-        String mContent;
 
-        public WeiboClickSpan(String content){
-            mContent = content;
-        }
-        @Override
-        public void onClick(View widget) {
-            onClick(widget, mContent);
-        }
-
-        abstract void onClick(View widget, String content);
-    }
 }

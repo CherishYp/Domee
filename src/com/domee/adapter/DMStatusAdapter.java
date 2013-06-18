@@ -1,9 +1,14 @@
 package com.domee.adapter;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
+import android.os.Message;
+import android.text.Layout;
 import com.domee.*;
 import com.domee.activity.DMBigImgShowActivity;
+import com.domee.activity.DMFriendsTimelineActivity;
+import com.domee.activity.DMSendActivity;
 import com.domee.activity.DMUserTimelineActivity;
 import com.domee.dialog.DMAlertImageDialog;
 import com.domee.model.DMStatus;
@@ -25,6 +30,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.weibo.sdk.android.WeiboException;
+import com.weibo.sdk.android.net.RequestListener;
 
 @SuppressLint("InlinedApi")
 public class DMStatusAdapter extends BaseAdapter {
@@ -32,23 +39,23 @@ public class DMStatusAdapter extends BaseAdapter {
 	private static final String TAG ="MentionsActivity";
 	private static final Uri PROFILE_URI = Uri.parse(DMConstants.MENTIONS_SCHEMA);
 	
-	private Activity activity;
+	private Activity mActivity;
 	private LayoutInflater mInflater;
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
 	private LinkedList<DMStatus> statusList = null;
-	
-	public DMStatusAdapter(Activity activity, 
+
+    public DMStatusAdapter(Activity mActivity,
 			ImageLoader imageLoader, DisplayImageOptions options, ImageLoadingListener listener) {
-		this.activity = activity;
-		this.mInflater = LayoutInflater.from(activity);
+		this.mActivity = mActivity;
+		this.mInflater = LayoutInflater.from(mActivity);
 		this.imageLoader = imageLoader;
 		this.options = options;
 		this.animateFirstListener = listener;
 	}
 
-	public final class ViewHolder {
+	public final static class ViewHolder {
 		private ImageButton ftAvatar;
 		private TextView ftScreenName;
 		private TextView ftCreatedAt;
@@ -63,6 +70,13 @@ public class DMStatusAdapter extends BaseAdapter {
 		private ImageView ftReImgView;
 		private TextView ftReRepost;
 		private TextView ftReComment;
+
+        private ImageView mAdd;
+        private View mAddLayout;
+
+        private ImageView mComment;
+        private ImageView mRepost;
+        private ImageView mFav;
 	}
 	
 	@Override
@@ -89,7 +103,7 @@ public class DMStatusAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		ViewHolder holder = null;
+        ViewHolder holder = null;
 		if (convertView == null) {
 
 			holder = new ViewHolder();
@@ -109,6 +123,8 @@ public class DMStatusAdapter extends BaseAdapter {
 			holder.ftReImgView = (ImageView) convertView.findViewById(R.id.ftReImgView);
 			holder.ftReRepost = (TextView) convertView.findViewById(R.id.ftReRepost);
 			holder.ftReComment = (TextView) convertView.findViewById(R.id.ftReComment);
+            holder.mAdd = (ImageView) convertView.findViewById(R.id.s_add);
+            holder.mAdd.setVisibility(View.GONE);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -127,9 +143,10 @@ public class DMStatusAdapter extends BaseAdapter {
 		}
 		
 		holder.ftScreenName.setText(sta.getUser().getScreen_name());
-		holder.ftCreatedAt.setText("2013.5.6");
+		holder.ftCreatedAt.setText(sta.getCreated_at());
         holder.ftText.setText(sta.getText());
         sta.extract2Link(holder.ftText);
+
 //        sta.change2Link(holder.ftText);
 
 		   // holder.ftText.setText(style);
@@ -162,31 +179,38 @@ public class DMStatusAdapter extends BaseAdapter {
 		} else {
 			holder.ftReStatus.setVisibility(View.GONE);
 		}
+
 		return convertView;
 	}
 	
 	public class BtnListener implements OnClickListener {
 		private int position;
+        private ViewHolder mHolder;
 		public BtnListener(int position) {
 			// TODO Auto-generated constructor stub
 			this.position = position;
 		}
+        public BtnListener(int position, ViewHolder holder) {
+            // TODO Auto-generated constructor stub
+            this.position = position;
+            this.mHolder = holder;
+        }
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			DMAlertImageDialog dialog = null;
 			switch (v.getId()) {
-			case R.id.ftAvatar:
-				DMUserTimelineActivity.show(activity, statusList.get(position).getUser());
-				break;
-			case R.id.ftImgView:
-                DMBigImgShowActivity.show(activity, statusList.get(position).getOriginal_pic(), statusList.get(position).getThumbnail_pic());
-				break;
-			case R.id.ftReImgView:
-                DMBigImgShowActivity.show(activity, statusList.get(position).getRetweeted_status().getOriginal_pic(), statusList.get(position).getRetweeted_status().getThumbnail_pic());
-				break;
-			default:
-				break;
+                case R.id.ftAvatar:
+                    DMUserTimelineActivity.show(mActivity, statusList.get(position).getUser());
+                    break;
+                case R.id.ftImgView:
+                    DMBigImgShowActivity.show(mActivity, statusList.get(position).getOriginal_pic(), statusList.get(position).getThumbnail_pic());
+                    break;
+                case R.id.ftReImgView:
+                    DMBigImgShowActivity.show(mActivity, statusList.get(position).getRetweeted_status().getOriginal_pic(), statusList.get(position).getRetweeted_status().getThumbnail_pic());
+                    break;
+                default:
+                    break;
 			}
 			
 		}

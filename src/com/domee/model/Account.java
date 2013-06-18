@@ -14,6 +14,8 @@ public class Account implements Serializable {
 	private String loginId;
 	private String loginPwd;
 
+    private String groupType;
+
 	private String mAccessToken = "";
 	private String mRefreshToken = "";
 	private String mExpiresTime = "";
@@ -83,8 +85,16 @@ public class Account implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	@Override
+
+    public String getGroupType() {
+        return groupType;
+    }
+
+    public void setGroupType(String groupType) {
+        this.groupType = groupType;
+    }
+
+    @Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "loginid===" + loginId + "mAccessToken====" + mAccessToken;

@@ -8,12 +8,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.domee.R;
 import com.domee.adapter.DMStatusAdapter;
+import com.domee.interFace.DMGroupInterface;
+import com.domee.interFace.DMRefreshInterface;
+import com.domee.manager.DMAccountsManager;
+import com.domee.manager.DMUIManager;
+import com.domee.model.DMLists;
+import com.domee.model.DMListsResult;
 import com.domee.model.DMStatus;
 import com.domee.model.DMStatusResult;
 import com.domee.utils.DMGsonUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.weibo.api.FriendShipAPI;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.api.WeiboAPI.AUTHOR_FILTER;
 import com.weibo.sdk.android.api.WeiboAPI.SRC_FILTER;
@@ -32,7 +39,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-public class DMAtActivity extends BaseListActivity implements OnScrollListener {
+public class DMAtActivity extends BaseListActivity implements OnScrollListener, DMRefreshInterface, DMGroupInterface {
 	
 	private static DMStatusAdapter adapter = null;
 	private static PullToRefreshListView mPullToRefreshListView;
@@ -42,6 +49,7 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
     //list_footer
     private LinearLayout mListFooter;
     private TextView mMore;
+    private LinkedList<DMLists> mLists;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +79,6 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
 
 		//绑定OnScrollListener监听器
 		getListView().setOnScrollListener(this);
-
 	}
 	
 	@Override
@@ -97,12 +104,15 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			switch (msg.what) {
-			case 0:
-				mPullToRefreshListView.onRefreshComplete();
-				adapter.notifyDataSetChanged();
-				break;
-			default:
-				break;
+                case 0:
+                    mPullToRefreshListView.onRefreshComplete();
+                    adapter.notifyDataSetChanged();
+                    break;
+//                case 1:
+//                    DMUIManager.getInstance().getMainActivity().mAdapter.notifyDataSetChanged();
+//                    break;
+                default:
+                    break;
 			}
 		}
 	};
@@ -132,9 +142,19 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
 		statusesAPI.mentions(0, max_id, 20, 1, AUTHOR_FILTER.ALL, SRC_FILTER.ALL, TYPE_FILTER.ALL, false, loadMoreListener);
 	}
 
-	/*
-	 * RequestListener,请求返回的json数据在里面的onComplete方法获得
-	 */
+    @Override
+    public void refresh() {
+        loadNew();
+    }
+
+    @Override
+    public void group() {
+
+    }
+
+    /*
+     * RequestListener,请求返回的json数据在里面的onComplete方法获得
+     */
 	class FriendsTimelineRequestListener implements RequestListener {
 		
 		public boolean isLoadNew = true;
@@ -164,6 +184,7 @@ public class DMAtActivity extends BaseListActivity implements OnScrollListener {
 			adapter.setStatusList(resultList);
 			System.out.println("load之后总共 ======= " + sr.getStatuses().size());
 			Message msg = handler.obtainMessage();
+
 			handler.sendMessage(msg);
 		}
 

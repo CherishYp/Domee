@@ -1,10 +1,19 @@
 package com.domee.activity;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import android.os.Handler;
+import android.os.Message;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.*;
 import com.domee.R;
+import com.domee.adapter.DMListsAdapter;
 import com.domee.adapter.DMPagerAdapter;
+import com.domee.interFace.DMRefreshInterface;
 import com.domee.manager.DMAccountsManager;
 import com.domee.manager.DMUIManager;
 
@@ -19,9 +28,18 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import android.widget.TextView;
+import com.domee.model.DMLists;
+import com.domee.model.DMListsResult;
+import com.domee.model.FriendsResult;
+import com.domee.model.User;
 import com.domee.utils.DMConstants;
+import com.domee.utils.DMGsonUtil;
+import com.domee.view.DMInOutImageButton;
+import com.domee.view.animation.DMGroupBtnsAnimation;
+import com.domee.view.animation.DMInOutAnimation;
+import com.weibo.api.FriendShipAPI;
+import com.weibo.sdk.android.WeiboException;
+import com.weibo.sdk.android.net.RequestListener;
 
 /**
  * 
@@ -40,6 +58,7 @@ public class MainActivity extends Activity {
 	private TextView tabComment;
 	private TextView tabProfile;
 	private TextView selectedTabView;
+
 	private int offset = 0;// 动画图片偏移量
 	private int currIndex = 0;// 当前页卡编号
 	private int bmpWidth;// 动画图片宽度
@@ -51,27 +70,82 @@ public class MainActivity extends Activity {
     private Intent profileIntent;
 
     private ImageView mWrietImgView;
+    private ImageView mRefreshImgView;
     private ImageView mSetupImgView;
+
+    private boolean	areBtnsShowing;
+    private ViewGroup mBtnsWrapper;
+    private Animation mAddBtnIn;
+    private Animation mAddBtnOut;
+
+    private Activity mActivity;
+    public DMListsAdapter mAdapter;
+    private ListView mListView;
+    private Button mGroupBtn;
+    private FrameLayout mLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		DMAccountsManager.initContext(MainActivity.this);
-		setContentView(R.layout.ac_main);
 
-//        mWrietImgView = (ImageView) findViewById(R.id.mWrietImgView);
-//        mWrietImgView.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				DMComposeActivity.show(MainActivity.this);
-//			}
-//		});
-//        mSetupImgView = (ImageView) findViewById(R.id.mSetupImgView);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ac_main);
+        DMAccountsManager.initContext(MainActivity.this);
+
+        mListView = (ListView) findViewById(R.id.group_list_view);
+        mAdapter = new DMListsAdapter(this, mListView);
+        mListView.setAdapter(mAdapter);
+        mGroupBtn = (Button) findViewById(R.id.group_btn);
+        //mLayout = (FrameLayout) findViewById(R.id.group_layout);
+
+        mWrietImgView = (ImageView) findViewById(R.id.mWrietImgView);
+        mWrietImgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                DMComposeActivity.show(MainActivity.this);
+            }
+        });
+        mSetupImgView = (ImageView) findViewById(R.id.mSetupImgView);
+        mSetupImgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // mLayout.setVisibility(View.VISIBLE);
+                switch (currIndex) {
+                    case 0:
+                        mListView.setVisibility(view.VISIBLE);
+                        mGroupBtn.setVisibility(View.VISIBLE);
+                        loadGroup();
+                        break;
+                    case 1:
+                        Toast.makeText(MainActivity.this, "unfinish", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(MainActivity.this, "unfinish", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(MainActivity.this, "unfinish", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+        });
+
+        mGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // mLayout.setVisibility(View.GONE);
+                mListView.setVisibility(view.GONE);
+                mGroupBtn.setVisibility(View.GONE);
+            }
+        });
 
 		manager = new LocalActivityManager(this , true);
         manager.dispatchCreate(savedInstanceState);
         if (DMAccountsManager.getCurAccount() != null) {
+            DMAccountsManager.getCurAccount().setGroupType(-1 + "");
         	initTextView();
         	initImageView();
         	initViewPaper();
@@ -79,6 +153,7 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent();
 			intent.setClass(this, DMLoginActivity.class);
 			startActivity(intent);
+            finish();
 		}
         DMUIManager.getInstance().setMainActivity(this);
 	}
@@ -96,6 +171,27 @@ public class MainActivity extends Activity {
 		tabComment.setOnClickListener(new TabOnClickListener(2));
 		tabProfile.setOnClickListener(new TabOnClickListener(3));
 	}
+
+    private Activity getCurActivity(){
+
+        switch (currIndex) {
+            case 0:
+                mActivity = DMUIManager.getInstance().getFriendsTimelineActivity();
+                break;
+            case 1:
+                mActivity = DMUIManager.getInstance().getmAtActivity();
+                break;
+            case 2:
+                mActivity = DMUIManager.getInstance().getmCommentActivity();
+                break;
+            case 3:
+                mActivity = DMUIManager.getInstance().getmProfileActivity();
+                break;
+            default:
+                break;
+        }
+        return mActivity;
+    }
 	
 	private void initViewPaper() {
 		// 将要分页显示的View装入数组中
@@ -143,6 +239,21 @@ public class MainActivity extends Activity {
 		tabCursor = (View)findViewById(R.id.tab_cursor);
 	}
 
+    //点击按钮
+    private void toggleGroupBtns() {
+        if (!areBtnsShowing) {
+            DMGroupBtnsAnimation.startAnimations(
+                    this.mBtnsWrapper, DMInOutAnimation.Direction.IN);
+//            this.composerButtonsShowHideButtonIcon
+//                    .startAnimation(this.rotateStoryAddButtonIn);
+        } else {
+            DMGroupBtnsAnimation.startAnimations(
+                    this.mBtnsWrapper, DMInOutAnimation.Direction.OUT);
+//            this.composerButtonsShowHideButtonIcon
+//                    .startAnimation(this.rotateStoryAddButtonOut);
+        }
+        areBtnsShowing = !areBtnsShowing;
+    }
 	/**
 	* 头标点击监听
 	*/
@@ -155,23 +266,23 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			mViewPager.setCurrentItem(index);
-            if (currIndex == index) {
-                switch (currIndex) {
-                    case 0:
-                        intent.setAction(DMConstants.REFRESH_ACTION);
-                        sendBroadcast(intent);
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                }
-                mViewPager.refreshDrawableState();
-            } else {
+//            if (currIndex == index) {
+//                switch (currIndex) {
+//                    case 0:
+//                        intent.setAction(DMConstants.REFRESH_ACTION);
+//                        sendBroadcast(intent);
+//                        break;
+//                    case 1:
+//                        break;
+//                    case 2:
+//                        break;
+//                    case 3:
+//                        break;
+//                }
+//                mViewPager.refreshDrawableState();
+//            } else {
 			    selectedTabView = (TextView) v;
-            }
+//            }
 
 			//layoutParams.setMarginStart(selectedTabView.getWidth()*index);		
 			//tabCursor.setLayoutParams(layoutParams);
@@ -179,8 +290,7 @@ public class MainActivity extends Activity {
 
 		} 
 	}
-	
-	
+
 	/**
 	 * 页卡切换监听
 	 */
@@ -201,6 +311,7 @@ public class MainActivity extends Activity {
 				}else if(currIndex == 3){
 					animation = new TranslateAnimation(three, 0, 0, 0);
 				}
+                mSetupImgView.setImageResource(R.drawable.button_icon_group);
 				break;
 			case 1:
 				selectedTabView = tabAt;
@@ -208,7 +319,10 @@ public class MainActivity extends Activity {
 					animation = new TranslateAnimation(offset, one, 0, 0);
 				}else if(currIndex == 2) {
 					animation = new TranslateAnimation(two, one, 0, 0);
-				}
+				}else if(currIndex == 3) {
+                    animation = new TranslateAnimation(three, one, 0, 0);
+                }
+                mSetupImgView.setImageResource(R.drawable.button_icon_group);
 				break;
 			case 2:
 				selectedTabView = tabComment;
@@ -219,6 +333,7 @@ public class MainActivity extends Activity {
 				}else if(currIndex == 3) {
 					animation = new TranslateAnimation(three, two, 0, 0);
 				}
+                mSetupImgView.setImageResource(R.drawable.button_icon_group);
 				break;
 			case 3:
 				selectedTabView = tabProfile;
@@ -229,6 +344,7 @@ public class MainActivity extends Activity {
 				}else if(currIndex == 2) {
 					animation = new TranslateAnimation(two, three, 0, 0);
 				}
+                mSetupImgView.setImageResource(R.drawable.smart_ball_setting);
 				break;
 			}
 		   
@@ -248,6 +364,41 @@ public class MainActivity extends Activity {
 			
 		}
 	}
-	
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mAdapter.notifyDataSetChanged();
+        }
+    };
+
+    public void loadGroup() {
+        FriendShipAPI friendShipAPI = new FriendShipAPI(DMAccountsManager.curAccessToken());
+        friendShipAPI.groups(new RequestListener() {
+            @Override
+            public void onComplete(String s) {
+                DMListsResult lr = DMGsonUtil.gson2Lists(s);
+                DMLists list = new DMLists();
+                list.setId(-1);
+                list.setName("全部");
+                LinkedList<DMLists> resultList = new LinkedList<DMLists>();
+                resultList = lr.getLists();
+                resultList.add(0, list);
+                mAdapter.setmLists(lr.getLists());
+                Message msg = handler.obtainMessage();
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onIOException(IOException e) {
+
+            }
+
+            @Override
+            public void onError(WeiboException e) {
+
+            }
+        });
+    }
 }

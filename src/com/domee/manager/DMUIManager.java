@@ -1,7 +1,7 @@
 package com.domee.manager;
 
-import com.domee.activity.DMFriendsTimelineActivity;
-import com.domee.activity.MainActivity;
+import com.domee.activity.*;
+import com.domee.model.DMComment;
 
 public class DMUIManager {
 
@@ -16,6 +16,9 @@ public class DMUIManager {
 	}
 	
 	public DMFriendsTimelineActivity friendsTimelineActivity;
+    public DMAtActivity mAtActivity;
+    public DMCommentActivity mCommentActivity;
+    public DMProfileActivity mProfileActivity;
 	public MainActivity mainActivity;
 	public DMFriendsTimelineActivity getFriendsTimelineActivity() {
 		return friendsTimelineActivity;
@@ -32,6 +35,28 @@ public class DMUIManager {
 	public void setMainActivity(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}
-	
-	
+
+    public DMAtActivity getmAtActivity() {
+        return mAtActivity;
+    }
+
+    public void setmAtActivity(DMAtActivity mAtActivity) {
+        this.mAtActivity = mAtActivity;
+    }
+
+    public DMCommentActivity getmCommentActivity() {
+        return mCommentActivity;
+    }
+
+    public void setmCommentActivity(DMCommentActivity mCommentActivity) {
+        this.mCommentActivity = mCommentActivity;
+    }
+
+    public DMProfileActivity getmProfileActivity() {
+        return mProfileActivity;
+    }
+
+    public void setmProfileActivity(DMProfileActivity mProfileActivity) {
+        this.mProfileActivity = mProfileActivity;
+    }
 }

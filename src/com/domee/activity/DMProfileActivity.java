@@ -8,12 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.domee.R;
 import com.domee.adapter.DMStatusAdapter;
+import com.domee.interFace.DMRefreshInterface;
 import com.domee.model.DMStatus;
 import com.domee.model.DMStatusResult;
 import com.domee.utils.DMGsonUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.api.WeiboAPI.FEATURE;
 import com.weibo.sdk.android.net.RequestListener;
@@ -30,7 +32,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-public class DMProfileActivity extends BaseListActivity implements OnScrollListener {
+public class DMProfileActivity extends BaseListActivity implements DMRefreshInterface {
 	
 	private static DMStatusAdapter adapter = null;
 	private static PullToRefreshListView mPullToRefreshListView;
@@ -67,7 +69,26 @@ public class DMProfileActivity extends BaseListActivity implements OnScrollListe
         getListView().addFooterView(mListFooter);
         mMore = (TextView) mListFooter.findViewById(R.id.f_more);
 		//绑定OnScrollListener监听器
-		getListView().setOnScrollListener(this);
+//		getListView().setOnScrollListener(this);
+        getListView().setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true, new OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState){
+                    case OnScrollListener.SCROLL_STATE_IDLE:
+                        if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+                            loadMore(); //当滚到最后一行且停止滚动时，执行加载
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i2, int i3) {
+
+            }
+        }));
 	}
 	
 	@Override
@@ -127,9 +148,14 @@ public class DMProfileActivity extends BaseListActivity implements OnScrollListe
 		statusesAPI.userTimeline(0, max_id, 20, 1, false, FEATURE.ALL, false, loadMoreListener);
 	}
 
-	/*
-	 * RequestListener,请求返回的json数据在里面的onComplete方法获得
-	 */
+    @Override
+    public void refresh() {
+        loadNew();
+    }
+
+    /*
+     * RequestListener,请求返回的json数据在里面的onComplete方法获得
+     */
 	class FriendsTimelineRequestListener implements RequestListener {
 		
 		public boolean isLoadNew = true;
@@ -173,26 +199,26 @@ public class DMProfileActivity extends BaseListActivity implements OnScrollListe
 		}
 	}
 	
-	/*
-	 * 实现滑动监听器
-	 * @see android.widget.AbsListView.OnScrollListener#onScroll(android.widget.AbsListView, int, int, int)
-	 */
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		// TODO Auto-generated method stub
-		System.out.println(firstVisibleItem);
-	}
-	
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		// TODO Auto-generated method stub
-		switch (scrollState){
-		 	case OnScrollListener.SCROLL_STATE_IDLE:
-	            if (view.getLastVisiblePosition() == (view.getCount() - 1)){
-	            	loadMore();
-	            }     
-		}        
-	}
+//	/*
+//	 * 实现滑动监听器
+//	 * @see android.widget.AbsListView.OnScrollListener#onScroll(android.widget.AbsListView, int, int, int)
+//	 */
+//	@Override
+//	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//		// TODO Auto-generated method stub
+//		System.out.println(firstVisibleItem);
+//	}
+//
+//	@Override
+//	public void onScrollStateChanged(AbsListView view, int scrollState) {
+//		// TODO Auto-generated method stub
+//		switch (scrollState){
+//		 	case OnScrollListener.SCROLL_STATE_IDLE:
+//	            if (view.getLastVisiblePosition() == (view.getCount() - 1)){
+//	            	loadMore();
+//	            }
+//		}
+//	}
 	
 	//点击list
 	@Override

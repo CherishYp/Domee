@@ -17,6 +17,7 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.weibo.sdk.android.api.CommentsAPI;
+import com.weibo.sdk.android.api.FriendshipsAPI;
 import com.weibo.sdk.android.api.PlaceAPI;
 import com.weibo.sdk.android.api.StatusesAPI;
 
@@ -39,6 +40,7 @@ public class BaseListActivity extends ListActivity {
 	public StatusesAPI statusesAPI = new StatusesAPI(DMAccountsManager.curAccessToken());
 	public CommentsAPI commentsAPI = new CommentsAPI(DMAccountsManager.curAccessToken());
     public PlaceAPI placeAPI = new PlaceAPI(DMAccountsManager.curAccessToken());
+    public FriendshipsAPI friendshipsAPI = new FriendshipsAPI(DMAccountsManager.curAccessToken());
 	// 加载图片
 	public ImageLoader imageLoader = ImageLoader.getInstance();
 	public DisplayImageOptions options;

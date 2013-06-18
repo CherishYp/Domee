@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:descendantFocusability="blocksDescendants"
-    android:paddingBottom="5dp" >
+    android:descendantFocusability="blocksDescendants">
 
    	<ImageButton 
 	    android:id="@+id/ftAvatar"
@@ -18,7 +17,7 @@
 	    android:background="#00000000"
 	    android:padding="1dip"
 	    android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher"/>
+        android:src="@drawable/avatar_default"/>
     <TextView
         android:id="@+id/ftCreatedAt"
         android:layout_width="wrap_content"
@@ -70,7 +69,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_below="@id/ftText"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/image_default"/>
 
     </RelativeLayout>
 
@@ -83,12 +82,12 @@
         android:layout_alignRight="@id/ftCreatedAt"
         android:layout_toRightOf="@id/ftAvatar"
         android:layout_below="@id/ftStatus"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/profile_button3_1">
+        android:background="#F5F5F5">
 
         <TextView
             android:id="@+id/ftReText"
@@ -107,7 +106,7 @@
             android:layout_height="80dp"
             android:layout_alignParentLeft="true"
 			android:layout_below="@id/ftReText"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/image_default"/>
 
         <TextView
             android:id="@+id/ftReComment"
@@ -168,5 +167,33 @@
         android:textColor="#808080"
 	    android:textSize="12sp"
         android:text="ftRepost" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/s_add"
+            android:scaleType="fitEnd" android:layout_gravity="bottom"
+            android:src="@drawable/add"
+            android:layout_below="@+id/ftReStatus" android:layout_centerHorizontal="true" android:visibility="gone"/>
+    <include android:layout_width="fill_parent"
+             android:layout_height="40dp"
+             layout="@layout/add_layout"
+             android:layout_below="@+id/s_add" android:layout_alignParentLeft="true"/>
+    <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent" android:layout_height="40dp"-->
+            <!--android:id="@+id/s_add_layout" android:layout_below="@+id/s_add"-->
+            <!--android:layout_alignParentRight="true" android:background="#696969" android:visibility="gone">-->
+        <!--<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"-->
+                   <!--android:id="@+id/s_comment" android:layout_alignParentRight="true"-->
+                   <!--android:src="@drawable/button_icon_plus"/>-->
+        <!--<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"-->
+                   <!--android:id="@+id/s_repost" android:layout_alignParentTop="true"-->
+                   <!--android:layout_toLeftOf="@+id/s_comment"-->
+                   <!--android:src="@drawable/detail_button_forward" />-->
+        <!--<ImageView android:layout_height="wrap_content" android:layout_width="wrap_content"-->
+                   <!--android:id="@+id/s_fav" android:layout_alignParentTop="true"-->
+                   <!--android:layout_toLeftOf="@+id/s_repost"-->
+                   <!--android:src="@drawable/detail_button_fav"/>-->
+    <!--</RelativeLayout>-->
 
 </RelativeLayout>

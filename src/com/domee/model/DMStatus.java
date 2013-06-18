@@ -2,6 +2,9 @@ package com.domee.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +22,9 @@ import android.content.Intent;
 import android.text.style.*;
 import android.view.View;
 import android.widget.TextView;
+import com.domee.parser.DMWeiboContentParser;
 import com.domee.utils.DMConstants;
+import com.domee.utils.DMDateUtils;
 
 public class DMStatus implements Serializable {
 
@@ -58,11 +63,8 @@ public class DMStatus implements Serializable {
 	}
 
 	public String getCreated_at() {
-        System.out.println();
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
-
-//        format.
-		return created_at;
+        String tempStr = DMDateUtils.changeToDate(this.created_at);
+        return tempStr;
 	}
 
 	public void setCreated_at(String created_at) {
@@ -340,7 +342,8 @@ public class DMStatus implements Serializable {
 		// TODO Auto-generated method stub
 		return "id=======>" + id + "==========" +  "text=======>" + text + "/n";
 	}
-	
+
+
 	private static class MyURLSpan extends ClickableSpan {
 		   private String mUrl;
 		   MyURLSpan(String url) {

@@ -132,4 +132,9 @@ public class DMAccountsManager {
 		Oauth2AccessToken accessToken = new Oauth2AccessToken(curAccount.getmAccessToken(), curAccount.getmExpiresTime());
 		return accessToken;
 	}
+
+    public static String curGroupType() {
+        return curAccount.getGroupType();
+    }
+
 }

@@ -30,76 +30,169 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0e8fc717-626b-4ee5-b765-485f940d1a79" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/button_icon_plus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/detail_button_fav.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/detail_button_fav_1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/detail_button_forward.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/home_tab_icon_2_2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/broadcast/DMRefreshReceiver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMSendActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/ac_send.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/list_footer.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/title_bar_status_show.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/layout/ac_statusshow.xml" afterPath="$PROJECT_DIR$/res/layout/ac_status_show.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/layout/header_statusshow.xml" afterPath="$PROJECT_DIR$/res/layout/header_status_show.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/layout/item_statusshow.xml" afterPath="$PROJECT_DIR$/res/layout/item_status_show.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/BaseActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/BaseActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/add.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/avatar_default.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/button_icon_group.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/button_icon_setting.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/checkbox_checked.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/checkbox_normal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/composer_camera.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/composer_music.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/composer_place.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/composer_sleep.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/composer_with.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_bg.9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_all_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_music_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_pic_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_pic_on_title.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_video_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/group_btn_write_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-ldpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/image_default.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/imagebox.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/profile_edit_information.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/sidebar_left_item_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/smart_ball_edit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/smart_ball_setting.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/smart_icon_ring.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/smartball_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/timeline_home_item_selected_9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/timeline_pic.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/utils/DMDateUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMFStatusAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMFavActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/view/animation/DMGroupBtnsAnimation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/interFace/DMGroupInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/view/animation/DMInOutAnimation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/view/DMInOutImageButton.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/view/DMInOutRelativeLayout.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/model/DMLists.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMListsAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/model/DMListsResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/interFace/DMRefreshInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/utils/DMSyncImgLoader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMUserDetailAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/parser/DMWeiboContentParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/weibo/api/FriendShipAPI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboAtClickSpan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboClickSpan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboTagClickSpan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboUrlClickSpan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/add_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/checkbox.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/item_group.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/item_user_detail.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/title_bar_main.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$IBtnListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/model/StatusResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/net/DMUserRequestListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/DateTimeUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/domee/utils/DateTimeUtil.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/dialog/DMAlertImageDialog.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/dialog/DMAlertImageDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$AvatarListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter$AvatarListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMCommentAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/utils/DMConstants.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/utils/DMConstants.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$BtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$BtnListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter$ViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMNAStatusAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$BtnListener.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$BtnListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter$ViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/adapter/DMStatusAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/manager/DMUIManager.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/manager/DMUIManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$drawable.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$drawable.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$drawable.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$drawable.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$id.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$id.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$id.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$id.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$layout.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$layout.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/listfragment/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$layout.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/extras/viewpager/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$layout.class" afterPath="$PROJECT_DIR$/bin/classes/com/handmark/pulltorefresh/library/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$menu.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$string.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$style.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/classes/com/domee/R$styleable.class" afterPath="$PROJECT_DIR$/bin/classes/com/domee/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/model/Account.java" afterPath="$PROJECT_DIR$/src/com/domee/model/Account.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/BaseListActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/BaseListActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/manager/DMAccountsManager.java" afterPath="$PROJECT_DIR$/src/com/domee/manager/DMAccountsManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMBigImgShowActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMBigImgShowActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/model/DMComment.java" afterPath="$PROJECT_DIR$/src/com/domee/model/DMComment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMCommentActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMCommentActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/adapter/DMCommentAdapter.java" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMCommentAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMComposeActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMComposeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/utils/DMConstants.java" afterPath="$PROJECT_DIR$/src/com/domee/utils/DMConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/utils/DMGsonUtil.java" afterPath="$PROJECT_DIR$/src/com/domee/utils/DMGsonUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMLoginActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMLoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMProfileActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMProfileActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/model/DMStatus.java" afterPath="$PROJECT_DIR$/src/com/domee/model/DMStatus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/adapter/DMStatusAdapter.java" afterPath="$PROJECT_DIR$/src/com/domee/adapter/DMStatusAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMUserTimelineActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMUserTimelineActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/manager/DMUIManager.java" afterPath="$PROJECT_DIR$/src/com/domee/manager/DMUIManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/DMUserDetailActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/DMUserDetailActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/domee/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/domee/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/R.txt" afterPath="$PROJECT_DIR$/bin/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/weibo/api/SearchAPI.java" afterPath="$PROJECT_DIR$/src/com/weibo/api/SearchAPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_at_friend.xml" afterPath="$PROJECT_DIR$/res/layout/ac_at_friend.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_friend_timeline.xml" afterPath="$PROJECT_DIR$/res/layout/ac_friend_timeline.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_main.xml" afterPath="$PROJECT_DIR$/res/layout/ac_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_send.xml" afterPath="$PROJECT_DIR$/res/layout/ac_send.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/ac_user_detail.xml" afterPath="$PROJECT_DIR$/res/layout/ac_user_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/header_status_show.xml" afterPath="$PROJECT_DIR$/res/layout/header_status_show.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_comment.xml" afterPath="$PROJECT_DIR$/res/layout/item_comment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_friend.xml" afterPath="$PROJECT_DIR$/res/layout/item_friend.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_status.xml" afterPath="$PROJECT_DIR$/res/layout/item_status.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_status_show.xml" afterPath="$PROJECT_DIR$/res/layout/item_status_show.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/item_user_timeline.xml" afterPath="$PROJECT_DIR$/res/layout/item_user_timeline.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/title_bar.xml" afterPath="$PROJECT_DIR$/res/layout/title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Domee.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369724566695" ignored="false" />
-    <file path="/fragment.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369146867920" ignored="false" />
+    <file path="/Dummy.txt" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371439025238" ignored="false" />
+    <file path="/fragment.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371468694207" ignored="false" />
     <file path="/PullToRefreshViewPager.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368969754713" ignored="false" />
     <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshViewPager/bin/AndroidManifest.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971456385" ignored="false" />
-    <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshListFragment/gen/com/handmark/pulltorefresh/extras/listfragment/BuildConfig.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971456385" ignored="false" />
-    <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshViewPager/gen/com/handmark/pulltorefresh/extras/viewpager/R.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971456386" ignored="false" />
-    <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshViewPager/gen/com/handmark/pulltorefresh/extras/viewpager/BuildConfig.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971456386" ignored="false" />
     <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshListFragment/bin/AndroidManifest.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971456386" ignored="false" />
-    <file path="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshListFragment/gen/com/handmark/pulltorefresh/extras/listfragment/R.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368971457016" ignored="false" />
-    <file path="/title_bar.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368972189590" ignored="false" />
-    <file path="/DMLoginActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368973081878" ignored="false" />
-    <file path="/item_status.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369719748584" ignored="false" />
+    <file path="/title_bar.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371179010029" ignored="false" />
+    <file path="/DMLoginActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371304700272" ignored="false" />
+    <file path="/item_status.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371441700685" ignored="false" />
     <file path="/DMAtFriendActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369389203536" ignored="false" />
     <file path="/DMUserSelectedListener.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1368974477773" ignored="false" />
     <file path="/DMComposeActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369744619149" ignored="false" />
     <file path="/ac_compose.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369053989337" ignored="false" />
-    <file path="/DMStatusAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369576784856" ignored="false" />
-    <file path="/MainActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369649373028" ignored="false" />
-    <file path="/ac_main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369035321490" ignored="false" />
+    <file path="/DMStatusAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370332594003" ignored="false" />
+    <file path="/MainActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371519754541" ignored="false" />
+    <file path="/ac_main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371519969909" ignored="false" />
     <file path="/ac_image.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369036204160" ignored="false" />
     <file path="/DMBigImgShowActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369749283522" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369736596242" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370678502523" ignored="false" />
     <file path="/ac_big_image.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369579196568" ignored="false" />
     <file path="/HttpDownloader.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369040964723" ignored="false" />
     <file path="/DMImgLoader.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369042629602" ignored="false" />
     <file path="/DMHttpDownloader.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369043624097" ignored="false" />
-    <file path="/item_user_timeline.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369044009979" ignored="false" />
+    <file path="/item_user_timeline.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371390225307" ignored="false" />
     <file path="/Status.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369056329535" ignored="false" />
     <file path="/array.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369117986143" ignored="false" />
-    <file path="/DMUserDetailActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369131190922" ignored="false" />
-    <file path="/ac_user_detail.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369126761833" ignored="false" />
+    <file path="/DMUserDetailActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369799344585" ignored="false" />
+    <file path="/ac_user_detail.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371389906291" ignored="false" />
     <file path="/BaseActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369744937503" ignored="false" />
     <file path="/DMUserTimelineActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369748059326" ignored="false" />
     <file path="/header_user_timeline.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369125936019" ignored="false" />
     <file path="/DMNAStatusAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369577043618" ignored="false" />
-    <file path="/a.dummy" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369145117125" ignored="false" />
+    <file path="/a.dummy" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371389756408" ignored="false" />
     <file path="$PROJECT_DIR$/../../git/weicoplus/src/com/weico/plus/ui/activity/FilterActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369143044432" ignored="false" />
     <file path="$PROJECT_DIR$/../../git/weicoplus/gen/com/weico/plus/Manifest.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369143160028" ignored="false" />
     <file path="$PROJECT_DIR$/../../git/weicoplus/gen/com/weico/plus/R.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369143160028" ignored="false" />
@@ -112,33 +205,80 @@
     <file path="/DMNearByAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369388276973" ignored="false" />
     <file path="/DMPois.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369283650070" ignored="false" />
     <file path="/DMNearBy.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369387731955" ignored="false" />
-    <file path="/BaseListActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369289034560" ignored="false" />
+    <file path="/BaseListActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371382586414" ignored="false" />
     <file path="/DMConstants.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369734787344" ignored="false" />
-    <file path="/DMStatus.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369491857065" ignored="false" />
-    <file path="/DMFriendsTimelineActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369725282249" ignored="false" />
-    <file path="/DMGsonUtil.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369453787749" ignored="false" />
+    <file path="/DMStatus.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371471702001" ignored="false" />
+    <file path="/DMFriendsTimelineActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371476016984" ignored="false" />
+    <file path="/DMGsonUtil.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371375373368" ignored="false" />
     <file path="/*.regexp" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369298134785" ignored="false" />
     <file path="/DMTrendActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369457142105" ignored="false" />
-    <file path="/DMCommentAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369712038771" ignored="false" />
+    <file path="/DMCommentAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371183304907" ignored="false" />
     <file path="/Comment.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369316894907" ignored="false" />
     <file path="/DMLocationUtil.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369374320958" ignored="false" />
     <file path="/DMCategory.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369384182975" ignored="false" />
     <file path="/DMPoiSelectedListener.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369388981784" ignored="false" />
     <file path="/SearchAPI.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369453352755" ignored="false" />
     <file path="/ac_trend.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369454918654" ignored="false" />
-    <file path="/DMStatusShowActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369751325470" ignored="false" />
+    <file path="/DMStatusShowActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371475439663" ignored="false" />
     <file path="/DMRefreshReceiver.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369649236710" ignored="false" />
-    <file path="/item_comment.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369711484052" ignored="false" />
-    <file path="/a.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369716565153" ignored="false" />
+    <file path="/item_comment.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371390142958" ignored="false" />
+    <file path="/a.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370341298942" ignored="false" />
     <file path="/title_bar_status_show.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369722939302" ignored="false" />
-    <file path="/ac_status_show.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369727024259" ignored="false" />
+    <file path="/ac_status_show.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369879745298" ignored="false" />
     <file path="/list_footer.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369724878712" ignored="false" />
     <file path="/DMRepostActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369746165344" ignored="false" />
     <file path="/ac_repost.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369744054674" ignored="false" />
     <file path="/DMAddCommentActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369737141472" ignored="false" />
     <file path="/ac_add_comment.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369740368526" ignored="false" />
-    <file path="/DMCommentActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369747953017" ignored="false" />
+    <file path="/DMCommentActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371183750284" ignored="false" />
     <file path="/DMSendActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369751228240" ignored="false" />
+    <file path="/ac_send.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369796872022" ignored="false" />
+    <file path="/item_user_detail.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369799458933" ignored="false" />
+    <file path="/DMUserDetailAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369798628600" ignored="false" />
+    <file path="/aaa.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369879966935" ignored="false" />
+    <file path="/DMDateUtils.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1369909311527" ignored="false" />
+    <file path="/DMFavActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370330354755" ignored="false" />
+    <file path="/DMFStatusAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371474064345" ignored="false" />
+    <file path="/ac_friend_timeline.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370334266029" ignored="false" />
+    <file path="/DMUIManager.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370351432370" ignored="false" />
+    <file path="/DMAtActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371476730949" ignored="false" />
+    <file path="/DMProfileActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371180758667" ignored="false" />
+    <file path="/DMRefreshInterface.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370352580918" ignored="false" />
+    <file path="/PullToRefreshListView.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370357655025" ignored="false" />
+    <file path="/PullToRefreshBase.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370355456033" ignored="false" />
+    <file path="/title_bar_main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370399250908" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PureComposerDemo/project.properties" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370405489449" ignored="false" />
+    <file path="/DMInoutRelative.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370407548828" ignored="false" />
+    <file path="/DMInOutAnimation.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370407656608" ignored="false" />
+    <file path="/DMInOutImageButton.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370418203602" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PureComposerDemo/res/layout/main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370507963471" ignored="false" />
+    <file path="/main.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370507214021" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PureComposerDemo/src/com/naitiz/demo/PureComposerDemoActivity.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370507817629" ignored="false" />
+    <file path="/DMGroupBtnsAnimation.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370423237753" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PureComposerDemo/src/com/naitiz/demo/view/animation/ComposerButtonAnimation.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370508785039" ignored="false" />
+    <file path="/ComposerButtonAnimation.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370508736872" ignored="false" />
+    <file path="/DMSyncImgLoader.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1370677901928" ignored="false" />
+    <file path="/header_status_show.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371390110788" ignored="false" />
+    <file path="/add_layout.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371183084816" ignored="false" />
+    <file path="/group_list_view.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371373728859" ignored="false" />
+    <file path="/item_group.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371440544001" ignored="false" />
+    <file path="/FriendShipAPI.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371383160522" ignored="false" />
+    <file path="/DMGroupsResult.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371374734782" ignored="false" />
+    <file path="/DMGroups.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371375077973" ignored="false" />
+    <file path="/DMListsAdapter.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371382446846" ignored="false" />
+    <file path="/Account.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371382933115" ignored="false" />
+    <file path="/DMAccountsManager.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371385709709" ignored="false" />
+    <file path="/ac_at_friend.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371389842476" ignored="false" />
+    <file path="/item_friend.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371390154207" ignored="false" />
+    <file path="/item_status_show.xml" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371390194127" ignored="false" />
+    <file path="/WeiboContentParser.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371463455560" ignored="false" />
+    <file path="/WeiboClickSpan.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371470667868" ignored="false" />
+    <file path="/WeiboAtClickSpan.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371470718698" ignored="false" />
+    <file path="/WeiboTagClickSpan.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371470779755" ignored="false" />
+    <file path="/WeiboUrlClickSpan.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371471108835" ignored="false" />
+    <file path="/DMWeiboContentParser.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371471211689" ignored="false" />
+    <file path="/DM.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371475925102" ignored="false" />
+    <file path="/DMGroupInterface.java" changelist="0e8fc717-626b-4ee5-b765-485f940d1a79" time="1371477112646" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +286,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -153,6 +298,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -340,21 +486,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/activity/MainActivity.java" line="156" class="com.domee.activity.MainActivity.TabOnClickListener" package="com.domee.activity">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/com/domee/activity/DMSendActivity.java" line="244" class="com.domee.activity.DMSendActivity" package="com.domee.activity">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -370,8 +501,82 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/view/animation/DMGroupBtnsAnimation.java" line="23" class="com.domee.view.animation.DMGroupBtnsAnimation" package="com.domee.view.animation">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/view/animation/DMGroupBtnsAnimation.java" line="34" class="com.domee.view.animation.DMGroupBtnsAnimation" package="com.domee.view.animation">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/activity/MainActivity.java" line="380" class="com.domee.activity.MainActivity$5" package="com.domee.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/manager/DMAccountsManager.java" line="136" class="com.domee.manager.DMAccountsManager" package="com.domee.manager">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java" line="91" class="com.domee.activity.DMStatusShowActivity$1" package="com.domee.activity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -381,66 +586,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DMBigImgShowActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMBigImgShowActivity.java">
+      <file leaf-file-name="DMFriendsTimelineActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="0" selection-start="4621" selection-end="4621" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="151" column="0" selection-start="5499" selection-end="5499" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#7856#7865#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DMStatusShowActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DMStatusShowActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="302" column="63" selection-start="11412" selection-end="11412" vertical-scroll-proportion="3.282353">
+            <state line="84" column="21" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#2410#3126#0" expanded="true" />
-                <element signature="e#3121#3122#0" expanded="true" />
-                <element signature="e#4180#4224#0" expanded="true" />
+                <element signature="e#3366#3367#0" expanded="true" />
+                <element signature="e#4378#4422#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotionEvent.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/view/MotionEvent.class">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="28" selection-start="649" selection-end="649" vertical-scroll-proportion="0.0">
+            <state line="125" column="97" selection-start="4331" selection-end="4331" vertical-scroll-proportion="0.5033113">
+              <folding>
+                <element signature="e#12237#12418#0" expanded="true" />
+                <element signature="e#12411#12412#0" expanded="true" />
+                <element signature="e#12904#12913#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMLoginActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMLoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="13" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DMSendActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMSendActivity.java">
+      <file leaf-file-name="DMUIManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/manager/DMUIManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="29" selection-start="1703" selection-end="1703" vertical-scroll-proportion="61.846153">
+            <state line="22" column="37" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ac_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/ac_main.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="38" selection-start="396" selection-end="396" vertical-scroll-proportion="-2.3076923">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMAtActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="222" column="12" selection-start="6941" selection-end="6941" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#3670#4177#0" expanded="true" />
+                <element signature="e#4173#4174#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DMGroupInterface.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/domee/interFace/DMGroupInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1334#1977#0" expanded="true" />
-                <element signature="e#1970#1971#0" expanded="true" />
-                <element signature="e#4609#4817#0" expanded="true" />
-                <element signature="e#4806#4807#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentsAPI.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/weibo.sdk.android.sso.jar!/com/weibo/sdk/android/api/CommentsAPI.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="16" selection-start="1719" selection-end="1719" vertical-scroll-proportion="-7.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DMComposeActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMComposeActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="13" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -463,24 +693,27 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMAddCommentActivity.java" />
-        <option value="$PROJECT_DIR$/res/layout/ac_add_comment.xml" />
-        <option value="$PROJECT_DIR$/res/layout/ac_compose.xml" />
-        <option value="$PROJECT_DIR$/res/layout/ac_repost.xml" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMComposeActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMRepostActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/res/layout/ac_status_show.xml" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMProfileActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMCommentActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMUserTimelineActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMBigImgShowActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/domee/activity/DMSendActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/utils/DMWeiboContentParser.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboClickSpan.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboTagClickSpan.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboUrlClickSpan.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/parser/DMWeiboContentParser.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/parser/onclick/WeiboAtClickSpan.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/model/DMStatus.java" />
+        <option value="$PROJECT_DIR$/res/layout/item_status.xml" />
+        <option value="$PROJECT_DIR$/src/com/domee/adapter/DMFStatusAdapter.java" />
         <option value="$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/interFace/DM.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/interFace/DMGroupInterface.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/domee/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/ac_main.xml" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1280" />
@@ -539,8 +772,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -552,11 +783,9 @@
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+              <option name="myItemId" value="&lt; Android 4.2.2 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -564,10 +793,6 @@
               <option name="myItemId" value="Domee" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -576,18 +801,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -606,14 +819,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -636,58 +841,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="broadcast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,22 +870,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -741,30 +882,57 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.sourceCode.XML" />
+    <property name="options.lastSelected" value="tasks.servers" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../git/weibo.sdk.android.demo" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.domee.adapter" />
+      <recent name="com.domee.activity" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/res/drawable-hdpi" />
       <recent name="$PROJECT_DIR$/res/layout" />
-      <recent name="$PROJECT_DIR$/src/com/domee/utils" />
-      <recent name="$PROJECT_DIR$/libs" />
-      <recent name="$PROJECT_DIR$/../Android-PullToRefresh/extras/PullToRefreshViewPager/libs" />
+      <recent name="$PROJECT_DIR$/res/drawable-ldpi" />
+      <recent name="$PROJECT_DIR$/res/drawable-mdpi" />
+      <recent name="$PROJECT_DIR$/res/drawable-xhdpi" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.domee" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.Domee">
+    <configuration default="false" name="PullToRefreshListFragment" type="AndroidTestRunConfigurationType" factoryName="Android Tests" temporary="true">
+      <module name="PullToRefreshListFragment" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -872,9 +1040,15 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android Application.Domee" />
+      <item index="1" class="java.lang.String" itemvalue="Android Tests.PullToRefreshListFragment" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Android Tests.PullToRefreshListFragment" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -928,12 +1102,27 @@
       <workItem from="1369228190366" duration="6005000" />
       <workItem from="1369275046229" duration="68778000" />
       <workItem from="1369641655014" duration="2674000" />
-      <workItem from="1369709501483" duration="35825000" />
+      <workItem from="1369709501483" duration="41850000" />
+      <workItem from="1369812774219" duration="18885000" />
+      <workItem from="1370232168818" duration="25489000" />
+      <workItem from="1370340417573" duration="3026000" />
+      <workItem from="1370349851969" duration="8445000" />
+      <workItem from="1370396676731" duration="7826000" />
+      <workItem from="1370419291230" duration="3440000" />
+      <workItem from="1370423034262" duration="29142000" />
+      <workItem from="1370677164338" duration="7000" />
+      <workItem from="1370677242892" duration="7000" />
+      <workItem from="1370677293678" duration="9142000" />
+      <workItem from="1371133534734" duration="10106000" />
+      <workItem from="1371301122380" duration="6263000" />
+      <workItem from="1371375209321" duration="688000" />
+      <workItem from="1371376039250" duration="17286000" />
+      <workItem from="1371439018571" duration="16075000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196193000" />
+    <option name="totallyTimeSpent" value="358045000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -956,58 +1145,58 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2617504" sideWeight="0.63532764" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.63532764" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2617504" sideWeight="0.6851852" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.6851852" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.67236465" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41452992" sideWeight="0.88006485" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4017094" sideWeight="0.88006485" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30341882" sideWeight="0.8055105" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.53133905" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5854701" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2991453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36467236" sideWeight="0.85656404" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43589744" sideWeight="0.85656404" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.67236465" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.63532764" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2991453" sideWeight="0.19448946" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.6851852" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3148148" sideWeight="0.19448946" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2617504" sideWeight="0.5854701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2617504" sideWeight="0.6851852" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30341882" sideWeight="0.8055105" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5854701" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.7008547" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2991453" sideWeight="0.19448946" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23581848" sideWeight="0.6851852" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3148148" sideWeight="0.19448946" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5854701" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.6851852" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.67236465" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41452992" sideWeight="0.88006485" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4017094" sideWeight="0.88006485" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23581848" sideWeight="0.53133905" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2991453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36467236" sideWeight="0.85656404" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43589744" sideWeight="0.85656404" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.67236465" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1074,26 +1263,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/BaseActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/item_status.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="95" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/detail_button_fav_1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/detail_button_fav.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/ac_status_show.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="40" selection-start="497" selection-end="497" vertical-scroll-proportion="-3.75">
+        <state line="71" column="49" selection-start="2653" selection-end="2653" vertical-scroll-proportion="2.6558604">
           <folding />
         </state>
       </provider>
@@ -1101,98 +1273,119 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/avatar_default.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/adapter/DMListsAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="4" selection-start="1255" selection-end="1334" vertical-scroll-proportion="0.57416266">
+        <state line="21" column="13" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/adapter/DMFStatusAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="243" column="0" selection-start="9713" selection-end="9713" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#1693#1948#0" expanded="true" />
+            <element signature="e#1937#1938#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMAtFriendActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="80" selection-start="785" selection-end="785" vertical-scroll-proportion="0.09933775">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/interFace/DMGroupInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/manager/DMUIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="37" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMAtActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="2518" selection-end="2518" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMCommentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="4" selection-start="1311" selection-end="1390" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMProfileActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="65" selection-start="2416" selection-end="2623" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMUserTimelineActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="17" selection-start="5050" selection-end="5050" vertical-scroll-proportion="-1.9736842">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/view/MotionEvent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="649" selection-end="649" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/weibo.sdk.android.sso.jar!/com/weibo/sdk/android/net/AsyncWeiboRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/weibo.sdk.android.sso.jar!/com/weibo/sdk/android/api/CommentsAPI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="16" selection-start="1719" selection-end="1719" vertical-scroll-proportion="-7.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMComposeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="13" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMBigImgShowActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="0" selection-start="4621" selection-end="4621" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMSendActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="29" selection-start="1703" selection-end="1703" vertical-scroll-proportion="61.846153">
+        <state line="222" column="12" selection-start="6941" selection-end="6941" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1334#1977#0" expanded="true" />
-            <element signature="e#1970#1971#0" expanded="true" />
-            <element signature="e#4609#4817#0" expanded="true" />
-            <element signature="e#4806#4807#0" expanded="true" />
+            <element signature="e#3670#4177#0" expanded="true" />
+            <element signature="e#4173#4174#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMFriendsTimelineActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="0" selection-start="5499" selection-end="5499" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#7856#7865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/smart_ball_setting.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/smart_ball_edit.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/button_icon_group.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMStatusShowActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="302" column="63" selection-start="11412" selection-end="11412" vertical-scroll-proportion="3.282353">
+        <state line="84" column="21" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#2410#3126#0" expanded="true" />
-            <element signature="e#3121#3122#0" expanded="true" />
-            <element signature="e#4180#4224#0" expanded="true" />
+            <element signature="e#3366#3367#0" expanded="true" />
+            <element signature="e#4378#4422#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/DMLoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="13" selection-start="683" selection-end="683" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/ac_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="38" selection-start="396" selection-end="396" vertical-scroll-proportion="-2.3076923">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/domee/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="97" selection-start="4331" selection-end="4331" vertical-scroll-proportion="0.5033113">
+          <folding>
+            <element signature="e#12237#12418#0" expanded="true" />
+            <element signature="e#12411#12412#0" expanded="true" />
+            <element signature="e#12904#12913#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1214,7 +1407,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android (library)|Android</last-edited>
+          <last-edited>Android (PullToRefreshListFragment)|Android</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

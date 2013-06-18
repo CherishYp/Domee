@@ -9,10 +9,12 @@ import com.domee.model.DMComment;
 import com.domee.model.CommentResult;
 import com.domee.model.DMStatus;
 import com.domee.utils.DMConstants;
+import com.domee.utils.DMGsonUtil;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.weibo.sdk.android.WeiboException;
+import com.weibo.sdk.android.api.WeiboAPI;
 import com.weibo.sdk.android.api.WeiboAPI.AUTHOR_FILTER;
 import com.weibo.sdk.android.net.RequestListener;
 
@@ -63,6 +65,7 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
 	private LinkedList<DMComment> comList;
 	private ViewHolder holder;
 	private CommentAdapter adapter;
+    private LinkedList<DMComment> mLastComList;
 
     public final class ViewHolder {
 //		private ImageView ssComAvatar;
@@ -77,8 +80,6 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
 	
 	private long since_id = 0;
 	private long max_id = 0;
-    private long since_id_comment = 0;
-    private long max_id_commment = 0;
 	private long total_number = 0;
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -88,10 +89,13 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
                     if(total_number <= 20) {
                         mMore.setText("THE END");
                     } else {
-                        mMore.setText("点击加载更多...");
+                        if (mLastComList == null || mLastComList.size() < 20) {
+                            mMore.setText("THE END");
+                        } else {
+                            mMore.setText("点击加载更多...");
+                        }
                     }
                     adapter.notifyDataSetChanged();
-
                     break;
                 case 1:
                     Toast.makeText(DMStatusShowActivity.this, "收藏成功", Toast.LENGTH_LONG);
@@ -105,7 +109,6 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
 	};
 	private LinearLayout popLayout = null;
 	private Button button = null;
-	private boolean isComment = true; //true:显示评论
 
 	private BtnOnclickListener btnListener = new BtnOnclickListener();
 	
@@ -167,20 +170,15 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
 		ssSource.setText(status.getSource());
 		ssRepost.setText("转发" + status.getReposts_count() + "");
 		ssComment.setText("评论" + status.getComments_count() + "");
-		if (isComment) {
-			ssComment.setTextColor(android.graphics.Color.BLACK);
-		} else {
-			ssRepost.setTextColor(android.graphics.Color.BLACK);
-		}
-		ssRepost.setOnClickListener(btnListener);
-		
+	    ssRepost.setTextColor(android.graphics.Color.BLACK);
+
 		//判断是否转发
 		if (status.getRetweeted_status() != null) {
 			if (status.getRetweeted_status().getUser() != null) {
 				
 				ssReContent.setText("@" + status.getRetweeted_status().getUser().getScreen_name() + ":" + status.getRetweeted_status().getText());
                 status.extract2Link(ssReContent);
-				ssReSource.setText("10：25");
+				ssReSource.setText(status.getCreated_at());
 				ssReRepost.setText("转发" + status.getRetweeted_status().getReposts_count() + "");
 				ssReComment.setText("评论" + status.getRetweeted_status().getComments_count() + "");
 				//判断转发是否带图片
@@ -208,7 +206,7 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
         ssImgComment.setOnClickListener(btnListener);
         ssImgFav.setOnClickListener(btnListener);
 		//加载评论
-		this.loadMoreComment();
+		this.loadNew();
         mListFooter = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.list_footer, null);
         ssComListView.addFooterView(mListFooter);
         mMore = (TextView) mListFooter.findViewById(R.id.f_more);
@@ -264,89 +262,58 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
 				holder = (ViewHolder) convertView.getTag();
 			}
 
-			if (isComment) {
-				ssComment.setTextColor(android.graphics.Color.BLACK);
-				ssRepost.setTextColor(android.graphics.Color.GRAY);
-				DMComment comment = comList.get(position);
-				imageLoader.displayImage(comment.getUser().getProfile_image_url(), holder.ssComAvatar, options, animateFirstListener);
-				holder.ssComAvatar.setOnClickListener(new BtnOnclickListener(position));
-				holder.ssComScreenName.setText(comment.getUser().getScreen_name());
-				holder.ssComCreateAt.setText("12:20");
-				holder.ssComText.setText(comment.getText());
-                comment.extract2Link(holder.ssComText);
-				holder.ssComSource.setText(Html.fromHtml(comment.getSource()));
-				holder.ssComRepost.setText("转发");
-				holder.ssComComment.setText("评论");
-			} else {
-				ssRepost.setTextColor(android.graphics.Color.BLACK);
-				ssComment.setTextColor(android.graphics.Color.GRAY);
-				DMComment comment = comList.get(position);
-				imageLoader.displayImage(comment.getUser().getProfile_image_url(), holder.ssComAvatar, options, animateFirstListener);
-				holder.ssComAvatar.setOnClickListener(btnListener);
-				holder.ssComScreenName.setText(comment.getUser().getScreen_name());
-				holder.ssComCreateAt.setText("12:20");
-				holder.ssComText.setText(comment.getText());
-                comment.extract2Link(holder.ssComText);
-				holder.ssComSource.setText(Html.fromHtml(comment.getSource()));
-				holder.ssComRepost.setText("转发");
-				holder.ssComComment.setText("评论");
-			}
+            ssComment.setTextColor(android.graphics.Color.BLACK);
+            ssRepost.setTextColor(android.graphics.Color.GRAY);
+            DMComment comment = comList.get(position);
+            imageLoader.displayImage(comment.getUser().getProfile_image_url(), holder.ssComAvatar, options, animateFirstListener);
+            holder.ssComAvatar.setOnClickListener(new BtnOnclickListener(position));
+            holder.ssComScreenName.setText(comment.getUser().getScreen_name());
+            holder.ssComCreateAt.setText(comment.getCreated_at());
+            holder.ssComText.setText(comment.getText());
+            comment.extract2Link(holder.ssComText);
+            holder.ssComSource.setText(Html.fromHtml(comment.getSource()));
+            holder.ssComRepost.setText("转发");
+            holder.ssComComment.setText("评论");
+
 			return convertView;
 		}
 	}
-	
+    public void loadNew() {
+        if (comList != null && comList.size() != 0) {
+			since_id = comList.get(0).getId();
+            max_id = comList.get(comList.size() - 1).getId() - 1;
+		}
+        CommentRequestListener listener = new CommentRequestListener();
+        commentsAPI.show(status.getId(), since_id, 0 , 20, 1, AUTHOR_FILTER.ALL, listener);
+    }
+
 	//加载更多评论
-	public void loadMoreComment() {
-		CommentRequestListener listener = new CommentRequestListener(true);
-		if (comList != null && comList.size() != 0) {
-			max_id_commment = comList.get(comList.size() - 1).getId();
-			commentsAPI.show(status.getId(), max_id_commment + 1, 0 , 20, 1, AUTHOR_FILTER.ALL, listener);
-		} 
-		else {
-			commentsAPI.show(status.getId(), 0, 0, 20, 1, AUTHOR_FILTER.ALL, listener);
-		}
+	public void loadMore() {
+        if (comList != null && comList.size() != 0) {
+            since_id = comList.get(0).getId();
+            max_id = comList.get(comList.size() - 1).getId() - 1;
+        }
+		CommentRequestListener listener = new CommentRequestListener();
+	    commentsAPI.show(status.getId(), 0, max_id, 20, 1, AUTHOR_FILTER.ALL, listener);
 	}
 	
-	//加载更多转发
-	public void loadMoreRepost() {
-		CommentRequestListener listener = new CommentRequestListener(false);
-		if (comList != null && comList.size() != 0) {
-			max_id = comList.get(comList.size() - 1).getId();
-			commentsAPI.show(status.getId(), max_id +1, 0 , 20, 1, AUTHOR_FILTER.ALL, listener);
-		} 
-		else {
-			commentsAPI.show(status.getId(), 0, 0, 20, 1, AUTHOR_FILTER.ALL, listener);
-		}
-	}
 	public class CommentRequestListener implements RequestListener {
 
-		public CommentRequestListener(boolean flag) {
-			// TODO Auto-generated constructor stub
-			isComment = flag;
-		}
 		@Override
 		public void onComplete(String arg0) {
 			// TODO Auto-generated method stub
 			System.out.println(arg0);
-			GsonBuilder builder = new GsonBuilder();
-			Gson gson = builder.create();
-			if (isComment) {
-				CommentResult cr = gson.fromJson(arg0, new TypeToken<CommentResult>(){}.getType());
-				total_number = Long.parseLong(cr.getTotal_number());
-				if (comList != null) {
-					comList.addAll(cr.getComments());
-				} else {
-					comList = cr.getComments();
-				}
-			} else {
-				CommentResult cr = gson.fromJson(arg0, new TypeToken<CommentResult>(){}.getType());
-				total_number = Long.parseLong(cr.getTotal_number());
-				if (comList != null) {
-					comList.addAll(cr.getComments());
-				} else {
-					comList = cr.getComments();
-				}
-			}
+
+            CommentResult cr = DMGsonUtil.gson2Comment(arg0);
+            total_number = Long.parseLong(cr.getTotal_number());
+//            max_id = Long.parseLong(cr.getNext_cursor());
+//            since_id = Long.parseLong(cr.getPrevious_cursor());
+            mLastComList = cr.getComments();
+            if (comList != null) {
+                comList.addAll(cr.getComments());
+            } else {
+                comList = cr.getComments();
+            }
 			Message msg = handler.obtainMessage();
 			handler.sendMessage(msg);
 		}
@@ -388,9 +355,6 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
                     intent.setClass(DMStatusShowActivity.this, DMUserTimelineActivity.class);
                     intent.putExtra("user", status.getUser());
                     startActivity(intent);
-                    break;
-                case R.id.ssRepost:
-                    loadMoreRepost();
                     break;
                 case R.id.ssComAvatar:
                     intent = new Intent();
@@ -452,7 +416,7 @@ public class DMStatusShowActivity extends BaseActivity implements AbsListView.On
         switch (scrollState){
             case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
                 if (view.getLastVisiblePosition() == (view.getCount() - 1)){
-                    loadMoreComment();
+                    loadMore();
                 }
         }
     }

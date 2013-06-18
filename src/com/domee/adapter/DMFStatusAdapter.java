@@ -1,29 +1,25 @@
 package com.domee.adapter;
 
-import java.util.LinkedList;
-
-import com.domee.*;
-import com.domee.activity.DMBigImgShowActivity;
-import com.domee.activity.DMFriendsTimelineActivity;
-import com.domee.activity.DMUserTimelineActivity;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.*;
+import com.domee.R;
+import com.domee.activity.*;
 import com.domee.dialog.DMAlertImageDialog;
 import com.domee.model.DMStatus;
 import com.domee.utils.DMConstants;
+import com.domee.utils.DMSyncImgLoader;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.net.Uri;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.LinkedList;
 
 @SuppressLint("InlinedApi")
 public class DMFStatusAdapter extends BaseAdapter {
@@ -32,19 +28,30 @@ public class DMFStatusAdapter extends BaseAdapter {
 	private static final Uri PROFILE_URI = Uri.parse(DMConstants.MENTIONS_SCHEMA);
 
 	private Activity mActivity;
+    private ListView mListView;
 	private LayoutInflater mInflater;
 	private ImageLoader imageLoader ;
 	private DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener;
 	private LinkedList<DMStatus> statusList = null;
 
-    public DMFStatusAdapter(Activity mActivity,
+    public DMFStatusAdapter(final Activity mActivity, ListView mListView,
                             ImageLoader imageLoader, DisplayImageOptions options, ImageLoadingListener listener) {
 		this.mActivity = mActivity;
+        this.mListView = mListView;
 		this.mInflater = LayoutInflater.from(mActivity);
 		this.imageLoader = imageLoader;
 		this.options = options;
 		this.animateFirstListener = listener;
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                DMStatusShowActivity.show(mActivity, statusList.get(i - 1));
+            }
+        });
+
 	}
 
 	public final static class ViewHolder {
@@ -64,8 +71,8 @@ public class DMFStatusAdapter extends BaseAdapter {
 		private TextView ftReComment;
 
         private ImageView mAdd;
+        //item下面弹出
         private View mAddLayout;
-
         private ImageView mComment;
         private ImageView mRepost;
         private ImageView mFav;
@@ -116,6 +123,7 @@ public class DMFStatusAdapter extends BaseAdapter {
 			holder.ftReRepost = (TextView) convertView.findViewById(R.id.ftReRepost);
 			holder.ftReComment = (TextView) convertView.findViewById(R.id.ftReComment);
             holder.mAdd = (ImageView) convertView.findViewById(R.id.s_add);
+            holder.mAdd.setVisibility(View.VISIBLE);
             holder.mAddLayout = (View) convertView.findViewById(R.id.s_add_layout);
             holder.mComment = (ImageView) convertView.findViewById(R.id.s_comment);
             holder.mRepost = (ImageView) convertView.findViewById(R.id.s_repost);
@@ -126,12 +134,14 @@ public class DMFStatusAdapter extends BaseAdapter {
 		}
 
 		DMStatus sta = statusList.get(position);
+        holder.ftAvatar.setImageResource(R.drawable.avatar_default);
+        holder.ftImgView.setImageResource(R.drawable.image_default);
 		imageLoader.displayImage(sta.getUser().getProfile_image_url(), holder.ftAvatar, options, animateFirstListener);
 		holder.ftAvatar.setOnClickListener(new BtnListener(position));
 		//判断是否带图片微博
 		if(sta.getThumbnail_pic() != null && !sta.getThumbnail_pic().equals("")) {
 			imageLoader.displayImage(sta.getThumbnail_pic(), holder.ftImgView, options, animateFirstListener);
-			holder.ftImgView.setVisibility(View.VISIBLE);
+            holder.ftImgView.setVisibility(View.VISIBLE);
 			holder.ftImgView.setOnClickListener(new BtnListener(position));
 		} else {
 			holder.ftImgView.setVisibility(View.GONE);
@@ -181,7 +191,7 @@ public class DMFStatusAdapter extends BaseAdapter {
                 finalHolder.mAddLayout.setVisibility(finalHolder.mAddLayout.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
             }
         });
-        holder.mComment.setOnClickListener(new DMFriendsTimelineActivity.FBtnListener(position));
+        holder.mComment.setOnClickListener(new BtnListener(position));
         holder.mRepost.setOnClickListener(new BtnListener(position, finalHolder));
         holder.mFav.setOnClickListener(new BtnListener(position, finalHolder));
 		return convertView;
@@ -213,21 +223,29 @@ public class DMFStatusAdapter extends BaseAdapter {
                 case R.id.ftReImgView:
                     DMBigImgShowActivity.show(mActivity, statusList.get(position).getRetweeted_status().getOriginal_pic(), statusList.get(position).getRetweeted_status().getThumbnail_pic());
                     break;
+                case R.id.s_comment:
+                    DMSendActivity.show(mActivity, statusList.get(position), DMConstants.FLAG_COMMENT);
+                    //mHolder.mAddLayout.setVisibility(View.GONE);
+                    break;
+                case R.id.s_repost:
+                    DMSendActivity.show(mActivity, statusList.get(position), DMConstants.FLAG_REPOST);
+                    // mHolder.mAddLayout.setVisibility(View.GONE);
+                    break;
+                case R.id.s_fav:
+                    // mHolder.mAddLayout.setVisibility(View.GONE);
+                    break;
                 default:
                     break;
 			}
 			
 		}
 	}
-	
-	public LinkedList<DMStatus> getStatusList() {
+
+    public LinkedList<DMStatus> getStatusList() {
 		return statusList;
 	}
 
 	public void setStatusList(LinkedList<DMStatus> statusList) {
 		this.statusList = statusList;
 	}
-	
-
-    
 }

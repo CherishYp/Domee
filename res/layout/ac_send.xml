@@ -45,23 +45,32 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
             android:background="@drawable/channel_sectionbar" android:layout_alignParentBottom="true">
+
         <CheckBox
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
                 android:text="同时评论"
+                android:button="@drawable/checkbox"
+                android:textColor="#FFFFFF"
                 android:id="@+id/r_is_comment_curchx" android:layout_alignBottom="@+id/select_layout"
                 android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
         <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="同时评论原文"
+                android:button="@drawable/checkbox"
+                android:textColor="#FFFFFF"
                 android:id="@+id/r_is_comment_orichx" android:layout_alignBottom="@+id/select_layout"
                 android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
         <CheckBox
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
                 android:text="同时转发"
+                android:button="@drawable/checkbox"
+                android:textColor="#FFFFFF"
                 android:id="@+id/r_is_repost_chx" android:layout_alignBottom="@+id/select_layout"
                 android:layout_alignParentLeft="true" android:layout_alignRight="@+id/cStatusText" android:visibility="gone"/>
     </LinearLayout>
@@ -72,6 +81,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
+            android:background="#00000000"
             android:layout_above="@+id/checkbox_layout_repost" android:layout_alignParentLeft="true">
         <TextView
                 android:layout_width="wrap_content"

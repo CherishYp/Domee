@@ -1,99 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/channel_sectionbar"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/channel_sectionbar" >
+        android:layout_height="fill_parent"
+        android:background="@drawable/channel_sectionbar"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tab_friendtimeline_txt"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:text="@string/tab_friendtimeline" />
+            android:layout_height="40dp"
+            android:background="@drawable/channel_sectionbar" >
 
-        <TextView
-            android:id="@+id/tab_at_txt"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-			android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:text="@string/tab_at" />
+            <TextView
+                android:id="@+id/tab_friendtimeline_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:text="@string/tab_friendtimeline" />
 
-        <TextView
-            android:id="@+id/tab_comment_txt"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:text="@string/tab_comment" />
+            <TextView
+                android:id="@+id/tab_at_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:text="@string/tab_at" />
 
-        <TextView
-            android:id="@+id/tab_profile_txt"
+            <TextView
+                android:id="@+id/tab_comment_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:text="@string/tab_comment" />
+
+            <TextView
+                android:id="@+id/tab_profile_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:text="@string/tab_profile" />
+        </LinearLayout>
+        <!-- <ImageView
+            android:id="@+id/tab_cursor"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:text="@string/tab_profile" />
+            android:layout_height="wrap_content"
+            android:scaleType="matrix"
+            android:contentDescription="@string/app_name" /> -->
+        <View
+            android:id="@+id/tab_cursor"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@android:color/white"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#00BFFF"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="#FFFFFF"
+            android:flipInterval="30"
+            android:persistentDrawingCache="animation" />
     </LinearLayout>
-    <!-- <ImageView
-		android:id="@+id/tab_cursor"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:scaleType="matrix"
-		android:contentDescription="@string/app_name" /> -->
-	<View 
-	    android:id="@+id/tab_cursor"
-	    android:layout_width="100dp"
-	    android:layout_height="5dp"
-	    android:background="@android:color/white"/>
-	<View 
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="#00BFFF"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-		android:layout_width="wrap_content"
-		android:layout_height="0dp"
-		android:layout_gravity="center"
-		android:layout_weight="1.0"
-		android:background="#FFFFFF"
-		android:flipInterval="30"
-		android:persistentDrawingCache="animation" />
 
-    <!--<RelativeLayout-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:background="#00000000">-->
-    <!--<ImageView-->
-            <!--android:id="@+id/mWrietImgView"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:background="#00000000"-->
-            <!--android:src="@drawable/newbar_icon_1"-->
-            <!--android:contentDescription="@string/app_name" />-->
+    <ImageView
+        android:id="@+id/mWrietImgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/smart_ball_edit"
+        android:background="@drawable/smartball_bg"
+        android:contentDescription="@string/app_name" android:layout_marginRight="10dp"/>
 
-    <!--<ImageView-->
-            <!--android:id="@+id/mSetupImgView"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="fill_parent"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:src="@drawable/more_icon_queue"-->
-            <!--android:contentDescription="@string/app_name"/>-->
-    <!--</RelativeLayout>-->
-</LinearLayout>
+    <ImageView
+        android:id="@+id/mSetupImgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/button_icon_group"
+        android:background="@drawable/smartball_bg"
+        android:contentDescription="@string/app_name" />
+
+    <Button android:id="@+id/group_btn"
+            android:layout_width="fill_parent" android:layout_height="fill_parent"
+            android:background="#00000000" android:visibility="gone" />
+    <LinearLayout android:id="@+id/group_layout" android:layout_width="120dp" android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true" android:layout_above="@id/mSetupImgView" android:gravity="center_horizontal"
+                  android:background="#696969" android:layout_marginRight="10dp">
+        <ListView android:id="@+id/group_list_view" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+
+
+</RelativeLayout>

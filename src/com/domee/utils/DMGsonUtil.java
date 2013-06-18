@@ -38,4 +38,9 @@ public class DMGsonUtil {
         DMStatusResult sr = gson.fromJson(jsonStr, new TypeToken<DMStatusResult>(){}.getType());
         return sr;
     }
+
+    public static DMListsResult gson2Lists(String jsonStr) {
+        DMListsResult lr = gson.fromJson(jsonStr, new TypeToken<DMListsResult>(){}.getType());
+        return lr;
+    }
 }

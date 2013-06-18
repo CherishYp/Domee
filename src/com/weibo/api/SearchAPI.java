@@ -24,4 +24,6 @@ public class SearchAPI extends WeiboAPI {
         request(SERVER_URL_PRIX + "/topics.json", params, HTTPMETHOD_GET,
                 listener);
     }
+
+
 }

@@ -41,7 +41,7 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_below="@+id/utText"
 	        android:layout_marginTop="5dp"
-	        android:src="@drawable/ic_launcher" />
+	        android:src="@drawable/avatar_default" />
     </RelativeLayout>
     
     <!-- 转发的微博 -->
@@ -73,7 +73,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_below="@id/utReText" 
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/image_default" />
 
         <TextView
             android:id="@+id/utReComment"

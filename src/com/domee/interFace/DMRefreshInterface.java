@@ -5,4 +5,5 @@ package com.domee.interFace;
  */
 public interface DMRefreshInterface {
 
+    public void refresh();
 }

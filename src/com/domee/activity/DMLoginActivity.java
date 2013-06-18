@@ -22,10 +22,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class DMLoginActivity extends Activity {
-//    private static final String CONSUMER_KEY = "1082819259"; // 替换为开发者的appkey，例如"1646212860";
-//    private static final String REDIRECT_URL = "http://oauth.weico.cc";
-	private static final String CONSUMER_KEY = "1152034500"; // 替换为开发者的appkey，例如"1646212860";
-	private static final String REDIRECT_URL = "http://www.sina.com";
+    private static final String CONSUMER_KEY = "1082819259"; // 替换为开发者的appkey，例如"1646212860";
+    private static final String REDIRECT_URL = "http://oauth.weico.cc";
+	//private static final String CONSUMER_KEY = "1152034500"; // 替换为开发者的appkey，例如"1646212860";
+	//private static final String REDIRECT_URL = "http://www.sina.com";
+    private static String OAUTH_URL = "https://api.weibo.com/oauth2/authorize?&response_type=code&";
 	public static final String TAG = "sinasdk";
 	public static Oauth2AccessToken accessToken;
 	public SsoHandler ssoHandler;
@@ -53,6 +54,7 @@ public class DMLoginActivity extends Activity {
 			e.printStackTrace();
 		}
 		lSSo.setOnClickListener(new SsoBtnListener());
+        lOauth.setOnClickListener(new SsoBtnListener());
 	}
 	
 	/*
@@ -63,9 +65,18 @@ public class DMLoginActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
-			ssoHandler = new SsoHandler(DMLoginActivity.this, weibo);
-			ssoHandler.authorize(new AuthDialogListener());
+			switch (v.getId()){
+                case R.id.lSso:
+                    ssoHandler = new SsoHandler(DMLoginActivity.this, weibo);
+                    ssoHandler.authorize(new AuthDialogListener());
+                    break;
+                case R.id.lOauth:
+                    weibo.authorize(DMLoginActivity.this, new AuthDialogListener());
+                    break;
+                default:
+                    break;
+            }
+
 		}
 	}
 	
@@ -89,27 +100,31 @@ public class DMLoginActivity extends Activity {
 //                Intent intent = new Intent(DMLoginActivity.this, DMFriendsTimelineActivity.class);
                 Intent intent = new Intent(DMLoginActivity.this, MainActivity.class);
                 DMLoginActivity.this.startActivity(intent);
+                DMLoginActivity.this.finish();
             }
 		}
 
-		@Override
-		public void onCancel() {
-			// TODO Auto-generated method stub
+        @Override
+        public void onError(WeiboDialogError e) {
+            Log.d("Weibo-authorize", "Login failed: " + e);
+            Toast.makeText(getApplicationContext(),
+                    "Auth error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
-		}
+        @Override
+        public void onCancel() {
+            Log.d("Weibo-authorize", "Login canceled");
+            Toast.makeText(getApplicationContext(), "Auth cancel",
+                    Toast.LENGTH_LONG).show();
+        }
 
-		@Override
-		public void onError(WeiboDialogError arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onWeiboException(WeiboException arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
+        @Override
+        public void onWeiboException(WeiboException e) {
+            Log.d("Weibo-authorize", "Login failed: " + e);
+            Toast.makeText(getApplicationContext(),
+                    "Auth exception : " + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
 	}
 
 	@Override
